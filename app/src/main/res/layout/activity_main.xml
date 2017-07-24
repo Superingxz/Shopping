@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/navigation_btn"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn1"
+            android:text="首页"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:button="@null"
+            android:paddingTop="6dp"
+            android:checked="true"
+            android:textColor="@drawable/home_rg_text_color"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/btn2"
+            android:text="商家"
+            android:paddingTop="6dp"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:textSize="10dp"
+            android:textColor="@drawable/home_rg_text_color"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/btn3"
+            android:paddingTop="6dp"
+            android:text="购物车"
+            android:textSize="10dp"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@drawable/home_rg_text_color"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/btn4"
+            android:paddingTop="6dp"
+            android:text="我的"
+            android:gravity="center"
+            android:textColor="@drawable/home_rg_text_color"
+            android:button="@null"
+            android:textSize="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </RadioGroup>
+</LinearLayout>

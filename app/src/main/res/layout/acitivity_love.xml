@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_love_back"
+            android:textSize="20dp"
+            android:layout_marginLeft="14dp"
+            android:textColor="#7F7F7F"
+            android:text="@string/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="#1a1a1a"
+            android:text="爱心"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_love_score"
+                android:textColor="#35bb8a"
+                android:text="10个"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="爱心总数"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:background="#E6E6E6"
+            android:layout_width="1dp"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_love_total_score"
+                android:textColor="#35bb8a"
+                android:text="10个"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="累计获得爱心数"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp">
+
+        <TextView
+            android:layout_marginLeft="14dp"
+            android:id="@+id/text1"
+            android:text="已激励金额:"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#1a1a1a"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_love_total_profit"
+            android:layout_toRightOf="@+id/text1"
+            android:textColor="#35bb8a"
+            android:text="0.0"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textColor="#7F7F7F"
+            android:text=">"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_marginRight="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+    <TextView
+        android:gravity="center"
+        android:text="获得爱心明细"
+        android:layout_width="match_parent"
+        android:layout_height="28dp" />
+    <!--<ListView-->
+        <!--android:id="@+id/lv_love_month"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></ListView>-->
+    <!--<ExpandableListView-->
+        <!--android:id="@+id/elv_love"-->
+        <!--android:dividerHeight="5dp"-->
+        <!--android:divider="#E6E6E6"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+    <!--<com.handmark.pulltorefresh.library.PullToRefreshExpandableListView-->
+        <!--android:id="@+id/elv_love"-->
+        <!--android:dividerHeight="5dp"-->
+        <!--ptr:ptrShowIndicator="false"-->
+        <!--android:divider="#E6E6E6"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_love"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#E6E6E6"
+        android:dividerHeight="5dp"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+</LinearLayout>

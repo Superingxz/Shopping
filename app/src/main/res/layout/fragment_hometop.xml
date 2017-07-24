@@ -1,0 +1,58 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dl7.shopping.module.fragment.hometop.HomeTopFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+        android:id="@+id/interval"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#9a9a9a" />
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/fragment_home_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#E6E6E6"
+            android:dividerHeight="2.5dp"/>
+
+    </LinearLayout>
+
+
+
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+        <!--android:id="@+id/swipRefreshLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/interval"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.5dp"-->
+                <!--android:background="#9a9a9a" />-->
+
+            <!--<ListView-->
+                <!--android:id="@+id/fragment_home_listView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_below="@+id/interval"-->
+                <!--android:divider="#E6E6E6"-->
+                <!--android:dividerHeight="2.5dp"/>-->
+
+        <!--</RelativeLayout>-->
+
+
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+</FrameLayout>

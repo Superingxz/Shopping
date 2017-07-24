@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--搜索-->
+    <string name="search">&#xf002;</string>
+    <!--定位-->
+    <string name="location">&#xf041;</string>
+    <!--设置-->
+    <string name="set">&#xf013;</string>
+    <!--删除-->
+    <string name="delete">&#xf014;</string>
+    <!--编辑-->
+    <string name="edit">&#xf014;</string>
+    <!--返回-->
+    <string name="back">&#xf053;</string>
+    <!--购物车-->
+    <string name="shoppingcart">&#xf218;</string>
+    <!--感叹号-->
+    <string name="tip">&#xf06a;</string>
+    <!--向下的实心三角形-->
+    <string name="triangle">&#xf0dd;</string>
+    <!--空心圆-->
+    <string name="circle">&#xf22d;</string>
+    <!--默认地址-->
+    <string name="address">&#xf058;</string>
+</resources>

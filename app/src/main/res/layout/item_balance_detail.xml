@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:id="@+id/tv_item_balance_detail_info"
+        android:layout_marginLeft="14dp"
+        android:textColor="#1a1a1a"
+        android:text="转账"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+
+
+    <LinearLayout
+        android:layout_marginRight="14dp"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_item_balance_Detail_time"
+            android:gravity="center"
+            android:text="05-05"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/tv_item_balance_detail_money"
+            android:textColor="#1a1a1a"
+            android:gravity="center"
+            android:text="-250.00"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

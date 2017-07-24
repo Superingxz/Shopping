@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/collect_navigation_btn"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:orientation="horizontal">
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/btn1"-->
+            <!--android:text="全部收藏"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="10dp"-->
+            <!--android:button="@null"-->
+            <!--android:paddingTop="6dp"-->
+            <!--android:checked="true"-->
+            <!--android:textColor="@drawable/home_rg_text_color"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"/>-->
+        <LinearLayout
+            android:id="@+id/ll_collect_allcollect"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_collect_allcollect"
+                android:text="全部收藏"
+                android:textColor="#35bb8a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_collect_allcollect_triangle"
+                android:textColor="#35bb8a"
+                android:visibility="visible"
+                android:layout_marginLeft="5dp"
+                android:text="@string/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--<RadioButton-->
+            <!--android:id="@+id/btn2"-->
+            <!--android:text="分类"-->
+            <!--android:paddingTop="6dp"-->
+            <!--android:gravity="center"-->
+            <!--android:button="@null"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:textSize="10dp"-->
+            <!--android:textColor="@drawable/home_rg_text_color"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"/>-->
+        <LinearLayout
+            android:id="@+id/ll_collect_classify"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_collect_classify"
+                android:text="分类"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_collect_classify_triangle"
+                android:visibility="gone"
+                android:textColor="#35bb8a"
+                android:layout_marginLeft="5dp"
+                android:text="@string/triangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RadioGroup>
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <FrameLayout
+        android:id="@+id/collect_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+</LinearLayout>

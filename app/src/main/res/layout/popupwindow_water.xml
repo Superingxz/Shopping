@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_pop_head"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="20dp"
+            android:layout_width="100dp"
+            android:layout_height="120dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:id="@+id/tv_pop_dismiss"
+                android:layout_marginRight="14dp"
+                android:layout_gravity="end"
+                android:text="X"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_pop_name"
+                android:text="广大水桶"
+                android:textStyle="bold"
+                android:textColor="#1a1a1a"
+                android:layout_marginLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_pop_money"
+                android:textColor="#35bb8a"
+                android:text="¥ 25"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_pop_tip_icon"
+                    android:textColor="#DA2E2E"
+                    android:text="@string/tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_pop_tip"
+                    android:visibility="visible"
+                    android:layout_marginLeft="2dp"
+                    android:textColor="#DA2E2E"
+                    android:text="水桶需要跟水一起购买，不单卖"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:id="@+id/ll_pop_buy_or_rent"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_pop_buy"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/water_textview_background1"
+                android:gravity="center"
+                android:text="买桶"
+                android:textColor="#fff" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_pop_rent"
+                android:text="租桶"
+                android:background="@drawable/water_textview_background2"
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_pop_address"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp">-->
+        <!--<TextView-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--android:text="地址"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_pop_address"-->
+            <!--android:layout_marginRight="14dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="XX市XX区XX街XX楼   >"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</RelativeLayout>-->
+
+    <!--<TextView-->
+        <!--android:background="#E6E6E6"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1px" />-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_pop_time"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="30dp">-->
+        <!--<TextView-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--android:text="时间"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_pop_time"-->
+            <!--android:layout_marginRight="14dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="11:30   >"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</RelativeLayout>-->
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_marginLeft="14dp"
+            android:text="数量"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <ImageView
+
+            android:id="@+id/img_pop_add"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_toLeftOf="@id/img_pop_add"
+            android:id="@+id/tv_pop_num"
+            android:text="1"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_toLeftOf="@+id/tv_pop_num"
+            android:id="@+id/img_pop_subtract"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_pop_payment"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:background="#35bb8a"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:text="确定付款"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

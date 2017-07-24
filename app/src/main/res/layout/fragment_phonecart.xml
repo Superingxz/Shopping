@@ -1,0 +1,81 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:myns="http://schemas.android.com/apk/res-auto"
+    tools:context="com.dl7.shopping.module.fragment.phonecart.PhoneCartFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textSize="30dp"-->
+        <!--android:text="第三页面"/>-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RadioGroup
+            android:id="@+id/navigation_btn_phone"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbn_CU"
+                android:text="联通"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:button="@null"
+                android:paddingTop="6dp"
+                android:checked="true"
+                android:textColor="@drawable/home_rg_text_color"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbn_CMCC"
+                android:text="移动"
+                android:paddingTop="6dp"
+                android:gravity="center"
+                android:button="@null"
+                android:layout_width="0dp"
+                android:textSize="10dp"
+                android:textColor="@drawable/home_rg_text_color"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbn_CT"
+                android:paddingTop="6dp"
+                android:text="电信"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:button="@null"
+                android:textColor="@drawable/home_rg_text_color"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv_fragment_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#E6E6E6"
+            android:dividerHeight="10dp"
+            />
+
+
+
+        <!--<ListView-->
+            <!--android:id="@+id/lv_fragment_phone"-->
+            <!--android:dividerHeight="10dp"-->
+            <!--android:divider="#E6E6E6"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"></ListView>-->
+    </LinearLayout>
+</FrameLayout>

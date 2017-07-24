@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="77.5dp">
+        <LinearLayout
+            android:id="@+id/home_middle_catering"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="餐饮"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_middle_movie"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="电影"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_middle_KTV"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="KTV"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_middle_hairdressing"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="美容美发"
+                android:textColor="#9a9a9a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/home_middle_exercise"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="运动健身"
+                android:textColor="#9a9a9a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+    
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="110dp" />
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+</LinearLayout>

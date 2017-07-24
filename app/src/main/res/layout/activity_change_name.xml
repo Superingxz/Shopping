@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_change_name_back"
+            android:text="@string/back"
+            android:textSize="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#7F7F7F"/>
+        <TextView
+            android:gravity="center"
+            android:textSize="18dp"
+            android:text="昵称"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"/>
+
+        <TextView
+            android:id="@+id/tv_change_name_save"
+            android:layout_marginRight="14dp"
+            android:layout_alignParentRight="true"
+            android:textSize="18dp"
+            android:text="保存"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#35bb8a"/>
+    </RelativeLayout>
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <EditText
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:layout_marginRight="14dp"
+            android:layout_marginLeft="14dp"
+            android:hint="随便输入"
+            android:maxLength="10"
+            android:id="@+id/et_change_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <ImageView
+            android:id="@+id/img_change_name_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/et_change_name"
+            android:layout_alignEnd="@+id/et_change_name" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="14dp"
+            android:text="3-10个字符，可由中英文、数字组成"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

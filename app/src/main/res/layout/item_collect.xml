@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_collect_listview_item"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="5dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_marginRight="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+        <TextView
+            android:id="@+id/tv_collect_item_title"
+            android:textSize="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold"
+            android:text="广大桶装水"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_collect_item_money"
+                android:textSize="20dp"
+                android:textColor="#35bb8a"
+                android:text="¥ 25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_collect_item_shoppingcart"
+                android:textSize="20dp"
+                android:textColor="#35bb8a"
+                android:text="@string/shoppingcart"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

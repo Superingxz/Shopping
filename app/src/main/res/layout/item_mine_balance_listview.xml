@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="40dp">
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:id="@+id/balance_item_img"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:id="@+id/balance_item_text"
+            android:text="提现"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+
+    <TextView
+        android:textSize="16dp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:text=">"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+
+
+
+</RelativeLayout>

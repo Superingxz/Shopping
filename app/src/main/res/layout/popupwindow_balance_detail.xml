@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:gravity="center"
+        android:text="全部"
+        android:textColor="#1a1a1a"
+        android:textSize="20dp"
+        android:id="@+id/tv_pop_balance_detail_all"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <TextView
+        android:gravity="center"
+        android:text="支出"
+        android:textColor="#1a1a1a"
+        android:textSize="20dp"
+        android:id="@+id/tv_pop_balance_detail_expend"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <TextView
+        android:gravity="center"
+        android:text="收入"
+        android:textColor="#1a1a1a"
+        android:textSize="20dp"
+        android:id="@+id/tv_pop_balance_detail_income"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+
+
+</LinearLayout>

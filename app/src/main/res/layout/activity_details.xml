@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.stx.xhb.xbanner.XBanner
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/details_banner_1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:AutoPlayTime="3000"
+            app:pointsPosition="CENTER"
+            app:tipTextSize="12sp"
+            app:isShowNumberIndicator="false"
+            app:isShowIndicatorOnlyOne="true"
+            app:pageChangeDuration="800"/>
+
+        <TextView
+            android:background="#E6E6E6"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
+
+        <TextView
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="14dp"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold"
+            android:text="广大桶装水   2L"
+            android:id="@+id/tv_details_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginRight="14dp"
+            android:text="源自地下120米深的矿泉水带，蕴藏着丰富优质、低矿物的天然矿泉水"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="14dp"
+            android:id="@+id/tv_details_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textColor="#35bb8a"
+            android:layout_marginRight="14dp"
+            android:layout_marginLeft="14dp"
+            android:id="@+id/tv_details_money"
+            android:text="¥  25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:text="—— 详情 ——"
+            android:background="#E6E6E6"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbn_details_collect"
+            android:text="收藏"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:button="@null"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:drawableTop="@mipmap/ic_launcher"
+            android:id="@+id/rbn_details_share"
+            android:text="分享"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:button="@null"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rbn_details_shoppingcart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="购物车"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/rgn_details_addshoppingcart"
+            android:text="加入购物车"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="#35bb8a"
+            android:textSize="10dp"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/img_details_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+</RelativeLayout>
