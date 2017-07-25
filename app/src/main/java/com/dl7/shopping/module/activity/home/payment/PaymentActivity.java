@@ -53,7 +53,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 
     @Override
     protected int attachLayoutRes() {
-        return 0;
+        return R.layout.activity_payment;
     }
 
     @Override
