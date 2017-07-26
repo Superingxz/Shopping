@@ -270,7 +270,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 
         @Override
         public boolean hasStableIds() {
-            // TODO Auto-generated method stub
+       
             return false;
         }
 
