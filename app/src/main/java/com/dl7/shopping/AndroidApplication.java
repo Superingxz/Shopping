@@ -53,6 +53,7 @@ public class AndroidApplication extends Application {
     // 因为下载那边需要用，这里在外面实例化在通过 ApplicationModule 设置
     private RxBus mRxBus = new RxBus();
 
+   private boolean is;
     private DaoSession mDaoSession;
 
 
