@@ -52,13 +52,13 @@ public class AddressMessageAdapter extends CommonAblistViewAdapter<AddressMessag
         ((TextView) holder.getView(R.id.tv_address_defult_circle)).setTypeface(iconFont);
         ((TextView) holder.getView(R.id.tv_edit_icon)).setTypeface(iconFont);
         ((TextView) holder.getView(R.id.tv_delete_icon)).setTypeface(iconFont);
-        if (listBean.getIs_default()==1){
+        if (listBean.getIs_default()==0){
             holder.setTextColor(R.id.tv_address_detail, R.string.address);
             holder.setTextColor(R.id.tv_address_defult_circle,Color.parseColor("#35bb8a"));
             holder.setText(R.id.tv_address_defult_circle,"默认地址");
             holder.setTextColor(R.id.tv_address_default,Color.parseColor("#35bb8a"));
             holder.setTextColor(R.id.tv_address_default, Color.parseColor("#35bb8a"));
-        }else if (listBean.getIs_default()==0){
+        }else if (listBean.getIs_default()==1){
             holder.setText(tv_address_defult_circle, R.string.circle);
             holder.setTextColor(R.id.tv_address_defult_circle, Color.parseColor("#1a1a1a"));
             holder.setText(R.id.tv_address_default, "设为默认地址");

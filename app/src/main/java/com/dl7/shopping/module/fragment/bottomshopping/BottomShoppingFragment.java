@@ -32,6 +32,11 @@ public class BottomShoppingFragment extends BaseFragment<BottomShoppingPresenter
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

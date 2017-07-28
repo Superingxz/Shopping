@@ -35,6 +35,11 @@ public class MerchantFragment extends BaseFragment<MerchantPresenter>
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void onClick(View v) {
 
     }

@@ -35,6 +35,11 @@ public class ShoppingCartFragment extends BaseFragment<ShoppingCartPresenter>
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void onClick(View v) {
 
     }

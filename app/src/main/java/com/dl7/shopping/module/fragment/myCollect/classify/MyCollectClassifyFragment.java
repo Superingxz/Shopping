@@ -55,6 +55,11 @@ public class MyCollectClassifyFragment extends BaseFragment<CollectClassifyPrese
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

@@ -146,5 +146,12 @@ dependencies {
 
     compile 'com.myz.customview:customview:1.0.2'
     compile project(':pull')
+
+    compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+    compile 'com.lzy.widget:view-core:0.2.3'
+    compile 'com.pingxx:pingpp-core:2.1.9' //必须添加
+    compile 'com.pingxx:pingpp-alipay:2.1.9' //使用支付宝时添加
+    compile 'com.pingxx:pingpp-upacp:2.1.9' //使用银联支付时添加
+    compile 'com.pingxx:pingpp-wxpay:2.1.9' //使用微信支付时添加
 }
 

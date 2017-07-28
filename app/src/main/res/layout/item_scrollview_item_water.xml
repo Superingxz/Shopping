@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -24,18 +24,18 @@
             android:layout_marginRight="25dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv_item_water_goods_name"
-            android:textStyle="bold"
-            android:textColor="#1a1a1a"
-            android:text="广大"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_item_water_company"
-            android:text="水桶2L/个"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_item_water_goods_name"
+                android:textStyle="bold"
+                android:textColor="#1a1a1a"
+                android:text="广大"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_item_water_company"
+                android:text="水桶2L/个"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
         <RelativeLayout
             android:layout_marginTop="5dp"
@@ -59,4 +59,10 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <TextView
+        android:background="#e6e6e6"
+        android:layout_width="1px"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="match_parent" />
 </LinearLayout>

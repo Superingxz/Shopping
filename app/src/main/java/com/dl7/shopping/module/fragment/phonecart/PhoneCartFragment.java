@@ -104,6 +104,11 @@ public class PhoneCartFragment extends BaseFragment<PhoneCartPresenter>
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

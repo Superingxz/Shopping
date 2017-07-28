@@ -31,6 +31,11 @@ public class MyCollectMerchantFragment extends BaseFragment<CollectMerchantPrese
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

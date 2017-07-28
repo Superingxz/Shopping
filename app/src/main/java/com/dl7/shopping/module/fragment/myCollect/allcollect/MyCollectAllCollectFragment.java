@@ -55,6 +55,11 @@ public class MyCollectAllCollectFragment extends BaseFragment<AllCollectPresente
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

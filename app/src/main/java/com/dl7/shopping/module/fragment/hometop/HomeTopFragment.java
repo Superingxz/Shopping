@@ -112,6 +112,11 @@ public class HomeTopFragment extends BaseFragment<HomeTopPresenter> implements X
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

@@ -62,7 +62,9 @@ public class LoveListAdapter extends BaseAdapter {
 //        holder.info.setText(address[position]);
         holder.info.setText(mlist.get(position).getNotes());
         holder.time.setText(mlist.get(position).getCreate_time());
-        holder.loveNum.setText(mlist.get(position).getSource()+"");
+        if (mlist.get(position).getType().equals("INCOME")){
+            holder.loveNum.setText("+"+mlist.get(position).getSource());
+        }
 
         return convertView;
     }
