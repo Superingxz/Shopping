@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_layout_water_order"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_water_order_back"
+            android:layout_marginLeft="14dp"
+            android:textSize="18dp"
+            android:text="@string/back"
+            android:textColor="#7F7F7F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="18dp"
+            android:textColor="#1a1a1a"
+            android:gravity="center"
+            android:text="提交订单"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/rl_layout_water_order"
+        android:layout_marginTop="10dp"
+        android:background="#35bb8a"
+        android:orientation="vertical"
+        android:id="@+id/ll_water_order_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_water_order_name"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:text="收件人:  名字位"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_water_order_phone"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="14dp"
+                android:layout_alignParentRight="true"
+                android:textColor="#fff"
+                android:text="12357475544"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_water_order_icon"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_water_order_address"
+                android:textColor="#fff"
+                android:maxEms="15"
+                android:text="收货地址:xx省xx市xx区xx路xx号xx楼xx室"
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#fff"
+                android:layout_marginRight="14dp"
+                android:layout_alignParentRight="true"
+                android:text=">"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_water_order_time"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="#fff"
+            android:text="配送时间:  2017.07.25 09:00-17:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/ll_water_order_detail"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <ImageView
+            android:id="@+id/img_water_order_head"
+            android:layout_marginLeft="14dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="100dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_water_order_title"
+            android:layout_toRightOf="@+id/img_water_order_head"
+            android:text="农夫山泉瓶装水"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_water_order_num"
+            android:layout_marginRight="14dp"
+            android:text="X1"
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp" />
+    </RelativeLayout>
+
+<TextView
+    android:id="@+id/tv_commit_order_water"
+    android:background="#35bb8a"
+    android:textColor="#fff"
+    android:gravity="center"
+    android:text="提交订单"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="40dp" />
+
+</RelativeLayout>

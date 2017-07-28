@@ -22,7 +22,9 @@ import com.dl7.shopping.module.activity.mine.minebanlance.MineBalanceActivity;
 import com.dl7.shopping.module.activity.mine.mycollect.MyCollectActivity;
 import com.dl7.shopping.module.activity.mysetting.mineset.MineSetActivity;
 import com.dl7.shopping.module.base.BaseFragment;
+import com.dl7.shopping.rxbus.event.FifthEvent;
 import com.dl7.shopping.rxbus.event.FirstEvent;
+import com.dl7.shopping.rxbus.event.ThreeEvent;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -136,11 +138,16 @@ public class MineFragment extends BaseFragment<MinePresenter>
                 SharedPreferences.Editor editor1 = sp1.edit();
 //                editor1.putString("userphone", "");
                 editor1.putString("userid", "0");
-                editor1.putString("islogin", "false");//登录状态
-                editor1.putString("image", "");
-                editor1.putString("name", "");
-                editor1.putString("mobile", "");
+                editor1.putString("data","0");
+                editor1.putString("islogin","false");//登录状态
+                editor1.putString("image","");
+                editor1.putString("name","");
+                editor1.putString("mobile","");
                 editor1.commit();
+                EventBus.getDefault().post(
+                        new ThreeEvent(""));
+                EventBus.getDefault().post(
+                        new FifthEvent("OK"));
                 initData();
                 Toast.makeText(getContext(), "退出登录", Toast.LENGTH_SHORT).show();
             }
@@ -321,6 +328,11 @@ public class MineFragment extends BaseFragment<MinePresenter>
 
     @Override
     protected void updateViews(boolean isRefresh) {
+
+    }
+
+    @Override
+    public void goTop() {
 
     }
 

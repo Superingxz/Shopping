@@ -47,6 +47,11 @@ public class HomeBottomFragment extends BaseFragment<HomeBottomPresenter>
     }
 
     @Override
+    public void goTop() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }

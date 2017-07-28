@@ -113,6 +113,7 @@ public class LoveActivity extends AppCompatActivity {
                 });
     }
 
+    //获取下半list部分的数据
     private void initListData() {
         OkGo.<String>post(URL.LOVEDETAIL_URL)
                 .params("member_id",uid)
@@ -136,6 +137,7 @@ public class LoveActivity extends AppCompatActivity {
                                 loveListBean.getData().getList().get(i).setCreate_time(create_time);
                                 loveListBean.getData().getList().get(i).setNotes(notes);
                                 loveListBean.getData().getList().get(i).setScore(score);
+                                loveListBean.getData().getList().get(i).setType(listObject.getString("type"));
                                 listBean.add(loveListBean.getData().getList().get(i));
                             }
                             mList.addAll(loveListBean.getData().getList());

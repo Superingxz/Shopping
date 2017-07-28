@@ -1,4 +1,4 @@
-package com.dl7.shopping.module.activity.mysetting.waterstore;
+package com.dl7.shopping.module.activity.home.waterstore;
 
 import com.dl7.shopping.module.base.IBasePresenter;
 

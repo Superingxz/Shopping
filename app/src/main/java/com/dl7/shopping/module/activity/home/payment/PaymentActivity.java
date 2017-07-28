@@ -1,34 +1,42 @@
 package com.dl7.shopping.module.activity.home.payment;
 
-import android.app.Activity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bigkoo.pickerview.TimePickerView;
 import com.dl7.shopping.R;
+import com.dl7.shopping.adapter.PaymentListAdapter;
+import com.dl7.shopping.api.URL;
+import com.dl7.shopping.bean.PaymentBean;
+import com.dl7.shopping.module.activity.home.WaterOrderActivity;
+import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 下单页面
@@ -38,7 +46,7 @@ import butterknife.ButterKnife;
 public class PaymentActivity extends BaseActivity<PaymentPresentter> implements IPaymentView {
     @BindView(R.id.tv_payment_back)
     TextView back;
-    @BindView(R.id.elv_payment)
+    @BindView(R.id.lv_payment)
     ExpandableListView expandableListView;
     @BindView(R.id.tv_payment_time)
     TextView tvTime;
@@ -46,11 +54,29 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     RelativeLayout rlPaymentTime;
     @BindView(R.id.tv_payment_all_circle)
     TextView allSelecticon;
+    @BindView(R.id.tv_payment_order)
+    TextView order;
+    @BindView(R.id.rl_payment_address)
+    RelativeLayout rl_paymentAddress;
+    @BindView(R.id.tv_payment_address)
+    TextView tvAddress;
+    @BindView(R.id.tv_payment_total_num)
+    TextView allNum;
+
     private Typeface iconFont;
     private List<String> groupArray = new ArrayList<String>();
     ;//组列表
     private List<List<String>> childArray = new ArrayList<List<String>>();//子列表
 
+    private String uid;
+    private List<PaymentBean.DataBean.WaterGroupBean> list = new ArrayList<>();
+    private List<PaymentBean.DataBean> mList = new ArrayList<>();
+    private List<String> arrayList = new ArrayList<>();
+    private ListView listView;
+    private PaymentListAdapter adapter;
+    private View convertView;
+    private String msg;
+    private String addressId="";
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_payment;
@@ -63,87 +89,128 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 
     @Override
     protected void initViews() {
+        uid = CommonMethod.getUid(this);
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
-
-        groupArray.add("广大");
-        groupArray.add("屈臣氏");
-        groupArray.add("广大");
-        groupArray.add("瓶装水");
-        groupArray.add("广大");
-        List<String> arrayList = new ArrayList<String>();
-        arrayList.add("广大桶装水");
-        arrayList.add("广大矿泉水");
-        arrayList.add("广大饮料");
-
-        //组循环
-        for (int index = 0; index < groupArray.size(); ++index) {
-            childArray.add(arrayList);
-        }
-
-
-        back = (TextView) findViewById(R.id.tv_payment_back);
         back.setTypeface(iconFont);
-        expandableListView = (ExpandableListView) findViewById(R.id.elv_payment);
-
-        allSelecticon = (TextView) findViewById(R.id.tv_payment_all_circle);
         allSelecticon.setTypeface(iconFont);
 
-        rlPaymentTime = (RelativeLayout) findViewById(R.id.rl_payment_time);
-        tvTime = (TextView) findViewById(R.id.tv_payment_time);
+        EventBus.getDefault().register(this);
 
+        adapter = new PaymentListAdapter(mList, this, this);
+        //收货地址
+        rl_paymentAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(PaymentActivity.this, AddressMessageActivity.class);
+                intent.putExtra("isSelect","true");
+                startActivity(intent);
+            }
+        });
+
+        //提交订单
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!addressId.equals("")) {
+                    int k = 0;
+                    int q=0;
+                    for (int i = 0; i < mList.size(); i++) {
+                        for (int j = 0; j < mList.get(i).getWater_group().size(); j++) {
+                            if (mList.get(i).getWater_group().get(j).isIs_check()) {//判断是否有商品被选择
+                                k++;
+                                q=k;
+                            }
+                        }
+                    }
+
+                    if (q>1){
+                        Toast.makeText(PaymentActivity.this, "暂时不支持多种商品一起购买", Toast.LENGTH_SHORT).show();
+                    }else if (q==0){
+                        Toast.makeText(PaymentActivity.this, "请至少选择一种商品", Toast.LENGTH_SHORT).show();
+                    }else if(q==1){
+                        for (int i = 0; i < mList.size(); i++) {
+                            for (int j = 0; j < mList.get(i).getWater_group().size(); j++) {
+                                if (mList.get(i).getWater_group().get(j).isIs_check()) {
+                                    String goods_id = mList.get(i).getWater_group().get(j).getGoods_id();
+                                    int allnum=Integer.parseInt(allNum.getText().toString());//数量
+                                    Intent intent=new Intent(PaymentActivity.this,WaterOrderActivity.class);
+                                    intent.putExtra("goodsId",goods_id);
+                                    intent.putExtra("allNum",allnum+"");
+                                    intent.putExtra("addressId",addressId);
+                                    startActivity(intent);
+                                }
+                            }
+                        }
+                    }
+                }else{
+                    Toast.makeText(PaymentActivity.this, "请选择收货地址", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         //配送时间点击
         rlPaymentTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //控制时间范围(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
-                //因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
-                Calendar selectedDate = Calendar.getInstance();
-                Calendar startDate = Calendar.getInstance();
-                startDate.set(2017, 0, 1);//选择开始时间
-                Calendar endDate = Calendar.getInstance();
-                endDate.set(2019, 11, 28);//选择最大选择时间，，，月份是从0开始计算所以只有0-11月
-                //时间选择器
-                TimePickerView pvTime = new TimePickerView.Builder(PaymentActivity.this, new TimePickerView.OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date, View v) {//选中事件回调
-                        tvTime.setText(getTime(date));
-                    }
-                })//年月日时分秒 的显示与否，不设置则默认全部显示
-                        .setType(new boolean[]{true, true, true, true, true, false})
-                        .setLabel("年", "月", "日", "点", "分", "")
-                        .isCenterLabel(false)
-                        .setDividerColor(Color.DKGRAY)
-                        .setContentSize(21)
-                        .setDate(selectedDate)
-                        .setRangDate(startDate, endDate)
-                        .setBackgroundId(0x00FFFFFF) //设置外部遮罩颜色
-                        .setDecorView(null)
-                        .build();
+                OkGo.<String>post(URL.SCHOOLTIME_URL)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
 
-//                pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
-                pvTime.show();
+                            }
+                        });
+
+//                //控制时间范围(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
+//                //因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
+//                Calendar selectedDate = Calendar.getInstance();
+//                Calendar startDate = Calendar.getInstance();
+//                startDate.set(2017, 0, 1);//选择开始时间
+//                Calendar endDate = Calendar.getInstance();
+//                endDate.set(2019, 11, 28);//选择最大选择时间，，，月份是从0开始计算所以只有0-11月
+//                //时间选择器
+//                TimePickerView pvTime = new TimePickerView.Builder(PaymentActivity.this, new TimePickerView.OnTimeSelectListener() {
+//                    @RequiresApi(api = Build.VERSION_CODES.N)
+//                    @Override
+//                    public void onTimeSelect(Date date, View v) {//选中事件回调
+//                        tvTime.setText(getTime(date));
+//                    }
+//                })//年月日时分秒 的显示与否，不设置则默认全部显示
+//                        .setType(new boolean[]{true, true, true, true, true, false})
+//                        .setLabel("年", "月", "日", "点", "分", "")
+//                        .isCenterLabel(false)
+//                        .setDividerColor(Color.DKGRAY)
+//                        .setContentSize(21)
+//                        .setDate(selectedDate)
+//                        .setRangDate(startDate, endDate)
+//                        .setBackgroundId(0x00FFFFFF) //设置外部遮罩颜色
+//                        .setDecorView(null)
+//                        .build();
+//
+////                pvTime.setDate(Calendar.getInstance());//注：根据需求来决定是否使用该方法（一般是精确到秒的情况），此项可以在弹出选择器的时候重新设置当前时间，避免在初始化之后由于时间已经设定，导致选中时间与当前时间不匹配的问题。
+//                pvTime.show();
 
             }
         });
+//        //设置箭头图标
+//        expandableListView.setGroupIndicator(null);
+//        //设置ExpandableListView是否可以展开，返回false可以展开，true位不展开
+//        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//            @Override
+//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//                return true;
+//            }
+//        });
 
-        //设置箭头图标
-        expandableListView.setGroupIndicator(null);
-        //设置ExpandableListView是否可以展开，返回false可以展开，true位不展开
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                return true;
-            }
-        });
+        listView.setAdapter(adapter);
+//        expandableListView.setAdapter(new ExpandableListViewaAdapter(PaymentActivity.this));
+        initData();
 
-        expandableListView.setAdapter(new ExpandableListViewaAdapter(PaymentActivity.this));
-        //设置默认expandableListView全部展开
-        for (int i = 0; i < new ExpandableListViewaAdapter(PaymentActivity.this).getGroupCount(); i++) {
-            expandableListView.expandGroup(i);
-        }
+//        //设置默认expandableListView全部展开
+//        for(int i = 0; i < new ExpandableListViewaAdapter(PaymentActivity.this) .getGroupCount(); i++){
+//            expandableListView.expandGroup(i);
+//        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +218,53 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
                 finish();
             }
         });
+    }
+
+    //获取数据
+    private void initData() {
+        OkGo.<String>post(URL.BRANDWATER_URL)
+                .params("member_id", uid)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String json = response.body().toString();
+                        Log.i("onSuccess: ", json);
+
+                        Gson gson = new Gson();
+                        PaymentBean paymentBean = gson.fromJson(json, PaymentBean.class);
+                        List<PaymentBean.DataBean.WaterGroupBean> waterGroupBeanList = new ArrayList<PaymentBean.DataBean.WaterGroupBean>();
+                        List<PaymentBean.DataBean> dataBean = new ArrayList<PaymentBean.DataBean>();
+                        try {
+                            JSONObject j1 = new JSONObject(json);
+
+                            JSONArray data = j1.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject dataObj = data.getJSONObject(i);
+                                paymentBean.getData().get(i).setBrand_name(dataObj.getString("brand_name"));
+                                JSONArray water_group = dataObj.getJSONArray("water_group");
+                                for (int j = 0; j < water_group.length(); j++) {
+                                    JSONObject water_groupObj = water_group.getJSONObject(j);
+                                    paymentBean.getData().get(i).getWater_group().get(j).setGoods_name(water_groupObj.getString("goods_name"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setTotal_num(water_groupObj.getInt("total_num"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setNumber(water_groupObj.getInt("number"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setNum(1);
+                                    Log.i("onSuccess: ", paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
+                                    waterGroupBeanList.add(paymentBean.getData().get(i).getWater_group().get(j));
+//                                    arrayList.add(paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
+                                }
+                                list.addAll(waterGroupBeanList);
+//                                groupArray.add(paymentBean.getData().get(i).getBrand_name());
+//                                childArray.add(arrayList);
+                                dataBean.add(paymentBean.getData().get(i));
+                            }
+
+                            mList.addAll(paymentBean.getData());
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     @Override
@@ -168,6 +282,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     public void finishRefresh() {
 
     }
+
 
     class ExpandableListViewaAdapter extends BaseExpandableListAdapter {
         Activity activity;
@@ -280,4 +395,5 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
             return true;
         }
     }
+
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<TextView-->
+        <!--android:id="@+id/top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="#8456"-->
+        <!--android:gravity="center"-->
+        <!--android:text="可以自定义头布局"-->
+        <!--android:textColor="#FFF"/>-->
+
+    <LinearLayout
+        android:id="@+id/ll_drag_layout"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rbn_details_collect"
+            android:text="收藏"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:button="@null"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <RadioButton
+            android:drawableTop="@mipmap/ic_launcher"
+            android:id="@+id/rbn_details_share"
+            android:text="分享"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:button="@null"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/rbn_details_shoppingcart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="购物车"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/rgn_details_addshoppingcart"
+            android:text="加入购物车"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="#35bb8a"
+            android:textSize="10dp"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <com.lzy.widget.VerticalSlide
+        android:id="@+id/dragLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_drag_layout"
+        >
+
+        <FrameLayout
+            android:id="@+id/first"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:id="@+id/drag_second"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.lzy.widget.VerticalSlide>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="66dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_arrow_upward"/>
+</RelativeLayout>

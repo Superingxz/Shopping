@@ -90,6 +90,11 @@ public class MyCollectProductsFragment extends BaseFragment<CollectProductsPrese
 
     }
 
+    @Override
+    public void goTop() {
+
+    }
+
 
     private void switchFragment(Fragment fragment) {
         //判断当前显示的Fragment是不是切换的Fragment

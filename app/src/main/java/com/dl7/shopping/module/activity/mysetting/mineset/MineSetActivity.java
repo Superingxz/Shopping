@@ -19,7 +19,6 @@ import com.dl7.shopping.adapter.PhotoAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
 import com.dl7.shopping.module.activity.mysetting.changename.ChangeNameActivity;
-import com.dl7.shopping.module.activity.mysetting.waterstore.WaterStoreActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.FirstEvent;
 import com.dl7.shopping.utils.CommonMethod;
@@ -103,13 +102,13 @@ public class MineSetActivity extends BaseActivity<MineSetPresenter>
         back.setTypeface(iconFont);
 //        exit = (RelativeLayout) findViewById(R.id.mine_set_exit);
 
-        waterStore.setOnClickListener(new View.OnClickListener() {
+       /* waterStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MineSetActivity.this, WaterStoreActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 //        //退出登录
@@ -134,7 +133,8 @@ public class MineSetActivity extends BaseActivity<MineSetPresenter>
         address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MineSetActivity.this, AddressMessageActivity.class);
+                Intent intent=new Intent(MineSetActivity.this,AddressMessageActivity.class);
+                intent.putExtra("isSelect","false");
                 startActivity(intent);
             }
         });

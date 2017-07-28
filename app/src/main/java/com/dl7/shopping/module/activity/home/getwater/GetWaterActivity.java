@@ -1,18 +1,32 @@
 package com.dl7.shopping.module.activity.home.getwater;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dl7.shopping.R;
+import com.dl7.shopping.adapter.WaterDetailAdapter;
+import com.dl7.shopping.api.URL;
+import com.dl7.shopping.bean.WaterDetailBean;
+import com.dl7.shopping.module.activity.home.payment.PaymentActivity;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +44,28 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
 
     @BindView(R.id.tv_getwater_back)
     TextView back;
-    @BindView(R.id.elv_water)
-    ExpandableListView expandableListView;
+    @BindView(R.id.tv_water_total_num)
+    TextView totalNum;
+    @BindView(R.id.tv_water_month_num)
+    TextView monthNum;
+    @BindView(R.id.tv_water_barrel_num)
+    TextView barrelNum;
+    @BindView(R.id.tv_water_mortgage_barrel)
+    TextView mortageBarrel;
+    @BindView(R.id.lv_water_detail)
+    PullToRefreshListView listView;
+    @BindView(R.id.rl_payment)
+    RelativeLayout payment;
     private Typeface iconFont;
     private List<String> groupArray;//组列表
     private List<List<String>> childArray;//子列表
     private boolean IsFlag;
 
+    private String uid;
+    private int pageNum=1;
+    private WaterDetailBean waterDetailListBean;
+    private List<WaterDetailBean.DataBean.ListBean> mlist=new ArrayList<>();
+    private WaterDetailAdapter adapter;
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_getwater;
@@ -52,40 +81,30 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
 
+        uid = CommonMethod.getUid(this);
+
         back.setTypeface(iconFont);
-        expandableListView.setGroupIndicator(null);
-        groupArray = new ArrayList<String>();
-        childArray = new ArrayList<List<String>>();
 
-        groupArray.add("移动开发");
-        groupArray.add("语言");
-        groupArray.add("移动开发");
-        groupArray.add("移动开发");
-        groupArray.add("移动开发");
-        List<String> arrayList = new ArrayList<String>();
-        arrayList.add("Android");
-        arrayList.add("IOS");
-        arrayList.add("Windows Phone");
+        initData();
+        initListData();
+        adapter = new WaterDetailAdapter(mlist,this);
+        listView.setAdapter(adapter);
+        listView.setMode(PullToRefreshBase.Mode.BOTH);
 
-        //组循环
-        for (int index = 0; index < groupArray.size(); ++index) {
-            childArray.add(arrayList);
-        }
-
-        expandableListView.setAdapter(new ExpandableListViewaAdapter(GetWaterActivity.this));
-        //设置默认expandableListView全部展开
-        for (int i = 0; i < new ExpandableListViewaAdapter(GetWaterActivity.this).getGroupCount(); i++) {
-            expandableListView.expandGroup(i);
-        }
-
-
-        //设置ExpandableListView是否可以展开，返回false可以展开，true位不展开
-        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+        listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                pageNum=1;
+                mlist.clear();
+                initData();
+                adapter.notifyDataSetChanged();
+            }
 
-
-                return true;
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+                pageNum++;
+                initData();
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -95,6 +114,78 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
                 finish();
             }
         });
+
+        //下单按钮跳转
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(GetWaterActivity.this,PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    //获取用户取水信息
+    private void initData() {
+        OkGo.<String>post(URL.GETWATER_URL)
+                .params("member_id",uid)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String json = response.body().toString();
+                        Log.i("onSuccess: ", json);
+                        try {
+                            JSONObject j1=new JSONObject(json);
+                            JSONObject data = j1.getJSONObject("data");
+                            totalNum.setText(data.getInt("total_num")+"桶");
+                            monthNum.setText(data.getInt("month_num")+"桶");
+                            barrelNum.setText(data.getInt("barrel_num")+"个");
+                            mortageBarrel.setText(data.getInt("mortgage_barrel")+"个");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+
+    //获取用水明细数据
+    private void initListData() {
+        OkGo.<String>post(URL.WATERDETAIL_URL)
+                .params("member_id",uid)
+                .params("pageNum",pageNum)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String json = response.body().toString();
+                        Log.i("onSuccess: ", json);
+                        List<WaterDetailBean.DataBean.ListBean> listBeen=new ArrayList<WaterDetailBean.DataBean.ListBean>();
+                        Gson gson=new Gson();
+                        waterDetailListBean = gson.fromJson(json, WaterDetailBean.class);
+
+                        try {
+                            JSONObject j1=new JSONObject(json);
+                            JSONObject data = j1.getJSONObject("data");
+                            JSONArray listArray = data.getJSONArray("list");
+                            for (int i = 0; i < listArray.length(); i++) {
+                                JSONObject listObject = listArray.getJSONObject(i);
+                                waterDetailListBean.getData().getList().get(i).setNotes(listObject.getString("notes"));
+                                waterDetailListBean.getData().getList().get(i).setType(listObject.getString("type"));
+                                waterDetailListBean.getData().getList().get(i).setCreate_time(listObject.getString("create_time"));
+
+                                listBeen.add(waterDetailListBean.getData().getList().get(i));
+                            }
+//                            mlist.addAll(listBeen);
+                            mlist.addAll(waterDetailListBean.getData().getList());
+                            adapter.notifyDataSetChanged();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
     }
 
     @Override
@@ -110,98 +201,8 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
 
     }
 
-    private void addInfo(String group, String[] child) {
-
-        groupArray.add(group);
-
-        List<String> childItem = new ArrayList<String>();
-
-        for (int index = 0; index < child.length; index++) {
-            childItem.add(child[index]);
-        }
-        childArray.add(childItem);
-    }
-
     @Override
     public void finishRefresh() {
 
-    }
-
-    class ExpandableListViewaAdapter extends BaseExpandableListAdapter {
-        Activity activity;
-
-        public ExpandableListViewaAdapter(Activity a) {
-            activity = a;
-        }
-
-        /*第二级Child */
-        @Override
-        public Object getChild(int groupPosition, int childPosition) {
-            // TODO Auto-generated method stub
-            return childArray.get(groupPosition).get(childPosition);
-        }
-
-        @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            // TODO Auto-generated method stub
-            return childPosition;
-        }
-
-        @Override
-        public View getChildView(int groupPosition, int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
-            convertView = LayoutInflater.from(GetWaterActivity.this).inflate(R.layout.item_item_getwater, parent, false);
-            String day = childArray.get(groupPosition).get(childPosition);
-            TextView itemInfo = (TextView) convertView.findViewById(R.id.tv_getwater_item_info);
-            itemInfo.setText(day);
-            return convertView;
-        }
-
-        @Override
-        public int getChildrenCount(int groupPosition) {
-            // TODO Auto-generated method stub
-            return childArray.get(groupPosition).size();
-        }
-
-        /*第一级Group */
-        @Override
-        public Object getGroup(int groupPosition) {
-            // TODO Auto-generated method stub
-            return getGroup(groupPosition);
-        }
-
-        @Override
-        public int getGroupCount() {
-            // TODO Auto-generated method stub
-            return groupArray.size();
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            // TODO Auto-generated method stub
-            return groupPosition;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
-            String month = groupArray.get(groupPosition);
-            convertView = LayoutInflater.from(GetWaterActivity.this).inflate(R.layout.item_activity_love_month, parent, false);
-            TextView loveMonth = (TextView) convertView.findViewById(R.id.tv_love_month);
-            loveMonth.setText(month);
-            return convertView;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public boolean isChildSelectable(int groupPosition, int childPosition) {
-            // TODO Auto-generated method stub
-            return true;
-        }
     }
 }

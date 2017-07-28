@@ -25,6 +25,7 @@ import com.dl7.shopping.api.URL;
 import com.dl7.shopping.module.activity.mysetting.findpassword.FindPasswordActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.FirstEvent;
+import com.dl7.shopping.rxbus.event.FourEvent;
 import com.dl7.shopping.utils.FontManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -35,7 +36,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by MC.Zeng on 2017-07-01.
@@ -77,7 +77,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @Override
     protected void initViews() {
-        ButterKnife.bind(this);
 //        EventBus.getDefault().register(this);
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
@@ -159,7 +158,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             //有，自动填写账号密码
             login.setBackgroundColor(Color.parseColor("#35BB8A"));
             etPhone.setText(sp.getString("userphone", ""));
-            etPassword.setText(sp.getString("password", ""));
+          //  etPassword.setText(sp.getString("password",""));
+            etPassword.setText("password");
+            password="password";
         }
         getEditTextPhone();//获取账号
         getEditTextPassword();//获取密码
@@ -249,14 +250,19 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     private void initData() {
         SharedPreferences sp = getSharedPreferences("flag", MODE_PRIVATE);
-        if (etPhone.getText().toString().equals(sp.getString("userphone", ""))) {//判断输入的密码和保存的密码是否相同
-            password = sp.getString("password", "");//相同得到保存的密码
-        } else {
-            password = etPassword.getText().toString();//不同就得到输入的密码
+//        if (etPhone.getText().toString().equals(sp.getString("userphone", ""))) {//判断输入的密码和保存的密码是否相同
+//            password = sp.getString("password","");//相同得到保存的密码
+//        }else{
+//            password=etPassword.getText().toString();//不同就得到输入的密码
+//        }
+        if (isUpdate){
+            password=etPassword.getText().toString();
+        }else{
+            password = sp.getString("password","");
         }
         OkGo.<String>post(URL.LOGIN_URL)
-                .params("account", etPhone.getText().toString())
-                .params("passwd", etPassword.getText().toString())
+                .params("account",etPhone.getText().toString())
+                .params("passwd",password)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -266,9 +272,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                         LoginActivity.this.finish();
 
                         try {
-                            JSONObject j1 = new JSONObject(json);
+                            JSONObject j1=new JSONObject(json);
                             Toast.makeText(LoginActivity.this, j1.getString("message"), Toast.LENGTH_SHORT).show();
-                            if (j1.getString("event").equals("200")) {
+                            if (j1.getString("event").equals("200")){
                                 JSONObject data = j1.getJSONObject("data");
                                 String member_id = data.getString("member_id");
                                 String image = data.getString("image");
@@ -277,33 +283,42 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                                 //保存用户id
                                 SharedPreferences sp = getSharedPreferences("flag", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
-                                editor.putString("data", member_id);
+                                editor.putString("data",member_id);
 
-                                if ("unremember".equals(llRemenberPassword.getTag())) {
+                                if("unremember".equals(llRemenberPassword.getTag())){
                                     //如果没有记住密码
-                                    editor.putString("userphone", "");
-                                    editor.putString("password", "");
-                                    editor.putString("userid", "0");
-                                    editor.putString("islogin", "false");//登录状态
-                                    editor.putString("image", "");
-                                    editor.putString("name", "");
-                                    editor.putString("mobile", "");
+                                    editor.putString("userphone","");
+                                    editor.putString("password","");
+                                    editor.putString("userid","0");
+                                    editor.putString("islogin","false");//登录状态
+                                    editor.putString("image","");
+                                    editor.putString("name","");
+                                    editor.putString("mobile","");
                                     editor.commit();
 
-                                } else {
+                                }else{
                                     //如果记住密码了就保存用户账号
-                                    editor.putString("userphone", etPhone.getText().toString());
-                                    editor.putString("userid", member_id);
-                                    editor.putString("password", etPassword.getText().toString());
-                                    editor.putString("islogin", "true");//登录状态
-                                    editor.putString("image", image);
-                                    editor.putString("name", name);
-                                    editor.putString("mobile", mobile);
+                                    editor.putString("userphone",etPhone.getText().toString());
+                                    editor.putString("userid",member_id);
+                                    if (isUpdate==true){
+                                        editor.putString("password",etPassword.getText().toString());
+                                    }else{
+                                        editor.putString("password",sp.getString("password",""));
+                                    }
+//                                    editor.putString("password",etPassword.getText().toString());
+                                    editor.putString("islogin","true");//登录状态
+                                    editor.putString("image",image);
+                                    editor.putString("name",name);
+                                    editor.putString("mobile",mobile);
                                     editor.commit();
                                 }
+                                //刷新我的页面
                                 EventBus.getDefault().post(
                                         new FirstEvent(member_id));
 
+                                //刷新订水页面
+                                EventBus.getDefault().post(
+                                        new FourEvent(member_id));
 //                                isLogin=true;
 //                                MainActivity.instance.finish();//关闭之前的首页
                                 LoginOrRegisterActivity.instance.finish();
@@ -323,9 +338,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                             e.printStackTrace();
                         }
                     }
+
+//                    @Override
+//                    public void onError(Response<String> response) {
+//                        String json = response.body().toString();
+//                        Toast.makeText(LoginActivity.this, "请求失败", Toast.LENGTH_SHORT).show();
+//                        Log.i( "onError: ",json);
+//                    }
                 });
     }
-
 
     private void getEditTextPassword() {
         etPassword.addTextChangedListener(new TextWatcher() {
@@ -352,11 +373,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
 
+                if (start!=before){//根据输入的帐号长度来判断是否修改了帐号，是则让密码框为空
+                    etPassword.setText("");
+                }
+
+            }
             @Override
             public void afterTextChanged(Editable s) {
                 account = s + "";

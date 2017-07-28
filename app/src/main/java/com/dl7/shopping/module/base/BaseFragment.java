@@ -146,4 +146,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
      */
     protected abstract void updateViews(boolean isRefresh);
 
+    public abstract void goTop();
+
 }

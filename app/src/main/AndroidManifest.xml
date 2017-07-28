@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dl7.shopping">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -30,6 +31,16 @@
     <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
 
+    <!-- 通用权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 银联需要的权限 -->
+    <uses-permission android:name="android.permission.NFC" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -44,7 +55,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="Android:icon,android:theme">
 
 
         <service android:name="com.amap.api.location.APSService"></service>
@@ -80,7 +92,7 @@
             android:name=".module.activity.mine.love.LoveActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.mysetting.waterstore.WaterStoreActivity"
+            android:name=".module.activity.home.waterstore.WaterStoreActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.home.getwater.GetWaterActivity"
@@ -142,6 +154,52 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".module.activity.play.SuccessActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".module.activity.play.DefeatedActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".module.activity.home.WaterOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Ping++ SDK -->
+        <activity
+            android:name="com.pingplusplus.android.PaymentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 微信支付 -->
+        <!-- 1.需要将以下"替换成自己 APK 的包名"换成在微信平台上注册填写的包名 -->
+        <!-- 2.WxPayEntryActivity 这个类在 SDK 内部实现，开发者不需要额外实现该类 -->
+        <activity-alias
+            android:name="com.example.administrator.shopping.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:targetActivity="com.pingplusplus.android.PaymentActivity" />
+
+        <!-- 支付宝 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind" >
+        </activity>
+
+        <!-- 银联支付 -->
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"/>
     </application>
 
 </manifest>

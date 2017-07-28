@@ -45,6 +45,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_water_total_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10桶"
@@ -70,6 +71,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_water_month_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10桶"
@@ -95,6 +97,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_water_barrel_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10个"
@@ -120,6 +123,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_water_mortgage_barrel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10个"
@@ -138,12 +142,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <RelativeLayout
+        android:id="@+id/rl_payment"
         android:layout_width="match_parent"
         android:layout_height="35dp">
 
         <TextView
             android:layout_marginLeft="14dp"
-            android:id="@+id/text1"
             android:text="下单"
             android:gravity="center"
             android:textSize="18dp"
@@ -174,12 +178,18 @@
         <!--android:id="@+id/lv_love_month"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"></ListView>-->
-    <ExpandableListView
-        android:id="@+id/elv_water"
-        android:dividerHeight="5dp"
-        android:divider="#E6E6E6"
+    <!--<ExpandableListView-->
+        <!--android:id="@+id/elv_water"-->
+        <!--android:dividerHeight="5dp"-->
+        <!--android:divider="#E6E6E6"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_water_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:divider="#E6E6E6"
+        android:dividerHeight="5dp"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
 
 </LinearLayout>
