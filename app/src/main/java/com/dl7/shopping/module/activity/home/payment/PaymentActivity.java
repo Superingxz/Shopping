@@ -283,4 +283,117 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 
     }
 
+
+    class ExpandableListViewaAdapter extends BaseExpandableListAdapter {
+        Activity activity;
+
+        //        private int number=1;
+        public ExpandableListViewaAdapter(Activity a) {
+            activity = a;
+        }
+
+        /*第二级Child */
+        @Override
+        public Object getChild(int groupPosition, int childPosition) {
+            // TODO Auto-generated method stub
+            return childArray.get(groupPosition).get(childPosition);
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            // TODO Auto-generated method stub
+            return childPosition;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
+
+            convertView = LayoutInflater.from(PaymentActivity.this).inflate(R.layout.item_item_payment_product, parent, false);
+            String name = childArray.get(groupPosition).get(childPosition);
+            TextView itemName = (TextView) convertView.findViewById(R.id.tv_payment_name_item);
+            itemName.setText(name);
+            TextView checkBox = (TextView) convertView.findViewById(R.id.tv_check_box_item_item);
+            checkBox.setTypeface(iconFont);
+            final TextView num = (TextView) convertView.findViewById(R.id.tv_payment_num);
+            ImageView subtract = (ImageView) convertView.findViewById(R.id.img_payment_subtract);
+            ImageView add = (ImageView) convertView.findViewById(R.id.img_payment_add);
+            //减少数量
+            subtract.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //将得到的num的数据String转化为int
+                    int number = Integer.parseInt(num.getText().toString());
+                    if (number > 1) {
+                        number--;
+                        num.setText(number + "");
+
+                    } else {
+                        Toast.makeText(PaymentActivity.this, "至少一桶才能下单", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            //增加数量
+            add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int number = Integer.parseInt(num.getText().toString());
+                    number++;
+                    num.setText(number + "");
+                }
+            });
+            return convertView;
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            // TODO Auto-generated method stub
+            return childArray.get(groupPosition).size();
+        }
+
+        /*第一级Group */
+        @Override
+        public Object getGroup(int groupPosition) {
+            // TODO Auto-generated method stub
+            return getGroup(groupPosition);
+        }
+
+        @Override
+        public int getGroupCount() {
+            // TODO Auto-generated method stub
+            return groupArray.size();
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            // TODO Auto-generated method stub
+            return groupPosition;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded,
+                                 View convertView, ViewGroup parent) {
+            String name = groupArray.get(groupPosition);
+            convertView = LayoutInflater.from(PaymentActivity.this).inflate(R.layout.item_payment_product, parent, false);
+            TextView productName = (TextView) convertView.findViewById(R.id.tv_payment_name);
+            productName.setText(name);
+            TextView checkBox = (TextView) convertView.findViewById(R.id.tv_check_box_item);
+            checkBox.setTypeface(iconFont);
+            return convertView;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+       
+            return false;
+        }
+
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+
+            return true;
+        }
+    }
+
 }
