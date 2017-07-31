@@ -1,4 +1,4 @@
-package com.dl7.shopping.module.activity.mysetting;
+package com.dl7.shopping.module.activity;
 
 import android.app.Activity;
 import android.content.res.Resources;

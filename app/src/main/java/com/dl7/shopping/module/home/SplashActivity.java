@@ -3,7 +3,7 @@ package com.dl7.shopping.module.home;
 import android.content.Intent;
 
 import com.dl7.shopping.R;
-import com.dl7.shopping.module.activity.mysetting.MainActivity;
+import com.dl7.shopping.module.activity.MainActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.utils.RxHelper;
 import com.dl7.shopping.widget.SimpleButton;
