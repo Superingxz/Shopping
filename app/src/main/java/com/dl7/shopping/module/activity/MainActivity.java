@@ -1,11 +1,11 @@
 package com.dl7.shopping.module.activity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.RadioButton;
@@ -18,8 +18,8 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.dl7.shopping.R;
 import com.dl7.shopping.module.fragment.HomeTabFragment;
-import com.dl7.shopping.module.fragment.merchant.MerchantFragment;
 import com.dl7.shopping.module.fragment.Mine.MineFragment;
+import com.dl7.shopping.module.fragment.merchant.MerchantFragment;
 import com.dl7.shopping.module.fragment.shoppingcart.ShoppingCartFragment;
 import com.dl7.shopping.utils.CommonMethod;
 
@@ -48,6 +48,17 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 if (amapLocation.getErrorCode() == 0) {
                     Log.i("onLocationChanged: ", amapLocation.getProvince()+ amapLocation.getCity()+ amapLocation.getDistrict()+ amapLocation.getStreet()+ amapLocation.getStreetNum());
                     Log.i("onLocationChanged: ", amapLocation.getLocationType()+"");
+//                    //保存经纬度
+//                    SharedPreferences sp1 = getSharedPreferences("flag",MODE_PRIVATE);
+//                    SharedPreferences.Editor editor1 = sp1.edit();
+//                    Log.i("onCreate: ", mLocationClient.getLastKnownLocation().getLongitude()+"");
+//                    editor1.putString("longitude",mLocationClient.getLastKnownLocation().getLongitude()+"");
+//                    editor1.putString("latitude",mLocationClient.getLastKnownLocation().getLatitude()+"");
+//                    editor1.commit();
+
+//                    //刷新电话卡页面
+//                    EventBus.getDefault().post(
+//                            new ThirteenEvent("OK"));
 
                 }else {
                     //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
@@ -65,18 +76,36 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //        //注册EventBus
 //        EventBus.getDefault().register(this);
         //初始化定位
         mLocationClient = new AMapLocationClient(getApplicationContext());
         //设置定位回调监听
         mLocationClient.setLocationListener(mLocationListener);
+        //保存经纬度
+        SharedPreferences sp1 = getSharedPreferences("flag",MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sp1.edit();
+        Log.i("onCreate: ", mLocationClient.getLastKnownLocation().getLongitude()+"");
+        editor1.putString("longitude",mLocationClient.getLastKnownLocation().getLongitude()+"");
+        editor1.putString("latitude",mLocationClient.getLastKnownLocation().getLatitude()+"");
+        editor1.commit();
+
+//        //传当前位置经度和纬度
+//        EventBus.getDefault().post(
+//                new ThirteenEvent(mLocationClient.getLastKnownLocation().getLongitude()+""));
+//        EventBus.getDefault().post(
+//                new FourteenEvent(mLocationClient.getLastKnownLocation().getLatitude()+""));
+
 
         Bundle bundle = new Bundle();
         //mLocationClient.getLastKnownLocation().getCity()可以得到当前定位的城市
         bundle.putString("city",mLocationClient.getLastKnownLocation().getCity());
+
+//        bundle.putString("longitude",mLocationClient.getLastKnownLocation().getLongitude()+"");
+//        bundle.putString("latitude",mLocationClient.getLastKnownLocation().getLatitude()+"");
         fragment1.setArguments(bundle);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.main_fragment, fragment1).commit();
         mFragment = fragment1;
 
@@ -114,11 +143,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         //启动定位
         mLocationClient.startLocation();
 
+
+
     }
 
     private void initViews() {
         String uid = CommonMethod.getUid(this);
-        Log.i("initViews: ",uid );
         instance=this;
         navigationBar = (RadioGroup) findViewById(R.id.navigation_btn);
         btn1 = (RadioButton) findViewById(R.id.btn1);
@@ -193,6 +223,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             mFragment = fragment;
         }
     }
+
+//    private void CheckPermission() {
+//        if (!Settings.System.canWrite(this)) {
+//            Toast.makeText(instance, "请在该设置页面勾选，才可以使用路况提醒功能", Toast.LENGTH_SHORT).show();
+//
+//            Uri selfPackageUri = Uri.parse("package:"
+//                    +getPackageName());
+//            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS,
+//                    selfPackageUri);
+//            startActivity(intent);
+//        }
+//    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

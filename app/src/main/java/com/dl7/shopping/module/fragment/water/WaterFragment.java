@@ -25,6 +25,7 @@ import com.dl7.shopping.module.activity.home.getwater.GetWaterActivity;
 import com.dl7.shopping.module.activity.home.help.HelpActivity;
 import com.dl7.shopping.module.base.BaseFragment;
 import com.dl7.shopping.rxbus.event.ThreeEvent;
+import com.dl7.shopping.rxbus.event.TwelveEvent;
 import com.dl7.shopping.utils.FontManager;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -68,6 +69,7 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
     private WaterListViewAdapter adapter;
 
     private String msg;
+    private String addressID;
 
     @Override
     protected int attachLayoutRes() {
@@ -94,7 +96,9 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
         rbnCombo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ComboActivity.class);
+                Intent intent=new Intent(getContext(), ComboActivity.class);
+                intent.putExtra("addressID",addressID);
+                intent.putExtra("storeID",storeID);
                 startActivity(intent);
             }
         });
@@ -150,11 +154,13 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                         List<WaterBean.DataBean.WATERCBean> CBean=new ArrayList<WaterBean.DataBean.WATERCBean>();
                         List<WaterBean.DataBean.WATERDBean> DBean=new ArrayList<WaterBean.DataBean.WATERDBean>();
                         try {
+
                             JSONObject j1=new JSONObject(json);
                             JSONObject data = j1.getJSONObject("data");
+                            waterBean.getData().setAddressID(addressID);
+                            waterBean.getData().setStore_type(data.getString("store_type"));
                             JSONArray water_a = data.getJSONArray("WATER_A");
                             for (int i = 0; i < water_a.length(); i++) {
-                                Log.i("onSuccess: ", water_a.length()+"");
                                 JSONObject water_aJSONObject = water_a.getJSONObject(i);
 
                                 waterBean.getData().getWATER_A().get(i).setCategory_name(water_aJSONObject.getString("category_name"));
@@ -166,6 +172,8 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                                 waterBean.getData().getWATER_A().get(i).setSpecification(water_aJSONObject.getString("specification"));
                                 waterBean.getData().getWATER_A().get(i).setCategory_name(water_aJSONObject.getString("category_name"));
                                 waterBean.getData().getWATER_A().get(i).setId(water_aJSONObject.getString("id"));
+                                waterBean.getData().getWATER_A().get(i).setGoods_id(water_aJSONObject.getString("goods_id"));
+                                waterBean.getData().getWATER_A().get(i).setNum(1);
 
                                 ABean.add(waterBean.getData().getWATER_A().get(i));
                             }
@@ -183,6 +191,8 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                                 waterBean.getData().getWATER_B().get(i).setSpecification(water_bJSONObject.getString("specification"));
                                 waterBean.getData().getWATER_B().get(i).setCategory_name(water_bJSONObject.getString("category_name"));
                                 waterBean.getData().getWATER_B().get(i).setId(water_bJSONObject.getString("id"));
+                                waterBean.getData().getWATER_B().get(i).setGoods_id(water_bJSONObject.getString("goods_id"));
+                                waterBean.getData().getWATER_B().get(i).setNum(1);
 
                                 BBean.add(waterBean.getData().getWATER_B().get(i));
                             }
@@ -200,6 +210,8 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                                 waterBean.getData().getWATER_C().get(i).setSpecification(water_cJSONObject.getString("specification"));
                                 waterBean.getData().getWATER_C().get(i).setCategory_name(water_cJSONObject.getString("category_name"));
                                 waterBean.getData().getWATER_C().get(i).setId(water_cJSONObject.getString("id"));
+                                waterBean.getData().getWATER_C().get(i).setGoods_id(water_cJSONObject.getString("goods_id"));
+                                waterBean.getData().getWATER_C().get(i).setNum(1);
 
                                 CBean.add(waterBean.getData().getWATER_C().get(i));
                             }
@@ -217,6 +229,8 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                                 waterBean.getData().getWATER_D().get(i).setSpecification(water_dJSONObject.getString("specification"));
                                 waterBean.getData().getWATER_D().get(i).setCategory_name(water_dJSONObject.getString("category_name"));
                                 waterBean.getData().getWATER_D().get(i).setId(water_dJSONObject.getString("id"));
+                                waterBean.getData().getWATER_D().get(i).setGoods_id(water_dJSONObject.getString("goods_id"));
+                                waterBean.getData().getWATER_D().get(i).setNum(1);
 
                                 DBean.add(waterBean.getData().getWATER_D().get(i));
                             }
@@ -245,6 +259,14 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
         adapter.notifyDataSetChanged();
         storeID = msg;
         initData();
+    }
+
+    @Subscribe
+    public void onEventMainThread(TwelveEvent event) {
+
+        msg = event.getMsg();
+        Log.i("onEventMainThread: ", msg);
+        addressID =msg;
     }
 
         @Override

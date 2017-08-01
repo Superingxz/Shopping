@@ -20,14 +20,15 @@ import android.widget.TextView;
 import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.MyFragmentStatePagerAdapter;
 import com.dl7.shopping.api.URL;
+import com.dl7.shopping.module.activity.home.waterstore.WaterStoreActivity;
 import com.dl7.shopping.module.activity.mine.login.LoginOrRegisterActivity;
 import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
-import com.dl7.shopping.module.activity.home.waterstore.WaterStoreActivity;
 import com.dl7.shopping.rxbus.event.EighthEvent;
 import com.dl7.shopping.rxbus.event.FifthEvent;
 import com.dl7.shopping.rxbus.event.FourEvent;
 import com.dl7.shopping.rxbus.event.TenthEvent;
 import com.dl7.shopping.rxbus.event.ThreeEvent;
+import com.dl7.shopping.rxbus.event.TwelveEvent;
 import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
 import com.lzy.okgo.OkGo;
@@ -42,15 +43,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * 底部首页
  * Created by MC.Zeng on 2017-06-27.
  */
 
-
-
-public class HomeTabFragment extends Fragment {
+public class HomeTabFragment extends Fragment{
 
     private ViewPager mViewPager1;
     private TabLayout mTabLayout;
@@ -66,6 +64,9 @@ public class HomeTabFragment extends Fragment {
     private String msg;
     private String address;
     private boolean isDefult=true;
+    private String longitude;
+    private String latitude;
+
 
 
     @Nullable
@@ -74,6 +75,8 @@ public class HomeTabFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_homebottom, container, false);
 
         EventBus.getDefault().register(this);
+
+
 
         tabTitle.add("首页");
         tabTitle.add("订水");
@@ -92,13 +95,16 @@ public class HomeTabFragment extends Fragment {
     private void initViews(View rootView) {
         bundle = getArguments();
 
-
         //轮播图
 //        View cycleImages = LayoutInflater.from(getContext()).inflate(R.layout.layout_home_cycleimages,null);
         mViewPager1 = (ViewPager) rootView.findViewById(R.id.mViewPager1);
         mTabLayout = (TabLayout) rootView.findViewById(R.id.mTabLayout);
         citytv = (TextView) rootView.findViewById(R.id.tv_location);
         citytv.setText(bundle.getString("city"));
+
+
+//        longitude = bundle.getString("longitude");
+//        latitude = bundle.getString("latitude");
         search = (ImageView) rootView.findViewById(R.id.img_search);
         iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
         location = (TextView) rootView.findViewById(R.id.iv_location);
@@ -122,6 +128,7 @@ public class HomeTabFragment extends Fragment {
             //滑动事件
             @Override
             public void onPageSelected(int position) {
+
                 if(position==1){
                     final String uid = CommonMethod.getUid(getActivity());
                     if (isDefult){
@@ -131,7 +138,7 @@ public class HomeTabFragment extends Fragment {
                                     @Override
                                     public void onSuccess(Response<String> response) {
                                         String json = response.body().toString();
-                                        Log.i("onSuccess3: ",json );
+                                        Log.i("onSuccess: ",json );
                                         try {
                                             JSONObject j1=new JSONObject(json);
 
@@ -210,6 +217,9 @@ public class HomeTabFragment extends Fragment {
                                                         EventBus.getDefault().post(
                                                                 new ThreeEvent(j1.getJSONObject("data").getString("store_id")));
 
+                                                        EventBus.getDefault().post(
+                                                                new TwelveEvent(j1.getJSONObject("data").getString("id")));
+
                                                         search.setVisibility(View.GONE);
                                                         citytv.setText(j1.getJSONObject("data").getString("address"));
                                                         citytv.setOnClickListener(new View.OnClickListener() {
@@ -239,10 +249,16 @@ public class HomeTabFragment extends Fragment {
                             }
                         });
                     }
+//                }else if(position==2){
+//                    EventBus.getDefault().post(
+//                            new FifteenEvent("true"));
+
                 }else{
                     search.setVisibility(View.VISIBLE);
                     citytv.setText(bundle.getString("city"));
                 }
+
+
             }
 
             @Override

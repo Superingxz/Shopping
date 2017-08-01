@@ -2,6 +2,7 @@ package com.dl7.shopping.module.activity.home.payment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -17,13 +18,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.PaymentListAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.PaymentBean;
+import com.dl7.shopping.bean.SchoolTimeBean;
 import com.dl7.shopping.module.activity.home.WaterOrderActivity;
 import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.rxbus.event.EighteenEvent;
+import com.dl7.shopping.rxbus.event.SeventhEvent;
+import com.dl7.shopping.rxbus.event.SixEvent;
 import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
 import com.google.gson.Gson;
@@ -32,6 +38,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,6 +89,17 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     private View convertView;
     private String msg;
     private String addressId="";
+    private String storeType="";
+    private List<SchoolTimeBean.DataBean> timeList;
+    private OptionsPickerView.Builder pvOptions;
+    private OptionsPickerView pvNoLinkOptions;
+    private List<String> dayArray=new ArrayList<>();
+    private List<List<String>> timeArray=new ArrayList<>();
+    private List<List<String>> sort=new ArrayList<>();
+    private ArrayList<String> day = new ArrayList<>();
+    private ArrayList<String> daytime = new ArrayList<>();
+    private List<SchoolTimeBean.DataBean.TimeDataBean> timeDataList=new ArrayList<>();
+    private String url;
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_payment;
@@ -103,6 +121,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
         EventBus.getDefault().register(this);
 
         adapter = new PaymentListAdapter(mList, this, this);
+        timeList=new ArrayList<>();
         //收货地址
         rl_paymentAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,37 +138,62 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
             public void onClick(View v) {
                 if (!addressId.equals("")) {
                     int k = 0;
-                    int q=0;
+                    int q = 0;
                     for (int i = 0; i < mList.size(); i++) {
                         for (int j = 0; j < mList.get(i).getWater_group().size(); j++) {
                             if (mList.get(i).getWater_group().get(j).isIs_check()) {//判断是否有商品被选择
                                 k++;
-                                q=k;
+                                q = k;
                             }
                         }
                     }
 
-                    if (q>1){
+                    if (q > 1) {
                         Toast.makeText(PaymentActivity.this, "暂时不支持多种商品一起购买", Toast.LENGTH_SHORT).show();
-                    }else if (q==0){
+                    } else if (q == 0) {
                         Toast.makeText(PaymentActivity.this, "请至少选择一种商品", Toast.LENGTH_SHORT).show();
-                    }else if(q==1){
+                    } else if (q == 1) {
                         for (int i = 0; i < mList.size(); i++) {
                             for (int j = 0; j < mList.get(i).getWater_group().size(); j++) {
                                 if (mList.get(i).getWater_group().get(j).isIs_check()) {
                                     String goods_id = mList.get(i).getWater_group().get(j).getGoods_id();
-                                    int allnum=Integer.parseInt(allNum.getText().toString());//数量
-                                    Intent intent=new Intent(PaymentActivity.this,WaterOrderActivity.class);
-                                    intent.putExtra("goodsId",goods_id);
-                                    intent.putExtra("allNum",allnum+"");
-                                    intent.putExtra("addressId",addressId);
+                                    int allnum = Integer.parseInt(allNum.getText().toString());//数量
+                                    Intent intent = new Intent(PaymentActivity.this, WaterOrderActivity.class);
+                                    intent.putExtra("business_type","BUY_WATER");
+                                    intent.putExtra("goodsId", goods_id);
+                                    intent.putExtra("allNum", allnum + "");
+                                    intent.putExtra("addressId", addressId);
+                                    intent.putExtra("time","");
+                                    intent.putExtra("reserve_sort","");
+                                    intent.putExtra("money","0");
+                                    intent.putExtra("playmethod","water");
+                                    intent.putExtra("bucket","");
                                     startActivity(intent);
                                 }
                             }
                         }
                     }
-                }else{
+                } else {
                     Toast.makeText(PaymentActivity.this, "请选择收货地址", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //配送时间点击
+        rlPaymentTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (storeType.equals("")){
+                    Toast.makeText(PaymentActivity.this, "请先选择收货地址", Toast.LENGTH_SHORT).show();
+                }else{
+                    url = "";
+                    if (storeType.equals("SCHOOL")){
+                        url=URL.SCHOOLTIME_URL;
+                    }else{
+                        url=URL.COMMONTIME_URL;
+                    }
+                    initSchoolData();
                 }
             }
         });
@@ -272,6 +316,182 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
                 });
     }
 
+    private void initOptionPicker() {// 弹出选择器
+
+        OptionsPickerView  pvOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                String str = dayArray.get(options1)+
+                        timeArray.get(options1).get(options2);
+//                reserve_sort = sort.get(options1).get(options2);
+            }
+        })
+
+                .setTitleText("配送时间")
+                .setContentTextSize(20)//设置滚轮文字大小
+                .setDividerColor(Color.GREEN)//设置分割线的颜色
+                .setSelectOptions(0, 0)//默认选中项
+                .setTitleColor(Color.LTGRAY)
+                .setCancelColor(Color.parseColor("#35bb8a"))//取消按钮颜色
+                .setSubmitColor(Color.parseColor("#35bb8a"))//确定按钮颜色
+                .setTextColorCenter(Color.parseColor("#35bb8a"))
+                .isCenterLabel(true) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setBackgroundId(0x66000000) //设置外部遮罩颜色
+                .build();
+
+
+        pvOptions.setPicker(dayArray, timeArray);//二级选择器
+        pvOptions.show();
+    }
+//private void initOptionPicker() {// 不联动的多级选项
+//    pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+//        @Override
+//        public void onOptionsSelect(int options1, int options2, int options3, View v) {
+//
+//            String str = timeList.get(options1).getTodayDay()+" "
+//                    +timeList.get(options1).getTimeData().get(options2).getHour();//如果有第三级就后面继续添加
+//            tvTime.setText(str);
+//        }
+//    })
+//                .setTitleText("配送时间")
+//                .setContentTextSize(20)//设置滚轮文字大小
+//                .setDividerColor(Color.GREEN)//设置分割线的颜色
+//                .setSelectOptions(0, 0)//默认选中项
+////                .setBgColor(Color.BLACK)//背景颜色
+////                .setTitleBgColor(Color.DKGRAY)//titlebar的颜色
+//                .setTitleColor(Color.LTGRAY)
+//                .setCancelColor(Color.parseColor("#35bb8a"))//取消按钮颜色
+//                .setSubmitColor(Color.parseColor("#35bb8a"))//确定按钮颜色
+//                .setTextColorCenter(Color.parseColor("#35bb8a"))
+//                .isCenterLabel(true) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+//                .setBackgroundId(0x66000000) //设置外部遮罩颜色
+//                .build();
+//
+//
+//    //清楚原有数据
+//    day.clear();
+//    daytime.clear();
+//    for (int i = 0; i < timeList.size(); i++) {
+//        day.add(timeList.get(i).getTodayDay());
+//        for (int j = 0; j < timeList.get(i).getTimeData().size(); j++) {
+//            daytime.add(timeList.get(i).getTimeData().get(j).getHour());
+//        }
+//
+//    }
+//    pvNoLinkOptions.setNPicker(day, daytime, null);//没有第三级，所以为null
+//    pvNoLinkOptions.show();
+//}
+
+    //获取学校的配送时间
+    private void initSchoolData() {
+
+        OkGo.<String>post(url)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String json = response.body().toString();
+                        Log.i("onSuccess: ", json);
+
+                        try {
+                            JSONObject j1=new JSONObject(json);
+                            List<String> dayBean=new ArrayList<String>();
+                            List<List<String>> timeBean=new ArrayList<List<String>>();
+                            List<List<String>> sortBean=new ArrayList<List<String>>();
+
+                            JSONArray data = j1.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject dataObj = data.getJSONObject(i);
+                                dayBean.add(dataObj.getString("todayDay"));
+
+                                List<String> timeArray=new ArrayList<String>();
+                                List<String> sortArray=new ArrayList<String>();
+
+                                JSONArray timeData = dataObj.getJSONArray("timeData");
+                                for (int j = 0; j < timeData.length(); j++) {
+                                    JSONObject timeObj = timeData.getJSONObject(j);
+                                    timeArray.add(timeObj.getString("hour"));
+                                    sortArray.add(timeObj.getInt("srot")+"");
+                                }
+                                timeBean.add(timeArray);
+                                sortBean.add(sortArray);
+                            }
+                            dayArray.clear();
+                            sort.addAll(sortBean);
+                            timeArray.addAll(timeBean);
+                            dayArray.addAll(dayBean);
+
+                            initOptionPicker();//弹出滚动时间选择器
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+//    //获取学校的配送时间
+//    private void initSchoolData() {
+//        OkGo.<String>post(URL.SCHOOLTIME_URL)
+//                .execute(new StringCallback() {
+//                    @Override
+//                    public void onSuccess(Response<String> response) {
+//                        String json = response.body().toString();
+//                        Log.i("onSuccess: ", json);
+//
+//                        try {
+//                            Gson gson=new Gson();
+//                            SchoolTimeBean schoolTimeBean = gson.fromJson(json, SchoolTimeBean.class);
+//                            List<SchoolTimeBean.DataBean> dataBeen=new ArrayList<SchoolTimeBean.DataBean>();
+//                            List<SchoolTimeBean.DataBean.TimeDataBean> timeDataBeen=new ArrayList<SchoolTimeBean.DataBean.TimeDataBean>();
+//                            JSONObject j1=new JSONObject(json);
+//                            JSONArray data = j1.getJSONArray("data");
+//                            for (int i = 0; i < data.length(); i++) {
+//                                JSONObject dataObj = data.getJSONObject(i);
+//                                schoolTimeBean.getData().get(i).setTodayDay(dataObj.getString("todayDay"));
+//                                JSONArray timeData = dataObj.getJSONArray("timeData");
+//                                for (int j = 0; j < timeData.length(); j++) {
+//                                    JSONObject timeDataObj = timeData.getJSONObject(j);
+//                                    schoolTimeBean.getData().get(i).getTimeData().get(j).setHour(timeDataObj.getString("hour"));
+//                                    schoolTimeBean.getData().get(i).getTimeData().get(j).setSrot(timeDataObj.getInt("srot"));
+//
+//                                    timeDataBeen.add(schoolTimeBean.getData().get(i).getTimeData().get(j));
+//                                }
+//                                timeDataList.addAll(timeDataBeen);
+//                                dataBeen.add(schoolTimeBean.getData().get(i));
+//                            }
+//                            timeList.clear();
+//                            timeList.addAll(dataBeen);
+//
+//                            initOptionPicker();//弹出滚动时间选择器
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//    }
+
+    @Subscribe
+    public void onEventMainThread(SixEvent event) {
+
+        msg = event.getMsg();
+        Log.i("onEventMainThread: ", msg);
+        tvAddress.setText(msg);
+    }
+    @Subscribe
+    public void onEventMainThread(SeventhEvent event) {
+
+        msg = event.getMsg();
+        Log.i("onEventMainThread: ", msg);
+        addressId=msg;
+    }
+    @Subscribe
+    public void onEventMainThread(EighteenEvent event) {
+
+        msg = event.getMsg();
+        Log.i("onEventMainThread: ", msg);
+        storeType=msg;
+    }
+
+
     @Override
     protected void updateViews(boolean isRefresh) {
 
@@ -288,6 +508,12 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //取消注册
+        EventBus.getDefault().unregister(this);
+    }
 
     class ExpandableListViewaAdapter extends BaseExpandableListAdapter {
         Activity activity;

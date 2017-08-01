@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_select_phone_back"
+            android:textSize="18dp"
+            android:layout_marginLeft="14dp"
+            android:text="@string/back"
+            android:textColor="#7F7F7F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="#1a1a1a"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:text="选号码"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_select_phone_search"
+        android:layout_marginRight="14dp"
+        android:layout_marginLeft="14dp"
+        android:background="#E6E6E6"
+        android:hint="搜索"
+        android:imeOptions="actionSearch"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_select_phone_address"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="14dp"
+        android:text="定位"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.handmark.pulltorefresh.library.PullToRefreshGridView
+        android:numColumns="2"
+        android:id="@+id/gv_select_phone"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+
+    <!--<ListView-->
+        <!--android:id="@+id/lv_select_phone"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></ListView>-->
+
+</LinearLayout>

@@ -73,17 +73,15 @@ public class LoveActivity extends AppCompatActivity {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum=1;
-                initData();
+                initListData();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum++;
-                initData();
+                initListData();
             }
         });
-
-
     }
 
     //获取上部分数据
@@ -117,6 +115,7 @@ public class LoveActivity extends AppCompatActivity {
     private void initListData() {
         OkGo.<String>post(URL.LOVEDETAIL_URL)
                 .params("member_id",uid)
+                .params("pageNum",pageNum)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

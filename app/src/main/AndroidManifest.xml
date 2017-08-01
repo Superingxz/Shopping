@@ -84,6 +84,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.mine.login.LoginActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.mysetting.address.editaddress.EditAddressActivity"
@@ -98,7 +99,23 @@
             android:name=".module.activity.home.getwater.GetWaterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.home.details.DetailsActivity"
+            android:name=".module.activity.home.DetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.home.phonecart.PhoneCartDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.home.phonecart.PhoneCartOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.home.phonecart.SelectPhoneNumActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.play.SuccessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.play.DefeatedActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.mysetting.cityselect.CitySelectActivity"
@@ -109,6 +126,11 @@
         <activity
             android:name=".module.activity.mine.areaselect.AreaSelectActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".module.activity.home.WaterOrderActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".module.activity.mine.login.LoginOrRegisterActivity"
             android:screenOrientation="portrait" />
@@ -118,6 +140,15 @@
         <activity
             android:name=".module.activity.home.combo.ComboActivity"
             android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".module.activity.home.ComboItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.activity.home.ComboOrderActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".module.activity.mine.register.RegisterActivity"
             android:screenOrientation="portrait" />
@@ -154,18 +185,6 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <activity
-            android:name=".module.activity.play.SuccessActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".module.activity.play.DefeatedActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".module.activity.home.WaterOrderActivity"
-            android:screenOrientation="portrait" />
 
         <!-- Ping++ SDK -->
         <activity

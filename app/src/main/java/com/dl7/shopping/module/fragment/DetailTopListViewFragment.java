@@ -52,7 +52,7 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_details_top;
+        return R.layout.fragment_details_top;
     }
 
     @Override

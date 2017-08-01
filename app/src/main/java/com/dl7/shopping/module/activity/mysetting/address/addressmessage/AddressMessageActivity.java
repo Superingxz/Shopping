@@ -15,13 +15,16 @@ import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.AddressMessageAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.AddressMessageBean;
-import com.dl7.shopping.module.activity.mysetting.address.AddAddress.AddAddressActivity;
 import com.dl7.shopping.module.activity.home.waterstore.WaterStoreActivity;
+import com.dl7.shopping.module.activity.mysetting.address.AddAddress.AddAddressActivity;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.rxbus.event.EighteenEvent;
 import com.dl7.shopping.rxbus.event.ElevenEvent;
 import com.dl7.shopping.rxbus.event.NightEvent;
+import com.dl7.shopping.rxbus.event.SeventeenEvent;
 import com.dl7.shopping.rxbus.event.SeventhEvent;
 import com.dl7.shopping.rxbus.event.SixEvent;
+import com.dl7.shopping.rxbus.event.SixteenEvent;
 import com.dl7.shopping.rxbus.event.TenthEvent;
 import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
@@ -112,9 +115,33 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
         initData();
 
         if (isSelect.equals("true")){
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Log.i("onItemClick: ", mList.get(position).getStore_id());
+                    OkGo.<String>post(URL.GETSTORETYPE_URL)
+                            .params("store_id",mList.get(position).getStore_id())
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onSuccess(Response<String> response) {
+                                    String json = response.body().toString();
+                                    Log.i( "onSuccess: ",json);
+                                    try {
+                                        JSONObject j1=new JSONObject(json);
+                                        JSONObject data = j1.getJSONObject("data");
+                                        String store_type = data.getString("store_type");
+                                        EventBus.getDefault().post(
+                                                new EighteenEvent(store_type));
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
+
                     //刷新下单地址选择
                     EventBus.getDefault().post(
                             new SixEvent(mList.get(position).getAddress()));
@@ -123,12 +150,12 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
                     finish();
                 }
             });
-        }else if (isSelect.equals("selectaddress")) {
+        }else if (isSelect.equals("selectaddress")){
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
 
-                    if (mList.get(position).getStore_id().equals("")) {//判断改地址有无选择水店
+                    if (mList.get(position).getStore_id().equals("")){//判断改地址有无选择水店
                         AlertDialog.Builder builder = new AlertDialog.Builder(AddressMessageActivity.this);
                         builder.setCancelable(false);
                         builder.setTitle("提示");
@@ -136,11 +163,11 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
                         builder.setNegativeButton("现在去选择水店", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(AddressMessageActivity.this, WaterStoreActivity.class);
-                                intent.putExtra("address", mList.get(position).getAddress());
-                                intent.putExtra("longitude", mList.get(position).getLongitude() + "");
-                                intent.putExtra("latitude", mList.get(position).getLatitude() + "");
-                                intent.putExtra("id", mList.get(position).getId());
+                                Intent intent=new Intent(AddressMessageActivity.this, WaterStoreActivity.class);
+                                intent.putExtra("address",mList.get(position).getAddress());
+                                intent.putExtra("longitude",mList.get(position).getLongitude()+"");
+                                intent.putExtra("latitude",mList.get(position).getLatitude()+"");
+                                intent.putExtra("id",mList.get(position).getId());
                                 startActivity(intent);
                             }
                         });
@@ -151,7 +178,7 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
                             }
                         });
                         builder.show();
-                    } else {//如果有水店，
+                    }else{//如果有水店，
                         String store_id = mList.get(position).getStore_id();
                         String address = mList.get(position).getAddress();
                         double longitude = mList.get(position).getLongitude();
@@ -162,6 +189,18 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
                                 new TenthEvent(address));
                         finish();
                     }
+                }
+            });
+        }else if(isSelect.equals("phoneSelect")){
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //刷新手机号选择下单地址选择
+                    EventBus.getDefault().post(
+                            new SixteenEvent(mList.get(position).getId()));
+                    EventBus.getDefault().post(
+                            new SeventeenEvent(mList.get(position).getAddress()));
+                    finish();
                 }
             });
         }

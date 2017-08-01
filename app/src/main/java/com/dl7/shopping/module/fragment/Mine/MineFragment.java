@@ -47,7 +47,7 @@ public class MineFragment extends BaseFragment<MinePresenter>
     @BindView(R.id.mine_setting)
     TextView mineSetting;
     @BindView(R.id.iv_mine_head)
-    RoundedImageView ivMineHead;
+    RoundedImageView img;
     @BindView(R.id.tv_login_or_name)
     TextView loginORname;
     @BindView(R.id.mine_login_ll)
@@ -143,6 +143,7 @@ public class MineFragment extends BaseFragment<MinePresenter>
                 editor1.putString("image","");
                 editor1.putString("name","");
                 editor1.putString("mobile","");
+                editor1.putString("goodsId","");
                 editor1.commit();
                 EventBus.getDefault().post(
                         new ThreeEvent(""));
@@ -221,20 +222,34 @@ public class MineFragment extends BaseFragment<MinePresenter>
 
 //        uid=sp.getString("data","0");
 //        Log.i("onCreateView: ", sp.getString("data","0"));
+        //查看是否有保存的账号
+        SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
+        if(!TextUtils.isEmpty(sp.getString("userphone",""))){
+            if (sp.getString("data","0").equals(sp.getString("userid", "0"))) {//如果当前的用户id是存储的用户ID
+                String islogin = sp.getString("islogin", "");
+                if (islogin.equals("true")){
+                    loginORname.setText(sp.getString("name", ""));//从本地拿到昵称
+                    String image = sp.getString("image", "");//从本地拿到头像
+                    if (TextUtils.isEmpty(sp.getString("image",""))){//判断本地是否有头像
+                        img.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
+                    }else{
+                        Glide.with(this).load(sp.getString("image","")).into(img);//加载头像
+                    }
 
-        if (sp.getString("data", "0").equals(sp.getString("userid", "0"))) {//如果当前的用户id是存储的用户ID
-            String islogin = sp.getString("islogin", "");
-            if (islogin.equals("true")) {
-                loginORname.setText(sp.getString("name", ""));//从本地拿到昵称
-                String image = sp.getString("image", "");//从本地拿到头像
-                if (TextUtils.isEmpty(sp.getString("image", ""))) {//判断本地是否有头像
-                    ivMineHead.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
-                } else {
-                    Glide.with(this).load(sp.getString("image", "")).into(ivMineHead);//加载头像
+                }else if (islogin.equals("false")){
+                    loginORname.setText("登录/注册");
+                    //跳转到登录/注册页面
+                    login.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(getContext(), LoginOrRegisterActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
-
-            } else if (islogin.equals("false")) {
+            }else{
                 loginORname.setText("登录/注册");
+
                 //跳转到登录/注册页面
                 login.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -244,7 +259,7 @@ public class MineFragment extends BaseFragment<MinePresenter>
                     }
                 });
             }
-        } else {
+        }else{
             loginORname.setText("登录/注册");
 
             //跳转到登录/注册页面
@@ -256,6 +271,7 @@ public class MineFragment extends BaseFragment<MinePresenter>
                 }
             });
         }
+
     }
 
     //获取数据
@@ -292,9 +308,9 @@ public class MineFragment extends BaseFragment<MinePresenter>
                                     });
                                     String image = sp.getString("image", "");//从本地拿到头像
                                     if (TextUtils.isEmpty(sp.getString("image", ""))) {//判断本地是否有头像
-                                        ivMineHead.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
+                                        img.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
                                     } else {
-                                        Glide.with(getContext()).load(sp.getString("image", "")).into(ivMineHead);//加载头像
+                                        Glide.with(getContext()).load(sp.getString("image", "")).into(img);//加载头像
                                     }
 
                                 } else if (islogin.equals("false")) {

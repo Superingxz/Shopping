@@ -7,12 +7,11 @@ import java.util.List;
  */
 
 public class WaterBean {
-
     /**
      * event : 200
-     * data : {"WATER_A":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"农夫山泉桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170522111851084002.jpg","specification":"18.9L","discount":20,"company":"桶","id":"c11b0da0-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"怡宝桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170522111913272003.jpg","specification":"18.9L","discount":30,"company":"桶","id":"df0bb210-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"水之星桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170525144731050001.jpg","specification":"18.9L","discount":30,"company":"桶","id":"71eb6e30-4116-11e7-8108-00163e062c7a"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"益寿泉桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170525140046608001.jpg","specification":"18.9L","discount":20,"company":"桶","id":"63251c50-4113-11e7-8108-00163e062c7a"}],"WATER_C":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"益寿泉 空桶","category_name":"空桶","present_price":4000,"category_id":"2f8fb1f0-0966-11e7-bd2c-b8975a6f72af","image_url":"20170614153103856000.jpg","specification":"18.9L","discount":0,"company":"桶","id":"02d71b70-50d4-11e7-917b-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":" 农夫山泉  空桶","category_name":"空桶","present_price":10000,"category_id":"2f8fb1f0-0966-11e7-bd2c-b8975a6f72af","image_url":"20170605183726498000.jpg","specification":"18.9L","discount":0,"company":"桶","id":"65f7e830-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"怡宝  空桶","category_name":"空桶","present_price":4500,"category_id":"2f8fb1f0-0966-11e7-bd2c-b8975a6f72af","image_url":"20170605183953516002.jpg","specification":"18.9L","discount":0,"company":"桶","id":"aba98ad0-49db-11e7-addf-b8975a6f72af"}],"WATER_B":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"农夫山泉支装水","category_name":"支装水","present_price":10000,"category_id":"a839d810-08b7-11e7-a4c1-b8975a6f72af","image_url":"20170522112048538004.jpg","specification":"500ml","discount":20,"company":"24 瓶/箱","id":"32c14aa0-3e9f-11e7-9d6e-b8975a6f72af"}],"WATER_D":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"可加热恒温饮水机","category_name":"饮水机","present_price":10000,"category_id":"6483aa80-49dd-11e7-93b5-b8975a6f72af","image_url":"20170605185947994005.jpg","specification":"140cm * 30cm","discount":20,"company":"台","id":"73a63810-49de-11e7-addf-b8975a6f72af"}]}
+     * data : {"WATER_A":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"农夫山泉桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170522111851084002.jpg","goods_id":"61bdb660-3e9d-11e7-9367-b8975a6f72af","specification":"18.9L","discount":20,"company":"桶","id":"c11b0da0-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"怡宝桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170522111913272003.jpg","goods_id":"6ea58ba0-3e9d-11e7-9367-b8975a6f72af","specification":"18.9L","discount":30,"company":"桶","id":"df0bb210-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"水之星桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170525144731050001.jpg","goods_id":"0fc871d0-4116-11e7-9bf5-00163e062c7a","specification":"18.9L","discount":30,"company":"桶","id":"71eb6e30-4116-11e7-8108-00163e062c7a"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"益寿泉桶装水","category_name":"桶装水","present_price":10000,"category_id":"e1875240-095d-11e7-a5d5-b8975a6f72af","image_url":"20170525140046608001.jpg","goods_id":"80f53d40-410f-11e7-9bf5-00163e062c7a","specification":"18.9L","discount":20,"company":"桶","id":"63251c50-4113-11e7-8108-00163e062c7a"}],"WATER_C":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":" 农夫山泉  空桶","category_name":"空桶","present_price":10000,"category_id":"2f8fb1f0-0966-11e7-bd2c-b8975a6f72af","image_url":"20170605183726498000.jpg","goods_id":"f94e83e0-49da-11e7-93b5-b8975a6f72af","specification":"18.9L","discount":0,"company":"桶","id":"65f7e830-3e9e-11e7-9d6e-b8975a6f72af"},{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"益寿泉 空桶","category_name":"空桶","present_price":4000,"category_id":"2f8fb1f0-0966-11e7-bd2c-b8975a6f72af","image_url":"20170614153103856000.jpg","goods_id":"6f316880-50d3-11e7-8530-b8975a6f72af","specification":"18.9L","discount":0,"company":"桶","id":"02d71b70-50d4-11e7-917b-b8975a6f72af"}],"WATER_B":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"农夫山泉支装水","category_name":"支装水","present_price":10000,"category_id":"a839d810-08b7-11e7-a4c1-b8975a6f72af","image_url":"20170522112048538004.jpg","goods_id":"a8356a70-3e9d-11e7-9367-b8975a6f72af","specification":"500ml","discount":20,"company":"24 瓶/箱","id":"32c14aa0-3e9f-11e7-9d6e-b8975a6f72af"}],"WATER_D":[{"store_id":"c48f4240-3e9d-11e7-9d6e-b8975a6f72af","goods_name":"可加热恒温饮水机","category_name":"饮水机","present_price":10000,"category_id":"6483aa80-49dd-11e7-93b5-b8975a6f72af","image_url":"20170605185947994005.jpg","goods_id":"18949ed0-49de-11e7-93b5-b8975a6f72af","specification":"140cm * 30cm","discount":20,"company":"台","id":"73a63810-49de-11e7-addf-b8975a6f72af"}]}
      * message : 加载成功
-     * timestamp : 2017-07-20 11:35:26
+     * timestamp : 2017-07-27 17:21:33
      */
 
     private String event;
@@ -57,6 +56,8 @@ public class WaterBean {
         private List<WATERCBean> WATER_C;
         private List<WATERBBean> WATER_B;
         private List<WATERDBean> WATER_D;
+        private String addressID;
+        private String store_type;
 
         public List<WATERABean> getWATER_A() {
             return WATER_A;
@@ -90,6 +91,22 @@ public class WaterBean {
             this.WATER_D = WATER_D;
         }
 
+        public String getAddressID() {
+            return addressID;
+        }
+
+        public void setAddressID(String addressID) {
+            this.addressID = addressID;
+        }
+
+        public String getStore_type() {
+            return store_type;
+        }
+
+        public void setStore_type(String store_type) {
+            this.store_type = store_type;
+        }
+
         public static class WATERABean {
             /**
              * store_id : c48f4240-3e9d-11e7-9d6e-b8975a6f72af
@@ -98,6 +115,7 @@ public class WaterBean {
              * present_price : 10000
              * category_id : e1875240-095d-11e7-a5d5-b8975a6f72af
              * image_url : 20170522111851084002.jpg
+             * goods_id : 61bdb660-3e9d-11e7-9367-b8975a6f72af
              * specification : 18.9L
              * discount : 20
              * company : 桶
@@ -110,10 +128,20 @@ public class WaterBean {
             private int present_price;
             private String category_id;
             private String image_url;
+            private String goods_id;
             private String specification;
             private int discount;
             private String company;
             private String id;
+            private int num;
+
+            public int getNum() {
+                return num;
+            }
+
+            public void setNum(int num) {
+                this.num = num;
+            }
 
             public String getStore_id() {
                 return store_id;
@@ -161,6 +189,14 @@ public class WaterBean {
 
             public void setImage_url(String image_url) {
                 this.image_url = image_url;
+            }
+
+            public String getGoods_id() {
+                return goods_id;
+            }
+
+            public void setGoods_id(String goods_id) {
+                this.goods_id = goods_id;
             }
 
             public String getSpecification() {
@@ -199,15 +235,16 @@ public class WaterBean {
         public static class WATERCBean {
             /**
              * store_id : c48f4240-3e9d-11e7-9d6e-b8975a6f72af
-             * goods_name : 益寿泉 空桶
+             * goods_name :  农夫山泉  空桶
              * category_name : 空桶
-             * present_price : 4000
+             * present_price : 10000
              * category_id : 2f8fb1f0-0966-11e7-bd2c-b8975a6f72af
-             * image_url : 20170614153103856000.jpg
+             * image_url : 20170605183726498000.jpg
+             * goods_id : f94e83e0-49da-11e7-93b5-b8975a6f72af
              * specification : 18.9L
              * discount : 0
              * company : 桶
-             * id : 02d71b70-50d4-11e7-917b-b8975a6f72af
+             * id : 65f7e830-3e9e-11e7-9d6e-b8975a6f72af
              */
 
             private String store_id;
@@ -216,10 +253,20 @@ public class WaterBean {
             private int present_price;
             private String category_id;
             private String image_url;
+            private String goods_id;
             private String specification;
             private int discount;
             private String company;
             private String id;
+            private int num;
+
+            public int getNum() {
+                return num;
+            }
+
+            public void setNum(int num) {
+                this.num = num;
+            }
 
             public String getStore_id() {
                 return store_id;
@@ -267,6 +314,14 @@ public class WaterBean {
 
             public void setImage_url(String image_url) {
                 this.image_url = image_url;
+            }
+
+            public String getGoods_id() {
+                return goods_id;
+            }
+
+            public void setGoods_id(String goods_id) {
+                this.goods_id = goods_id;
             }
 
             public String getSpecification() {
@@ -310,6 +365,7 @@ public class WaterBean {
              * present_price : 10000
              * category_id : a839d810-08b7-11e7-a4c1-b8975a6f72af
              * image_url : 20170522112048538004.jpg
+             * goods_id : a8356a70-3e9d-11e7-9367-b8975a6f72af
              * specification : 500ml
              * discount : 20
              * company : 24 瓶/箱
@@ -322,10 +378,20 @@ public class WaterBean {
             private int present_price;
             private String category_id;
             private String image_url;
+            private String goods_id;
             private String specification;
             private int discount;
             private String company;
             private String id;
+            private int num;
+
+            public int getNum() {
+                return num;
+            }
+
+            public void setNum(int num) {
+                this.num = num;
+            }
 
             public String getStore_id() {
                 return store_id;
@@ -373,6 +439,14 @@ public class WaterBean {
 
             public void setImage_url(String image_url) {
                 this.image_url = image_url;
+            }
+
+            public String getGoods_id() {
+                return goods_id;
+            }
+
+            public void setGoods_id(String goods_id) {
+                this.goods_id = goods_id;
             }
 
             public String getSpecification() {
@@ -416,6 +490,7 @@ public class WaterBean {
              * present_price : 10000
              * category_id : 6483aa80-49dd-11e7-93b5-b8975a6f72af
              * image_url : 20170605185947994005.jpg
+             * goods_id : 18949ed0-49de-11e7-93b5-b8975a6f72af
              * specification : 140cm * 30cm
              * discount : 20
              * company : 台
@@ -428,10 +503,20 @@ public class WaterBean {
             private int present_price;
             private String category_id;
             private String image_url;
+            private String goods_id;
             private String specification;
             private int discount;
             private String company;
             private String id;
+            private int num;
+
+            public int getNum() {
+                return num;
+            }
+
+            public void setNum(int num) {
+                this.num = num;
+            }
 
             public String getStore_id() {
                 return store_id;
@@ -479,6 +564,14 @@ public class WaterBean {
 
             public void setImage_url(String image_url) {
                 this.image_url = image_url;
+            }
+
+            public String getGoods_id() {
+                return goods_id;
+            }
+
+            public void setGoods_id(String goods_id) {
+                this.goods_id = goods_id;
             }
 
             public String getSpecification() {

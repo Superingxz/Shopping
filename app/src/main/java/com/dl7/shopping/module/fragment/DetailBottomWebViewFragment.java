@@ -47,6 +47,7 @@ public class DetailBottomWebViewFragment extends BaseFragment {
     protected void initViews() {
         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
         goods_id = sp.getString("goods_id", "");
+        Log.i("onCreateView: ", goods_id);
         initView();
         initData();
     }

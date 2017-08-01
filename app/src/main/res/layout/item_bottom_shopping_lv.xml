@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#fff">
+
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/img_bottom_shopping"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <RelativeLayout
+        android:layout_marginLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/tv_bottom_shopping_name"
+            android:text="店名"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_combo_item_unit"-->
+        <!--android:layout_toRightOf="@+id/tv_combo_item_name"-->
+        <!--android:text="桶装水"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+
+        <TextView
+            android:id="@+id/tv_bottom_shopping_award"
+            android:layout_alignParentBottom="true"
+            android:text="满100送1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@+id/tv_bottom_shopping_award"
+            android:id="@+id/tv_bottom_shopping_award_icon"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="5dp"
+            android:text=""
+            android:textColor="#FE4241"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/img_bottom_shopping_icon"
+            android:layout_above="@+id/tv_bottom_shopping_award_icon"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="5dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <TextView
+            android:text="50m"
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_bottom_shopping_distance"
+            android:layout_marginRight="14dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:text="餐饮/杨箕"
+            android:id="@+id/tv_bottom_shopping_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

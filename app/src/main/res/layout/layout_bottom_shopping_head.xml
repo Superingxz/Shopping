@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="77.5dp">
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_catering"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="餐饮"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_recreation"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="休闲娱乐"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_education"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="教育培训"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_hairdressing"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="美容美发"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="77.5dp">
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_hotel"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="酒店"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_hospital"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="医疗健康"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_car"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="汽车服务"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_shopping_all"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:text="全部服务"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:background="#E6E6E6"
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+    <LinearLayout
+        android:layout_marginLeft="14dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_bottom_shopping_head_icon"
+            android:text="@string/cabin"
+            android:textColor="#35bb8a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="#1a1a1a"
+            android:text="附近商家"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>

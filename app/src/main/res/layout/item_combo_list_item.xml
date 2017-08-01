@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_marginLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/tv_item_combo_item_name"
+            android:text="XX套餐"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_combo_item_unit"-->
+        <!--android:layout_toRightOf="@+id/tv_combo_item_name"-->
+        <!--android:text="桶装水"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <TextView
+            android:id="@+id/tv_item_combo_item_total_water"
+            android:layout_below="@+id/tv_item_combo_item_name"
+            android:text="该套餐总水量:XX"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_item_combo_item_enable_water"
+            android:layout_below="@+id/tv_item_combo_item_total_water"
+            android:text="每月可用水量:XX"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_item_combo_item_money"
+            android:layout_alignParentBottom="true"
+            android:text="¥  29.99"
+            android:textColor="#35bb8a"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_combo_item_buy"
+            android:textColor="#fff"
+            android:background="#35bb8a"
+            android:layout_alignParentBottom="true"
+            android:text="立即购买"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="80dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tv_item_combo_item_love_num"
+            android:layout_alignParentRight="true"
+            android:text="+100"
+            android:layout_marginRight="14dp"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_item_combo_item_icon"
+            android:layout_toLeftOf="@+id/tv_item_combo_item_love_num"
+            android:text="@string/love"
+            android:textColor="#FE4241"
+            android:textSize="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</LinearLayout>

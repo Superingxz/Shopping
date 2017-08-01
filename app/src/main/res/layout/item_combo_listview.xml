@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:background="#fff">
 
 
     <ImageView
+        android:src="@mipmap/ic_launcher"
         android:id="@+id/img_combo_item"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+    <RelativeLayout
+        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/tv_combo_item_name"
+            android:text="广大"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_combo_item_unit"-->
+        <!--android:layout_toRightOf="@+id/tv_combo_item_name"-->
+        <!--android:text="桶装水"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <TextView
+            android:id="@+id/tv_combo_item_specification"
+            android:layout_below="@+id/tv_combo_item_name"
+            android:text="18L/桶"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_combo_item_combo"
+            android:textColor="#fff"
+            android:background="#35bb8a"
+            android:layout_alignParentBottom="true"
+            android:text="商品套餐"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_combo_item_detail"
+            android:textColor="#fff"
+            android:background="#35bb8a"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:text="商品详情"
+            android:layout_toLeftOf="@+id/tv_combo_item_combo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 </LinearLayout>
