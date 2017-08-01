@@ -75,16 +75,20 @@ dependencies {
     compile "com.android.support:cardview-v7:${rootProject.ext.support}"
     compile "com.android.support:support-v4:${rootProject.ext.support}"
     compile "com.android.support:design:${rootProject.ext.support}"
-    compile 'com.jakewharton:butterknife:8.2.1'
-    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+    //检查内存
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    //rxjava retrofit rxlifecycle
     compile 'io.reactivex:rxjava:1.1.9'
     compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
-    compile 'com.trello:rxlifecycle:1.0'
-    compile 'com.trello:rxlifecycle-components:1.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.trello:rxlifecycle:1.0'
+    compile 'com.trello:rxlifecycle-components:1.0'
+    //绑定
+    compile 'com.jakewharton:butterknife:8.2.1'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
     //动画
     compile 'com.nineoldandroids:library:2.4.0'
     //权限
@@ -96,62 +100,47 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     //数据库
     compile 'org.greenrobot:greendao:3.1.0'
+    //事物总线
+    compile 'org.greenrobot:eventbus:3.0.0'
     //A circular ImageView for Android
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //An amazing and convenient Android image slider
     compile 'com.daimajia.slider:library:1.1.5'
-    //进度条库
-    compile 'com.daimajia.numberprogressbar:library:1.2'
-    //图片加载库
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    //recyclerview动画库
-    compile 'jp.wasabeef:recyclerview-animators:2.2.3'
-    //图片支持手势的图片控件
-    compile 'com.github.chrisbanes.photoview:library:1.2.4'
-    //Android平台下的富文本解析器，支持Html和Markdown
-    compile 'com.zzhoujay.richtext:richtext:2.0.9'
-    //一个简单的Android标签控件.
-    compile 'com.github.Rukey7:DragSlopLayout:1.0.3'
-    //多功能的标签流布局
-    compile 'com.github.Rukey7:TagLayout:1.0.5'
-    //文件选择库
-    compile 'com.github.angads25:filepicker:1.0.6'
-    //This is a UI lib for Android. Effects like shining.(https://github.com/ChadCSong/ShineButton)
-    compile 'com.sackcentury:shinebutton:0.1.6'
-    //一个Android TabLayout库,目前有3个TabLayout
-    compile 'com.flyco.labelview:FlycoLabelView_Lib:1.0.2@aar'
-    //一个辅助开发的UI库，适用于某些特殊场景，如固定范围拖拽、动画、模糊效果等。可以和ViewPager联动
-    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'
-    //一个强大的Android对话框库,简化自定义对话框.支持2.2+.
-    compile 'com.flyco.dialog:FlycoDialog_Lib:1.3.2@aar'
     //加载动画(https://github.com/ybq/Android-SpinKit)
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
-    compile 'com.zhy:changeskin:4.0.2'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    //事物总线
-    compile 'org.greenrobot:eventbus:3.0.0'
+    //文件选择库
+    compile 'com.github.angads25:filepicker:1.0.6'
+    //一个强大的Android对话框库,简化自定义对话框.支持2.2+.
+    compile 'com.flyco.dialog:FlycoDialog_Lib:1.3.2@aar'
+    //A fast ImageView that supports rounded corners, ovals, and circles.
     compile 'com.makeramen:roundedimageview:2.3.0'
-    compile 'com.mrw:wzmrecyclerview:1.0.5'
+    //轮播
     compile 'com.xhb:xbanner:1.2.7'
+    //自适应布局
     compile 'com.zhy:autolayout:1.4.3'
-    compile 'com.github.bumptech.glide:glide:3.5.2'
-    compile 'com.longsh:PhotoPicker:1.5.0'
+    //图片加载
     compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    compile 'com.longsh:PhotoPicker:1.5.0'
+    //图片截取
     compile 'com.yalantis:ucrop:2.2.0'
+    //时间选择器、省市区三级联动
     compile 'com.contrarywind:Android-PickerView:3.2.5'
-    compile 'com.lzy.net:okgo:3.0.3'
+    //京东 Android 客户端样式的级联地址选择器
     compile 'com.github.chihane:JDAddressSelector:1.1.4'
-    compile 'com.contrarywind:Android-PickerView:3.2.5'
-
-    compile 'com.myz.customview:customview:1.0.2'
-    compile project(':pull')
-
-    compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
+    //OkGo
+    compile 'com.lzy.net:okgo:3.0.3'
     compile 'com.lzy.widget:view-core:0.2.3'
+    //对PopupWindow常用API的简单封装，几行代码就搞定PopupWindow弹窗，使用Builder模式，链式调用，像使用AlertDialog 一样
+    compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
     compile 'com.pingxx:pingpp-core:2.1.9' //必须添加
     compile 'com.pingxx:pingpp-alipay:2.1.9' //使用支付宝时添加
     compile 'com.pingxx:pingpp-upacp:2.1.9' //使用银联支付时添加
     compile 'com.pingxx:pingpp-wxpay:2.1.9' //使用微信支付时添加
+
+    //listview recyclerView 自定义封装
+    compile 'com.myz.customview:customview:1.0.2'
+    //刷新
+    compile project(':pull')
 }
 
