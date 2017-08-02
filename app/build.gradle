@@ -8,21 +8,21 @@ android {
     buildToolsVersion rootProject.ext.buildTools
 
     defaultConfig {
-        applicationId "com.dl7.mvp"
+        applicationId "com.dl7.shopping"
         minSdkVersion rootProject.ext.minSdk
         targetSdkVersion rootProject.ext.targetSdk
-        versionCode 104
-        versionName "1.0.4"
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true;//解决方法数量超过65536个时无法编译的问题
     }
 
     signingConfigs {
         release {
             try {
-                storeFile file("./mvpapp.jks")
-                storePassword "abc123"
-                keyAlias "mvpapp"
-                keyPassword "abc123"
+                storeFile file("./shopping.jks")
+                storePassword "shopping"
+                keyAlias "shopping"
+                keyPassword "shopping"
             } catch (ex) {
                 throw new InvalidUserDataException(ex.toString())
             }
@@ -52,14 +52,18 @@ android {
     }
 
     lintOptions {
+        checkReleaseBuilds false
         abortOnError false
+        disable 'InvalidPackage'
+        //只要添加下面这一句就可以了
+        disable 'MissingTranslation'
     }
 
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def fileName = "Shoping${defaultConfig.versionName}.apk"
+                def fileName = "Shopping${defaultConfig.versionName}.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }
