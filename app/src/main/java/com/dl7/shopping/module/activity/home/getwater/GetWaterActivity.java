@@ -2,7 +2,6 @@ package com.dl7.shopping.module.activity.home.getwater;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -32,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 取水
@@ -80,10 +78,9 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
     protected void initViews() {
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
+        back.setTypeface(iconFont);
 
         uid = CommonMethod.getUid(this);
-
-        back.setTypeface(iconFont);
 
         initData();
         initListData();
@@ -190,14 +187,6 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
 
     @Override
     protected void updateViews(boolean isRefresh) {
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_getwater);
-        ButterKnife.bind(this);
 
     }
 
