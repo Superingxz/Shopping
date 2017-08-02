@@ -41,7 +41,7 @@ import butterknife.BindView;
 
 public class DetailTopListViewFragment extends BaseFragment implements XBanner.XBannerAdapter{
     @BindView(R.id.listView)
-    VerticalListView listview;
+    private VerticalListView listview;
     private XBanner mBannerNet;
     private GoodsDetailBean goodsDetailBean=new GoodsDetailBean();
     private String goods_id;
@@ -49,10 +49,9 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
     private TextView introduce;
     private TextView money;
     private ArrayList<GoodsDetailBean.DataBean.ImagesBean> imgBean;
-
     @Override
     protected int attachLayoutRes() {
-        return R.layout.fragment_details_top;
+        return R.layout.fragment_listview;
     }
 
     @Override
@@ -63,7 +62,7 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
     @Override
     protected void initViews() {
         LayoutInflater mflater = LayoutInflater.from(getContext());
-        View headerView  = (RelativeLayout) mflater.inflate(R.layout.activity_details_top, null);
+        View headerView  = (RelativeLayout) mflater.inflate(R.layout.fragment_details_top, null);
         ImageView back = (ImageView) headerView.findViewById(R.id.img_details_back);
         mBannerNet = (XBanner) headerView.findViewById(R.id.details_banner_1);
         title = (TextView)headerView.findViewById(R.id.tv_details_title);
@@ -72,8 +71,6 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
         goods_id = sp.getString("goods_id", "");
         initData();
-
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
