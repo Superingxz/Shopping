@@ -35,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,16 +115,17 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
     }
 
     @Override
-    public View getView(int position, View convertView, final ViewGroup parent) {
-
-
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         iconFont = FontManager.getTypeface(context, FontManager.FONTAWESOME);
+        ViewHolder holder;
+
         if (convertView == null) {
+            holder=new ViewHolder();
             final int position1=position;
 
             convertView = LayoutInflater.from(context).inflate(R.layout.item_water_liseview, parent, false);
 
-            TextView category_name = (TextView) convertView.findViewById(R.id.tv_item_water_category_name);
+            holder.category_name = (TextView) convertView.findViewById(R.id.tv_item_water_category_name);
 
             //得到scroview里面的布局，然后替换掉里面的布局
             LinearLayout itemScroViewll = (LinearLayout) convertView.findViewById(R.id.ll_item_water_scroview);
@@ -142,8 +144,6 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     final TextView icon = (TextView) infoView.findViewById(R.id.shopping_img);
                     icon.setTypeface(iconFont);
 
-
-
                     icon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -152,7 +152,6 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                             }else{
                                 initPopupWindow(icon, false,position1,finalI);
                             }
-
                         }
                     });
                     LinearLayout llgoods = (LinearLayout) infoView.findViewById(R.id.ll_item_item);
@@ -168,6 +167,14 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                             intent.putExtra("top", "ListView");
                             intent.putExtra("goods_id",id);
                             intent.putExtra("bottom", "WebView");
+                            intent.putExtra("business_type","BUY_WATER");
+                            intent.putExtra("goodsId",dataBean.get(position).getWATER_A().get(finalI).getGoods_id());
+                            intent.putExtra("addressId",dataBean.get(position).getAddressID());
+                            DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                            Double price = Double.valueOf(dataBean.get(position).getWATER_A().get(finalI).getPresent_price() / 100);
+                            intent.putExtra("money",""+df.format(price)+"");
+                            intent.putExtra("playmethod","third");
+                            intent.putExtra("bucket","");
                             SharedPreferences sp1 = context.getSharedPreferences("flag", context.MODE_PRIVATE);
                             SharedPreferences.Editor editor1 = sp1.edit();
                             editor1.putString("goods_id", id);
@@ -182,8 +189,10 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     TextView company = (TextView) infoView.findViewById(R.id.tv_item_water_company);
                     company.setText(dataBean.get(position).getWATER_A().get(i).getSpecification()+"/"+dataBean.get(position).getWATER_A().get(i).getCompany());
                     TextView money = (TextView) infoView.findViewById(R.id.tv_item_water_money);
-                    money.setText("¥  "+dataBean.get(position).getWATER_A().get(i).getPresent_price());
-                    category_name.setText(dataBean.get(position).getWATER_A().get(i).getCategory_name());
+                    DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                    Double present_price = Double.valueOf(dataBean.get(position).getWATER_A().get(i).getPresent_price()/100);
+                    money.setText("￥  " + df.format(present_price));
+                    holder.category_name.setText(dataBean.get(position).getWATER_A().get(i).getCategory_name());
 
                     //添加进去
                     itemScroViewll.addView(infoView);
@@ -215,6 +224,14 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                             intent.putExtra("top", "ListView");
                             intent.putExtra("goods_id",id);
                             intent.putExtra("bottom", "WebView");
+                            intent.putExtra("business_type","BUY_WATER");
+                            intent.putExtra("goodsId",dataBean.get(position).getWATER_B().get(finalI).getGoods_id());
+                            intent.putExtra("addressId",dataBean.get(position).getAddressID());
+                            DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                            Double price = Double.valueOf(dataBean.get(position).getWATER_B().get(finalI).getPresent_price() / 100);
+                            intent.putExtra("money",""+df.format(price)+"");
+                            intent.putExtra("playmethod","third");
+                            intent.putExtra("bucket","");
                             SharedPreferences sp1 = context.getSharedPreferences("flag", context.MODE_PRIVATE);
                             SharedPreferences.Editor editor1 = sp1.edit();
                             editor1.putString("goods_id", id);
@@ -229,8 +246,10 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     TextView company = (TextView) infoView.findViewById(R.id.tv_item_water_company);
                     company.setText(dataBean.get(position).getWATER_B().get(i).getSpecification() + "/" + dataBean.get(position).getWATER_B().get(i).getCompany());
                     TextView money = (TextView) infoView.findViewById(R.id.tv_item_water_money);
-                    money.setText("¥  " + dataBean.get(position).getWATER_B().get(i).getPresent_price());
-                    category_name.setText(dataBean.get(position).getWATER_B().get(i).getCategory_name());
+                    DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                    Double present_price = Double.valueOf(dataBean.get(position).getWATER_B().get(i).getPresent_price()/100);
+                    money.setText("￥  " + df.format(present_price));
+                    holder.category_name.setText(dataBean.get(position).getWATER_B().get(i).getCategory_name());
 
                     //添加进去
                     itemScroViewll.addView(infoView);
@@ -264,6 +283,14 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                             intent.putExtra("top", "ListView");
                             intent.putExtra("goods_id",id);
                             intent.putExtra("bottom", "WebView");
+                            intent.putExtra("business_type","BUY_WATER");
+                            intent.putExtra("goodsId",dataBean.get(position).getWATER_C().get(finalI).getGoods_id());
+                            intent.putExtra("addressId",dataBean.get(position).getAddressID());
+                            DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                            Double price = Double.valueOf(dataBean.get(position).getWATER_C().get(finalI).getPresent_price() / 100);
+                            intent.putExtra("money",""+df.format(price)+"");
+                            intent.putExtra("playmethod","third");
+                            intent.putExtra("bucket","RENT");
                             SharedPreferences sp1 = context.getSharedPreferences("flag", context.MODE_PRIVATE);
                             SharedPreferences.Editor editor1 = sp1.edit();
                             editor1.putString("goods_id", id);
@@ -278,8 +305,10 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     TextView company = (TextView) infoView.findViewById(R.id.tv_item_water_company);
                     company.setText(dataBean.get(position).getWATER_C().get(i).getSpecification() + "/" + dataBean.get(position).getWATER_C().get(i).getCompany());
                     TextView money = (TextView) infoView.findViewById(R.id.tv_item_water_money);
-                    money.setText("¥  " + dataBean.get(position).getWATER_C().get(i).getPresent_price());
-                    category_name.setText(dataBean.get(position).getWATER_C().get(i).getCategory_name());
+                    DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                    Double present_price = Double.valueOf(dataBean.get(position).getWATER_C().get(i).getPresent_price()/100);
+                    money.setText("￥  " + df.format(present_price));
+                    holder.category_name.setText(dataBean.get(position).getWATER_C().get(i).getCategory_name());
 
                     //添加进去
                     itemScroViewll.addView(infoView);
@@ -291,7 +320,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     final TextView icon = (TextView) infoView.findViewById(R.id.shopping_img);
                     icon.setTypeface(iconFont);
                     final int finalI = i;
-                    Log.i("onClick: ",dataBean.get(position).getWATER_A().get(finalI).getCategory_name() );
+                    Log.i("onClick: ",dataBean.get(position).getWATER_D().get(finalI).getCategory_name() );
                     icon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -311,6 +340,14 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                             intent.putExtra("top", "ListView");
                             intent.putExtra("goods_id",id);
                             intent.putExtra("bottom", "WebView");
+                            intent.putExtra("business_type","BUY_WATER");
+                            intent.putExtra("goodsId",dataBean.get(position).getWATER_D().get(finalI).getGoods_id());
+                            intent.putExtra("addressId",dataBean.get(position).getAddressID());
+                            DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                            Double price = Double.valueOf(dataBean.get(position).getWATER_D().get(finalI).getPresent_price() / 100);
+                            intent.putExtra("money",""+df.format(price)+"");
+                            intent.putExtra("playmethod","third");
+                            intent.putExtra("bucket","");
                             SharedPreferences sp1 = context.getSharedPreferences("flag", context.MODE_PRIVATE);
                             SharedPreferences.Editor editor1 = sp1.edit();
                             editor1.putString("goods_id", id);
@@ -325,13 +362,19 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     TextView company = (TextView) infoView.findViewById(R.id.tv_item_water_company);
                     company.setText(dataBean.get(position).getWATER_D().get(i).getSpecification() + "/" + dataBean.get(position).getWATER_D().get(i).getCompany());
                     TextView money = (TextView) infoView.findViewById(R.id.tv_item_water_money);
-                    money.setText("¥  " + dataBean.get(position).getWATER_D().get(i).getPresent_price());
-                    category_name.setText(dataBean.get(position).getWATER_D().get(i).getCategory_name());
+                    DecimalFormat df   =new   java.text.DecimalFormat("#.00");
+                    Double present_price = Double.valueOf(dataBean.get(position).getWATER_D().get(i).getPresent_price()/100);
+                    money.setText("￥  " + df.format(present_price));
+                    holder.category_name.setText(dataBean.get(position).getWATER_D().get(i).getCategory_name());
 
                     //添加进去
                     itemScroViewll.addView(infoView);
                 }
             }
+
+            convertView.setTag(holder);
+        }else{
+            holder= (ViewHolder) convertView.getTag();
         }
 
         return convertView;
@@ -369,7 +412,6 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
         ImageView add = (ImageView) popview.findViewById(R.id.img_pop_add);
         tvNum = (TextView) popview.findViewById(R.id.tv_pop_num);
         TextView payment = (TextView) popview.findViewById(R.id.tv_pop_payment);
-
 
         if (position==0){
             number=dataBean.get(position).getWATER_A().get(i).getNum();
@@ -428,7 +470,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
             editor1.putString("popurl",image_url);
             editor1.commit();
         }
-        tvMoney.setText(present_price+"");
+        tvMoney.setText(present_price/100+"");
         //根据是否为空桶来显示
         if (isBucket){
             rlTime.setVisibility(View.GONE);
@@ -491,7 +533,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                 String popurl = sp.getString("popurl", "");
 
                 if (dataBean.get(position).getStore_type().equals("SCHOOL")){
-                    url= URL.SCHOOLTIME_URL;
+                    url=URL.SCHOOLTIME_URL;
                 }else{
                     url=URL.COMMONTIME_URL;
                 }
@@ -509,7 +551,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                 if (num1>1){
                     num1--;
                     tvNum.setText(num1+"");
-                    tvMoney.setText(num1*present_price+"");
+                    tvMoney.setText(num1*present_price/100+"");
                 }else{
                     Toast.makeText(context, "至少一桶才能下单", Toast.LENGTH_SHORT).show();
                 }
@@ -523,7 +565,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                 int num1= Integer.parseInt(tvNum.getText().toString());
                 num1++;
                 tvNum.setText(num1+"");
-                tvMoney.setText(num1*present_price+"");
+                tvMoney.setText(num1*present_price/100+"");
             }
         });
 
@@ -531,8 +573,6 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
         payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 String goods_id = null;
 
@@ -602,7 +642,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                 Glide.with(context).load("http://shop-img.agymall.com/water/small/" +popurl).into(popHead);
                 tvTime.setText(str);
                 tvNum.setText(num+"");
-                tvMoney.setText(num*popprice+"");
+                tvMoney.setText(num*popprice/100+"");
             }
         })
 
@@ -669,6 +709,10 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                         }
                     }
                 });
+    }
+
+    class ViewHolder{
+        TextView category_name;
     }
     public void onClick(View v) {
         mCallback.click(v);
