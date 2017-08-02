@@ -41,7 +41,7 @@ import butterknife.BindView;
 
 public class DetailTopListViewFragment extends BaseFragment implements XBanner.XBannerAdapter{
     @BindView(R.id.listView)
-    private VerticalListView listview;
+    VerticalListView listview;
     private XBanner mBannerNet;
     private GoodsDetailBean goodsDetailBean=new GoodsDetailBean();
     private String goods_id;
