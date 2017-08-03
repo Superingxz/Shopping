@@ -7,4 +7,6 @@ package com.dl7.shopping.test;
 public class Test {
     int i=1;
     int j=1;
+
+    int superingxz;
 }
