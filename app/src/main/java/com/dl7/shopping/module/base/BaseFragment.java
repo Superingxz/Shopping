@@ -19,6 +19,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by moligy on 2017/7/18.
@@ -39,6 +40,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
     //缓存Fragment view
     private View mRootView;
     private boolean mIsMulti = false;
+    private Unbinder mUnBinder;
 
 
     @Override
@@ -52,7 +54,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mRootView == null) {
             mRootView = inflater.inflate(attachLayoutRes(), null);
-            ButterKnife.bind(this, mRootView);
+            mUnBinder = ButterKnife.bind(this, mRootView);
             initInjector();
             initViews();
             //initSwipeRefresh();
@@ -81,6 +83,12 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
         } else {
             super.setUserVisibleHint(isVisibleToUser);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        mUnBinder.unbind();
+        super.onDestroyView();
     }
 
     @Override

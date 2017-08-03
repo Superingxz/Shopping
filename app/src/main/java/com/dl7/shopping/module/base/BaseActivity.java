@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by moligy on 2017/7/18.
@@ -39,6 +40,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
      */
     @Inject
     protected T mPresenter;
+    private Unbinder mUnBinder;
     /**
      * 刷新控件，注意，资源的ID一定要一样
      */
@@ -74,7 +76,8 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(attachLayoutRes());
-        ButterKnife.bind(this);
+        mUnBinder = ButterKnife.bind(this);
+        AndroidApplication.getApplication().addActivity(this);
         initInjector();
         initViews();
         //initSwipeRefresh();
@@ -238,5 +241,12 @@ public abstract class BaseActivity<T extends IBasePresenter> extends RxAppCompat
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AndroidApplication.getApplication().removeActivity(this);
+        mUnBinder.unbind();
     }
 }

@@ -1,5 +1,6 @@
 package com.dl7.shopping;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
@@ -27,6 +28,8 @@ import org.greenrobot.greendao.database.Database;
 
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -48,7 +51,8 @@ public class AndroidApplication extends Application {
     private static final String DB_NAME = "m-db";
 
     private static ApplicationComponent sAppComponent;
-    private static Application sContext;
+    private static AndroidApplication sContext;
+    private Set<Activity> allActivities;
     //private DaoSession mDaoSession;
     // 因为下载那边需要用，这里在外面实例化在通过 ApplicationModule 设置
     private RxBus mRxBus = new RxBus();
@@ -67,9 +71,10 @@ public class AndroidApplication extends Application {
         _initOkGo();
     }
 
-    public Application getApplication(){
+    public static synchronized AndroidApplication getApplication() {
         return sContext;
     }
+
     /**
      * 使用Tinker生成Application，这里改成静态调用
      * @return
@@ -82,7 +87,30 @@ public class AndroidApplication extends Application {
         return sContext;
     }
 
+    public void addActivity(Activity act) {
+        if (allActivities == null) {
+            allActivities = new HashSet<Activity>();
+        }
+        allActivities.add(act);
+    }
 
+    public void removeActivity(Activity act) {
+        if (allActivities != null) {
+            allActivities.remove(act);
+        }
+    }
+
+    public void exitApp() {
+        if (allActivities != null) {
+            synchronized (allActivities) {
+                for (Activity act : allActivities) {
+                    act.finish();
+                }
+            }
+        }
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
+    }
 
     /**
      * 初始化注射器
