@@ -2,6 +2,7 @@ package com.dl7.shopping.module.fragment.phonecart.PhoneDetailTopListView;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.dl7.shopping.bean.GoodsDetailBean;
 import com.dl7.shopping.module.base.BaseFragment;
 import com.dl7.shopping.module.fragment.phonecart.PhoneDetailBottomWebview.PhoneDetailBottomWebViewPresenter;
 import com.dl7.shopping.utils.ColorUtil;
+import com.dl7.shopping.utils.FontManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -45,6 +47,10 @@ public class PhoneDetailTopListViewFragment extends BaseFragment<PhoneDetailBott
     private TextView title;
     private TextView introduce;
     private TextView money;
+    private RelativeLayout address;
+    private TextView tvAddress;
+    private Typeface iconFont;
+    private TextView tvLove;
     private ArrayList<GoodsDetailBean.DataBean.ImagesBean> imgBean;
     @Override
     protected int attachLayoutRes() {
@@ -58,6 +64,9 @@ public class PhoneDetailTopListViewFragment extends BaseFragment<PhoneDetailBott
 
     @Override
     protected void initViews() {
+        //使用Font Awesome
+        iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
+
         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
         goods_id = sp.getString("goodsId", "");
 
@@ -68,7 +77,9 @@ public class PhoneDetailTopListViewFragment extends BaseFragment<PhoneDetailBott
         title = (TextView)headerView.findViewById(R.id.tv_phone_details_title);
         introduce = (TextView) headerView.findViewById(R.id.tv_phone_details_introduce);
         money = (TextView) headerView.findViewById(R.id.tv_phone_details_money);
-
+        TextView icon = (TextView) headerView.findViewById(R.id.tv_phone_detail_icon);
+        tvLove = (TextView) headerView.findViewById(R.id.tv_phone_details_love);
+        icon.setTypeface(iconFont);
         initData();
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +114,10 @@ public class PhoneDetailTopListViewFragment extends BaseFragment<PhoneDetailBott
                             JSONObject j1=new JSONObject(json);
                             JSONObject data = j1.getJSONObject("data");
                             title.setText(data.getString("goodsName"));
-                            money.setText("¥  "+data.getInt("present_price"));
+                            money.setText("¥  "+data.getInt("present_price")/100.00);
                             introduce.setText(data.getString("describes"));
+                            tvLove.setText("+"+data.getDouble("score"));
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -112,6 +125,7 @@ public class PhoneDetailTopListViewFragment extends BaseFragment<PhoneDetailBott
                     }
                 });
     }
+
 
     @Override
     public void goTop() {

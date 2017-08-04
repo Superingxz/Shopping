@@ -47,24 +47,46 @@
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content" />-->
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:textColor="#35bb8a"
-            android:layout_marginRight="14dp"
-            android:layout_marginLeft="14dp"
-            android:id="@+id/tv_details_money"
-            android:text="¥  25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginTop="10dp"
-            android:textColor="#35bb8a"
-            android:layout_marginRight="14dp"
-            android:layout_marginLeft="14dp"
-            android:id="@+id/tv_details_love"
-            android:text="+0.00"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="#35bb8a"
+                android:layout_marginRight="14dp"
+                android:layout_marginLeft="14dp"
+                android:id="@+id/tv_details_money"
+                android:text="¥  25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_detail_icon"
+                    android:text="@string/love"
+                    android:textColor="#FE4241"
+                    android:textSize="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="#35bb8a"
+                    android:id="@+id/tv_details_love"
+                    android:text="+0.00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <TextView
             android:background="#E6E6E6"
@@ -105,11 +127,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
         </RelativeLayout>
+
         <TextView
             android:background="#E6E6E6"
             android:layout_width="match_parent"
             android:layout_height="5dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_detail_buy_or_rent"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_detail_buy"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/water_textview_background1"
+                    android:gravity="center"
+                    android:text="买桶"
+                    android:textColor="#fff" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_detail_rent"
+                    android:text="租桶"
+                    android:background="@drawable/water_textview_background2"
+                    android:gravity="center"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:background="#E6E6E6"
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
         <RelativeLayout
+            android:id="@+id/rl_detail_address"
             android:layout_marginTop="10dp"
             android:layout_marginRight="14dp"
             android:layout_marginLeft="14dp"
@@ -120,7 +187,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:maxEms="15"
+                android:layout_marginLeft="100dp"
+                android:maxEms="20"
                 android:layout_alignParentRight="true"
                 android:id="@+id/tv_detail_address"
                 android:layout_width="wrap_content"
@@ -138,7 +206,7 @@
             android:layout_height="30dp">
             <TextView
                 android:layout_marginLeft="14dp"
-                android:text="时间"
+                android:text="选择时间"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -154,7 +222,6 @@
             android:gravity="center"
             android:text="—— 详情 ——"
             android:background="#E6E6E6"
-
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 

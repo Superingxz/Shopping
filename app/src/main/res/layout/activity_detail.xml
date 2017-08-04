@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <!--<TextView-->
-    <!--android:id="@+id/top"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:background="#8456"-->
-    <!--android:gravity="center"-->
-    <!--android:text="可以自定义头布局"-->
-    <!--android:textColor="#FFF"/>-->
+        <!--android:id="@+id/top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="#8456"-->
+        <!--android:gravity="center"-->
+        <!--android:text="可以自定义头布局"-->
+        <!--android:textColor="#FFF"/>-->
 
     <LinearLayout
         android:id="@+id/ll_drag_layout"

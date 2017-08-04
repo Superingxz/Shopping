@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,8 +44,8 @@ import butterknife.BindView;
 public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
         implements IGetWaterView {
 
-    @BindView(R.id.tv_getwater_back)
-    TextView back;
+    @BindView(R.id.img_getwater_back)
+    ImageView back;
     @BindView(R.id.tv_water_total_num)
     TextView totalNum;
     @BindView(R.id.tv_water_month_num)
@@ -82,7 +83,6 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
     protected void initViews() {
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
-        back.setTypeface(iconFont);
 
         uid = CommonMethod.getUid(this);
         SharedPreferences sp = getSharedPreferences("flag", MODE_PRIVATE);
@@ -143,10 +143,10 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
                         try {
                             JSONObject j1=new JSONObject(json);
                             JSONObject data = j1.getJSONObject("data");
-                            totalNum.setText(data.getInt("total_num")+"桶");
-                            monthNum.setText(data.getInt("month_num")+"桶");
-                            barrelNum.setText(data.getInt("barrel_num")+"个");
-                            mortageBarrel.setText(data.getInt("mortgage_barrel")+"个");
+                            totalNum.setText(data.getInt("total_num")+"");
+                            monthNum.setText(data.getInt("month_num")+"");
+                            barrelNum.setText(data.getInt("barrel_num")+"");
+                            mortageBarrel.setText(data.getInt("mortgage_barrel")+"");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

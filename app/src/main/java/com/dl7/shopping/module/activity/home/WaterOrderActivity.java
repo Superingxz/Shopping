@@ -152,16 +152,16 @@ public class WaterOrderActivity extends AppCompatActivity {
                             goods_name = data.getString("goods_name");
                             String address = data.getString("address");
                             String mobile = data.getString("mobile");
-                            String total_price = data.getString("total_price");
-                            totalmoney=total_price;
-                            Double totalPrice = Double.valueOf(Integer.parseInt(total_price));
+                            int total_price = data.getInt("total_price");
+                            totalmoney=total_price+"";
+                            Double totalPrice = Double.valueOf(Integer.parseInt(total_price+""));
                             String contact = data.getString("contact");
                             String quantity = data.getString("quantity");
                             String image_url = data.getString("image_url");
                             company_id = data.getString("company_id");
                             address_id = data.getString("address_id");
                             goods_id = data.getString("goods_id");
-                            Log.i("onSuccess111: ",goods_id );
+                            Log.i("onSuccess111: ",totalmoney );
                             store_name = data.getString("store_name");
                             String reserve_time = data.getString("reserve_time");
                             tvaddress.setText("收货地址:  "+address);
@@ -204,6 +204,7 @@ public class WaterOrderActivity extends AppCompatActivity {
 
     //提交(余水支付)
     private void initCommit() {
+
         OkGo.<String>post(URL.WATERPLAY_URL)
                 .params("business_type",business_type1)
                 .params("company_id",company_id)
@@ -241,11 +242,12 @@ public class WaterOrderActivity extends AppCompatActivity {
 
     //提交(第三方支付)
     private void initThirdCommit() {
+        Log.i("initThirdCommit: ", totalmoney);
         OkGo.<String>post(URL.THIRDPLAY_URL)
                 .params("business_type",business_type1)
                 .params("company_id",company_id)
                 .params("address_id",address_id)
-                .params("goods_id",goods_id)
+                .params("goods_id",goodsId)
                 .params("amount",totalmoney)
                 .params("quantity",allNum)
                 .params("resever",time)

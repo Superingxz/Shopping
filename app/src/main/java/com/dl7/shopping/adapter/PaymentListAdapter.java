@@ -64,9 +64,9 @@ public class PaymentListAdapter extends BaseAdapter {
         iconFont = FontManager.getTypeface(context, FontManager.FONTAWESOME);
         if (convertView==null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_payment, parent, false);
-            final TextView checkBox = (TextView) convertView.findViewById(R.id.tv_check_box_item);
+//            final TextView checkBox = (TextView) convertView.findViewById(R.id.tv_check_box_item);
             LinearLayout allCheck = (LinearLayout) convertView.findViewById(R.id.ll_payment_layout);
-            checkBox.setTypeface(iconFont);
+//            checkBox.setTypeface(iconFont);
             dataBean.get(position).setIs_all_check(false);//默认不全选
             TextView title = (TextView) convertView.findViewById(R.id.tv_payment_name);
             title.setText(dataBean.get(position).getBrand_name());
@@ -129,11 +129,11 @@ public class PaymentListAdapter extends BaseAdapter {
 //                    }
 //                });
 
-                if (dataBean.get(position).isIs_all_check()){
-                    checkBox.setText(R.string.address);
-                }else{
-                    checkBox.setText(R.string.circle);
-                }
+//                if (dataBean.get(position).isIs_all_check()){
+//                    checkBox.setText(R.string.address);
+//                }else{
+//                    checkBox.setText(R.string.circle);
+//                }
 
 //                if (dataBean.get(position).isIs_all_check()){
 //                    for (int j = 0; j < dataBean.get(position).getWater_group().size(); j++) {

@@ -5,7 +5,6 @@ package com.dl7.shopping.bean;
  */
 
 import java.util.List;
-
 public class CityBean {
 
     /**

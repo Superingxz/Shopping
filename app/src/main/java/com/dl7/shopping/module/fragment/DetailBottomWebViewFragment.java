@@ -13,6 +13,7 @@ import com.dl7.shopping.R;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.GoodsDetailBean;
 import com.dl7.shopping.module.base.BaseFragment;
+import com.dl7.shopping.utils.CommonMethod;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -32,6 +33,8 @@ public class DetailBottomWebViewFragment extends BaseFragment {
     private boolean hasInited = false;
     private String goods_id;
     private String introduction;
+    private String addressId;
+    private String uid;
 
     @Override
     protected int attachLayoutRes() {
@@ -45,8 +48,10 @@ public class DetailBottomWebViewFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
+        uid = CommonMethod.getUid(getContext());
         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
         goods_id = sp.getString("goods_id", "");
+        addressId = sp.getString("addressId1", "");
         Log.i("onCreateView: ", goods_id);
         initView();
         initData();
@@ -61,6 +66,8 @@ public class DetailBottomWebViewFragment extends BaseFragment {
     private void initData() {
         OkGo.<String>post(URL.GOODSDETAIL_URL)
                 .params("goods_id", goods_id)
+                .params("member_id",uid)
+                .params("address_id",addressId)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

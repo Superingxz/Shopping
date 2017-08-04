@@ -144,6 +144,8 @@ public class MineFragment extends BaseFragment<MinePresenter>
                 editor1.putString("name","");
                 editor1.putString("mobile","");
                 editor1.putString("goodsId","");
+                editor1.putString("goods_id","");
+                editor1.putString("addressId1","");
                 editor1.commit();
                 EventBus.getDefault().post(
                         new ThreeEvent(""));

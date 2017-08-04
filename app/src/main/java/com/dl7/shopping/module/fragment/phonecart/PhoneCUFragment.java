@@ -85,6 +85,9 @@ public class PhoneCUFragment extends Fragment {
     //获取列表数据
     private void initListData() {
 
+        Log.i("initListData: ",latitude );
+        Log.i("initListData: ",longitude );
+        Log.i("initListData: ",card_type );
         OkGo.<String>post(URL.PHONELIST_URL)
                 .params("longitude",longitude)
                 .params("latitude",latitude)

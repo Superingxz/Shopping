@@ -7,11 +7,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:textSize="30dp"-->
-    <!--android:text="第二页面"/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textSize="30dp"-->
+        <!--android:text="第二页面"/>-->
 
 
     <LinearLayout
@@ -26,12 +26,12 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="65dp">
+            android:layout_height="79dp">
             <RadioButton
                 android:id="@+id/rbn_water"
                 android:text="取水"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="13dp"
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
@@ -44,7 +44,7 @@
                 android:id="@+id/rbn_combo"
                 android:text="优惠套餐"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="13dp"
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
@@ -57,7 +57,7 @@
                 android:id="@+id/rbn_help"
                 android:text="帮助"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="13dp"
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
@@ -69,9 +69,9 @@
         </LinearLayout>
 
         <TextView
-            android:background="#9a9a9a"
+            android:background="#e6e6e6"
             android:layout_width="match_parent"
-            android:layout_height="1px" />
+            android:layout_height="1dp" />
         <ListView
             android:id="@+id/lv_water"
             android:layout_width="match_parent"

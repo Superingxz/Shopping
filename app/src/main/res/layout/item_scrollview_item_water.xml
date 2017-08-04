@@ -1,51 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="206dp">
 
     <LinearLayout
         android:id="@+id/ll_item_item"
         android:orientation="vertical"
-        android:layout_width="200dp"
+        android:layout_width="165dp"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_water_product"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="24dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp" />
+            android:layout_width="140dp"
+            android:layout_height="100dp" />
 
         <LinearLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/tv_item_water_goods_name"
-                android:textStyle="bold"
-                android:textColor="#1a1a1a"
-                android:text="广大"
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_item_water_company"
-                android:text="水桶2L/个"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_item_water_goods_name"
+                    android:textStyle="bold"
+                    android:textColor="#1a1a1a"
+                    android:text="广大"
+                    android:textSize="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="2dp"-->
+                    <!--android:id="@+id/tv_item_water_category"-->
+                    <!--android:textColor="#1a1a1a"-->
+                    <!--android:text="桶装水"-->
+                    <!--android:textSize="14dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_item_water_company"
+            android:text="18L/桶"
+            android:layout_marginTop="11px"
+            android:textSize="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         </LinearLayout>
         <RelativeLayout
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="12.5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/tv_item_water_money"
                 android:textColor="#35bb8a"
                 android:text="¥ 25"
-                android:layout_marginLeft="25dp"
+                android:textSize="12dp"
+                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -53,17 +74,17 @@
                 android:id="@+id/shopping_img"
                 android:src="@mipmap/gou_wu_che1"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="25dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <!--<TextView-->
-            <!--android:id="@+id/shopping_img"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:text="@string/shoppingcart"-->
-            <!--android:layout_marginRight="25dp"-->
-            <!--android:textColor="#35bb8a"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
+                <!--android:id="@+id/shopping_img"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:text="@string/shoppingcart"-->
+                <!--android:layout_marginRight="25dp"-->
+                <!--android:textColor="#35bb8a"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
         </RelativeLayout>
     </LinearLayout>
 

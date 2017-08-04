@@ -8,21 +8,22 @@
         android:id="@+id/ll_payment_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_check_box_item"
-            android:layout_gravity="center_vertical"
-            android:text="@string/circle"
-            android:layout_marginLeft="14dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="36dp">
+        <!--<TextView-->
+            <!--android:id="@+id/tv_check_box_item"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:text="@string/circle"-->
+            <!--android:layout_marginLeft="14dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
         <TextView
             android:id="@+id/tv_payment_name"
             android:layout_gravity="center_vertical"
             android:textColor="#1a1a1a"
             android:textStyle="bold"
+            android:textSize="16dp"
             android:text="广大"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

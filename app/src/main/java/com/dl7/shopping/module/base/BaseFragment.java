@@ -2,7 +2,11 @@ package com.dl7.shopping.module.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
+import android.support.annotation.CheckResult;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +16,26 @@ import com.dl7.shopping.AndroidApplication;
 import com.dl7.shopping.R;
 import com.dl7.shopping.injector.components.ApplicationComponent;
 import com.dl7.shopping.widget.EmptyLayout;
+import com.trello.rxlifecycle.LifecycleProvider;
 import com.trello.rxlifecycle.LifecycleTransformer;
-import com.trello.rxlifecycle.components.support.RxFragment;
+import com.trello.rxlifecycle.RxLifecycle;
+import com.trello.rxlifecycle.android.FragmentEvent;
+import com.trello.rxlifecycle.android.RxLifecycleAndroid;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import rx.Observable;
+import rx.subjects.BehaviorSubject;
 
 /**
  * Created by moligy on 2017/7/18.
  * 碎片基类
  */
-public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment implements IBaseView, EmptyLayout.OnRetryListener {
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment
+        implements IBaseView, EmptyLayout.OnRetryListener , LifecycleProvider<FragmentEvent> {
 
     /**
      * 注意，资源的ID一定要一样
@@ -42,10 +52,39 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
     private boolean mIsMulti = false;
     private Unbinder mUnBinder;
 
+    private final BehaviorSubject<FragmentEvent> lifecycleSubject = BehaviorSubject.create();
+
+    @Override
+    @NonNull
+    @CheckResult
+    public final Observable<FragmentEvent> lifecycle() {
+        return lifecycleSubject.asObservable();
+    }
+
+    @Override
+    @NonNull
+    @CheckResult
+    public final <T> LifecycleTransformer<T> bindUntilEvent(@NonNull FragmentEvent event) {
+        return RxLifecycle.bindUntilEvent(lifecycleSubject, event);
+    }
+
+    @Override
+    @NonNull
+    @CheckResult
+    public final <T> LifecycleTransformer<T> bindToLifecycle() {
+        return RxLifecycleAndroid.bindFragment(lifecycleSubject);
+    }
+
+    @Override
+    public void onAttach(android.app.Activity activity) {
+        super.onAttach(activity);
+        lifecycleSubject.onNext(FragmentEvent.ATTACH);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lifecycleSubject.onNext(FragmentEvent.CREATE);
         mContext = getActivity();
     }
 
@@ -64,6 +103,13 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
             parent.removeView(mRootView);
         }
         return mRootView;
+    }
+
+    @Override
+    @CallSuper
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        lifecycleSubject.onNext(FragmentEvent.CREATE_VIEW);
     }
 
     @Override
@@ -86,9 +132,53 @@ public abstract class BaseFragment<T extends IBasePresenter> extends RxFragment 
     }
 
     @Override
+    @CallSuper
+    public void onStart() {
+        super.onStart();
+        lifecycleSubject.onNext(FragmentEvent.START);
+    }
+
+    @Override
+    @CallSuper
+    public void onResume() {
+        super.onResume();
+        lifecycleSubject.onNext(FragmentEvent.RESUME);
+    }
+
+    @Override
+    @CallSuper
+    public void onPause() {
+        lifecycleSubject.onNext(FragmentEvent.PAUSE);
+        super.onPause();
+    }
+
+    @Override
+    @CallSuper
+    public void onStop() {
+        lifecycleSubject.onNext(FragmentEvent.STOP);
+        super.onStop();
+    }
+
+    @Override
+    @CallSuper
     public void onDestroyView() {
+        lifecycleSubject.onNext(FragmentEvent.DESTROY_VIEW);
         mUnBinder.unbind();
         super.onDestroyView();
+    }
+
+    @Override
+    @CallSuper
+    public void onDestroy() {
+        lifecycleSubject.onNext(FragmentEvent.DESTROY);
+        super.onDestroy();
+    }
+
+    @Override
+    @CallSuper
+    public void onDetach() {
+        lifecycleSubject.onNext(FragmentEvent.DETACH);
+        super.onDetach();
     }
 
     @Override
