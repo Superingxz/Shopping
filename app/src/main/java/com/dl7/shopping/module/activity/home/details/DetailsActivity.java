@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
+/**000
  * 商品详情页面
  * Created by MC.Zeng on 2017-07-04.
  */
