@@ -21,10 +21,6 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,40 +94,13 @@ public class PhoneCUFragment extends Fragment {
                         String json = response.body().toString();
                         Log.i("onSuccess111: ",json );
 
-                        try {
-                            Gson gson=new Gson();
-                            PhoneCartFragmentListBean phoneCartFragmentListBean = gson.fromJson(json, PhoneCartFragmentListBean.class);
-                            List<PhoneCartFragmentListBean.DataBean> dataBeen=new ArrayList<PhoneCartFragmentListBean.DataBean>();
+                        Gson gson=new Gson();
+                        PhoneCartFragmentListBean phoneCartFragmentListBean = gson.fromJson(json, PhoneCartFragmentListBean.class);
+                        List<PhoneCartFragmentListBean.DataBean> dataBeen=new ArrayList<PhoneCartFragmentListBean.DataBean>();
+                        mList.clear();
+                        mList.addAll(phoneCartFragmentListBean.getData());
+                        adapter.notifyDataSetChanged();
 
-                            JSONObject j1=new JSONObject(json);
-                            JSONArray data = j1.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject dataObj = data.getJSONObject(i);
-                                phoneCartFragmentListBean.getData().get(i).setCard_type(dataObj.getString("card_type"));
-                                phoneCartFragmentListBean.getData().get(i).setGoods_id(dataObj.getString("goods_id"));
-                                phoneCartFragmentListBean.getData().get(i).setId(dataObj.getString("id"));
-                                phoneCartFragmentListBean.getData().get(i).setCity_id(dataObj.getString("city_id"));
-                                phoneCartFragmentListBean.getData().get(i).setCountry_id(dataObj.getString("country_id"));
-                                phoneCartFragmentListBean.getData().get(i).setDiscount(dataObj.getInt("discount"));
-                                phoneCartFragmentListBean.getData().get(i).setDescribes(dataObj.getString("describes"));
-                                phoneCartFragmentListBean.getData().get(i).setPresent_price(dataObj.getInt("present_price"));
-                                phoneCartFragmentListBean.getData().get(i).setOriginal_price(dataObj.getInt("original_price"));
-                                phoneCartFragmentListBean.getData().get(i).setDetails(dataObj.getString("details"));
-                                phoneCartFragmentListBean.getData().get(i).setGoodsName(dataObj.getString("goodsName"));
-                                phoneCartFragmentListBean.getData().get(i).setStoreName(dataObj.getString("storeName"));
-                                phoneCartFragmentListBean.getData().get(i).setStore_id(dataObj.getString("store_id"));
-                                phoneCartFragmentListBean.getData().get(i).setSpec(dataObj.getInt("spec"));
-                                phoneCartFragmentListBean.getData().get(i).setProvince_id(dataObj.getString("province_id"));
-                                phoneCartFragmentListBean.getData().get(i).setStatus(dataObj.getString("status"));
-
-                                dataBeen.add(phoneCartFragmentListBean.getData().get(i));
-                            }
-                            mList.clear();
-                            mList.addAll(dataBeen);
-                            adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
                 });
     }

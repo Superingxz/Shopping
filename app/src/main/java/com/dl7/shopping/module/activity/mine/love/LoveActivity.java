@@ -21,7 +21,6 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -124,26 +123,8 @@ public class LoveActivity extends AppCompatActivity {
                         List<LoveListBean.DataBean.ListBean> listBean=new ArrayList<LoveListBean.DataBean.ListBean>();
                         Gson gson=new Gson();
                         loveListBean = gson.fromJson(json, LoveListBean.class);
-                        try {
-                            JSONObject j1=new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            JSONArray list = data.getJSONArray("list");
-                            for (int i = 0; i <list.length(); i++) {
-                                JSONObject listObject = list.getJSONObject(i);
-                                String notes = listObject.getString("notes");
-                                Double score = listObject.getDouble("score");
-                                String create_time = listObject.getString("create_time");
-                                loveListBean.getData().getList().get(i).setCreate_time(create_time);
-                                loveListBean.getData().getList().get(i).setNotes(notes);
-                                loveListBean.getData().getList().get(i).setScore(score);
-                                loveListBean.getData().getList().get(i).setType(listObject.getString("type"));
-                                listBean.add(loveListBean.getData().getList().get(i));
-                            }
-                            mList.addAll(loveListBean.getData().getList());
-                            adapter.notifyDataSetChanged();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        mList.addAll(loveListBean.getData().getList());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

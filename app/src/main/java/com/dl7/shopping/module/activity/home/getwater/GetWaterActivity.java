@@ -27,7 +27,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -165,39 +164,18 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
                         Log.i("onSuccess: ", json);
-                        List<WaterDetailBean.DataBean.ListBean> listBeen=new ArrayList<WaterDetailBean.DataBean.ListBean>();
                         Gson gson=new Gson();
                         waterDetailListBean = gson.fromJson(json, WaterDetailBean.class);
+                        mlist.addAll(waterDetailListBean.getData().getList());
+                        adapter.notifyDataSetChanged();
 
-                        try {
-                            JSONObject j1=new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            JSONArray listArray = data.getJSONArray("list");
-                            for (int i = 0; i < listArray.length(); i++) {
-                                JSONObject listObject = listArray.getJSONObject(i);
-                                waterDetailListBean.getData().getList().get(i).setNotes(listObject.getString("notes"));
-                                waterDetailListBean.getData().getList().get(i).setType(listObject.getString("type"));
-                                waterDetailListBean.getData().getList().get(i).setCreate_time(listObject.getString("create_time"));
-
-                                listBeen.add(waterDetailListBean.getData().getList().get(i));
+                        //完成刷新
+                        listView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                listView.onRefreshComplete();
                             }
-//                            mlist.addAll(listBeen);
-                            mlist.addAll(waterDetailListBean.getData().getList());
-
-                            adapter.notifyDataSetChanged();
-
-                            //完成刷新
-                            listView.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    listView.onRefreshComplete();
-                                }
-                            }, 1000);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                        }, 1000);
                     }
                 });
     }

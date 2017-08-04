@@ -28,10 +28,6 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,30 +166,10 @@ public class SelectPhoneNumActivity extends AppCompatActivity {
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
                         Log.i( "onSuccess: ",json);
-
-                        try {
-                            Gson gson=new Gson();
-                            SelectPhoneNumBean selectPhoneNumBean = gson.fromJson(json, SelectPhoneNumBean.class);
-                            List<SelectPhoneNumBean.DataBean.ListBean> listBeen=new ArrayList<SelectPhoneNumBean.DataBean.ListBean>();
-
-                            JSONObject j1=new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            JSONArray list = data.getJSONArray("list");
-                            for (int i = 0; i < list.length(); i++) {
-                                JSONObject listObj = list.getJSONObject(i);
-                                selectPhoneNumBean.getData().getList().get(i).setCard_number(listObj.getString("card_number"));
-                                selectPhoneNumBean.getData().getList().get(i).setPhone_number(listObj.getString("phone_number"));
-                                selectPhoneNumBean.getData().getList().get(i).setCard_type(listObj.getString("card_type"));
-                                selectPhoneNumBean.getData().getList().get(i).setId(listObj.getString("id"));
-
-                                listBeen.add(selectPhoneNumBean.getData().getList().get(i));
-                            }
-                            mList.addAll(listBeen);
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Gson gson=new Gson();
+                        SelectPhoneNumBean selectPhoneNumBean = gson.fromJson(json, SelectPhoneNumBean.class);
+                        mList.addAll(selectPhoneNumBean.getData().getList());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

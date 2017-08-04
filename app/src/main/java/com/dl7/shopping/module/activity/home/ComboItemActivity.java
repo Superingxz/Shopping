@@ -19,10 +19,6 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,11 +55,8 @@ public class ComboItemActivity extends AppCompatActivity {
         back.setTypeface(iconFont);
         listView = (ListView) findViewById(R.id.lv_combo);
 
-
         adapter = new ComboItemAdapter(mList,this);
-        initData();
         listView.setAdapter(adapter);
-
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +64,8 @@ public class ComboItemActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        initData();
     }
 
     //获取数据
@@ -83,41 +78,10 @@ public class ComboItemActivity extends AppCompatActivity {
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
                         Log.i("onSuccess: ", json);
-                        try {
-                            Gson gson=new Gson();
-                            ComboItemBean comboItemBean = gson.fromJson(json, ComboItemBean.class);
-                            List<ComboItemBean.DataBean> dataBeen=new ArrayList<ComboItemBean.DataBean>();
-
-                            JSONObject j1=new JSONObject(json);
-                            JSONArray data = j1.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject dataObj = data.getJSONObject(i);
-                                comboItemBean.getData().get(i).setDiscount(dataObj.getInt("discount"));
-                                comboItemBean.getData().get(i).setGoods_id(dataObj.getString("goods_id"));
-                                comboItemBean.getData().get(i).setStore_id(dataObj.getString("store_id"));
-                                comboItemBean.getData().get(i).setCreate_user_id(dataObj.getString("create_user_id"));
-                                comboItemBean.getData().get(i).setGoods_name(dataObj.getString("goods_name"));
-                                comboItemBean.getData().get(i).setNotes(dataObj.getString("notes"));
-                                comboItemBean.getData().get(i).setSort(dataObj.getInt("sort"));
-                                comboItemBean.getData().get(i).setNumber(dataObj.getInt("number"));
-                                comboItemBean.getData().get(i).setScore(dataObj.getString("score"));
-                                comboItemBean.getData().get(i).setMoney(dataObj.getInt("money"));
-                                comboItemBean.getData().get(i).setName(dataObj.getString("name"));
-                                comboItemBean.getData().get(i).setStore_name(dataObj.getString("store_name"));
-                                comboItemBean.getData().get(i).setId(dataObj.getString("id"));
-                                comboItemBean.getData().get(i).setGoods_company(dataObj.getString("goods_company"));
-                                comboItemBean.getData().get(i).setAvailable_num(dataObj.getInt("available_num"));
-                                comboItemBean.getData().get(i).setAddressID(addressID);
-                                Log.i("onSuccess: ",addressID );
-
-                                dataBeen.add(comboItemBean.getData().get(i));
-                            }
-                            mList.addAll(dataBeen);
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Gson gson=new Gson();
+                        ComboItemBean comboItemBean = gson.fromJson(json, ComboItemBean.class);
+                        mList.addAll(comboItemBean.getData());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

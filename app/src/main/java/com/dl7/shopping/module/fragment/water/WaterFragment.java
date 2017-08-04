@@ -33,9 +33,6 @@ import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,99 +141,12 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
 
                         Gson gson=new Gson();
                         WaterBean waterBean = gson.fromJson(json, WaterBean.class);
-                        List<WaterBean.DataBean.WATERABean> ABean=new ArrayList<WaterBean.DataBean.WATERABean>();
-                        List<WaterBean.DataBean.WATERBBean> BBean=new ArrayList<WaterBean.DataBean.WATERBBean>();
-                        List<WaterBean.DataBean.WATERCBean> CBean=new ArrayList<WaterBean.DataBean.WATERCBean>();
-                        List<WaterBean.DataBean.WATERDBean> DBean=new ArrayList<WaterBean.DataBean.WATERDBean>();
-                        try {
-
-                            JSONObject j1=new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            waterBean.getData().setAddressID(addressID);
-                            waterBean.getData().setStore_type(data.getString("store_type"));
-                            JSONArray water_a = data.getJSONArray("WATER_A");
-                            for (int i = 0; i < water_a.length(); i++) {
-                                JSONObject water_aJSONObject = water_a.getJSONObject(i);
-
-                                waterBean.getData().getWATER_A().get(i).setCategory_name(water_aJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_A().get(i).setGoods_name(water_aJSONObject.getString("goods_name"));
-                                waterBean.getData().getWATER_A().get(i).setPresent_price(water_aJSONObject.getInt("present_price"));
-                                waterBean.getData().getWATER_A().get(i).setImage_url(water_aJSONObject.getString("image_url"));
-                                waterBean.getData().getWATER_A().get(i).setCompany(water_aJSONObject.getString("company"));
-                                waterBean.getData().getWATER_A().get(i).setDiscount(water_aJSONObject.getInt("discount"));
-                                waterBean.getData().getWATER_A().get(i).setSpecification(water_aJSONObject.getString("specification"));
-                                waterBean.getData().getWATER_A().get(i).setCategory_name(water_aJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_A().get(i).setId(water_aJSONObject.getString("id"));
-                                waterBean.getData().getWATER_A().get(i).setGoods_id(water_aJSONObject.getString("goods_id"));
-                                waterBean.getData().getWATER_A().get(i).setNum(1);
-
-                                ABean.add(waterBean.getData().getWATER_A().get(i));
-                            }
-                            mList.add(waterBean.getData());
-
-                            JSONArray water_b = data.getJSONArray("WATER_B");
-                            for (int i = 0; i < water_b.length(); i++) {
-                                JSONObject water_bJSONObject = water_b.getJSONObject(i);
-                                waterBean.getData().getWATER_B().get(i).setCategory_name(water_bJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_B().get(i).setGoods_name(water_bJSONObject.getString("goods_name"));
-                                waterBean.getData().getWATER_B().get(i).setPresent_price(water_bJSONObject.getInt("present_price"));
-                                waterBean.getData().getWATER_B().get(i).setImage_url(water_bJSONObject.getString("image_url"));
-                                waterBean.getData().getWATER_B().get(i).setCompany(water_bJSONObject.getString("company"));
-                                waterBean.getData().getWATER_B().get(i).setDiscount(water_bJSONObject.getInt("discount"));
-                                waterBean.getData().getWATER_B().get(i).setSpecification(water_bJSONObject.getString("specification"));
-                                waterBean.getData().getWATER_B().get(i).setCategory_name(water_bJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_B().get(i).setId(water_bJSONObject.getString("id"));
-                                waterBean.getData().getWATER_B().get(i).setGoods_id(water_bJSONObject.getString("goods_id"));
-                                waterBean.getData().getWATER_B().get(i).setNum(1);
-
-                                BBean.add(waterBean.getData().getWATER_B().get(i));
-                            }
-                            mList.add(waterBean.getData());
-
-                            JSONArray water_c = data.getJSONArray("WATER_C");
-                            for (int i = 0; i < water_c.length(); i++) {
-                                JSONObject water_cJSONObject = water_c.getJSONObject(i);
-                                waterBean.getData().getWATER_C().get(i).setCategory_name(water_cJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_C().get(i).setGoods_name(water_cJSONObject.getString("goods_name"));
-                                waterBean.getData().getWATER_C().get(i).setPresent_price(water_cJSONObject.getInt("present_price"));
-                                waterBean.getData().getWATER_C().get(i).setImage_url(water_cJSONObject.getString("image_url"));
-                                waterBean.getData().getWATER_C().get(i).setCompany(water_cJSONObject.getString("company"));
-                                waterBean.getData().getWATER_C().get(i).setDiscount(water_cJSONObject.getInt("discount"));
-                                waterBean.getData().getWATER_C().get(i).setSpecification(water_cJSONObject.getString("specification"));
-                                waterBean.getData().getWATER_C().get(i).setCategory_name(water_cJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_C().get(i).setId(water_cJSONObject.getString("id"));
-                                waterBean.getData().getWATER_C().get(i).setGoods_id(water_cJSONObject.getString("goods_id"));
-                                waterBean.getData().getWATER_C().get(i).setNum(1);
-
-                                CBean.add(waterBean.getData().getWATER_C().get(i));
-                            }
-                            mList.add(waterBean.getData());
-
-                            JSONArray water_d = data.getJSONArray("WATER_D");
-                            for (int i = 0; i < water_d.length(); i++) {
-                                JSONObject water_dJSONObject = water_d.getJSONObject(i);
-                                waterBean.getData().getWATER_D().get(i).setCategory_name(water_dJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_D().get(i).setGoods_name(water_dJSONObject.getString("goods_name"));
-                                waterBean.getData().getWATER_D().get(i).setPresent_price(water_dJSONObject.getInt("present_price"));
-                                waterBean.getData().getWATER_D().get(i).setImage_url(water_dJSONObject.getString("image_url"));
-                                waterBean.getData().getWATER_D().get(i).setCompany(water_dJSONObject.getString("company"));
-                                waterBean.getData().getWATER_D().get(i).setDiscount(water_dJSONObject.getInt("discount"));
-                                waterBean.getData().getWATER_D().get(i).setSpecification(water_dJSONObject.getString("specification"));
-                                waterBean.getData().getWATER_D().get(i).setCategory_name(water_dJSONObject.getString("category_name"));
-                                waterBean.getData().getWATER_D().get(i).setId(water_dJSONObject.getString("id"));
-                                waterBean.getData().getWATER_D().get(i).setGoods_id(water_dJSONObject.getString("goods_id"));
-                                waterBean.getData().getWATER_D().get(i).setNum(1);
-
-                                DBean.add(waterBean.getData().getWATER_D().get(i));
-                            }
-                            mList.add(waterBean.getData());
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
+                        List<WaterBean.DataBean.WATERABean> ABean = waterBean.getData().getWATER_A();
+                        List<WaterBean.DataBean.WATERBBean> BBean = waterBean.getData().getWATER_B();
+                        List<WaterBean.DataBean.WATERCBean> CBean = waterBean.getData().getWATER_C();
+                        List<WaterBean.DataBean.WATERDBean> DBean = waterBean.getData().getWATER_D();
+                        mList.add(waterBean.getData());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

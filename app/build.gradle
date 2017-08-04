@@ -133,7 +133,10 @@ dependencies {
     //京东 Android 客户端样式的级联地址选择器
     compile 'com.github.chihane:JDAddressSelector:1.1.4'
     //OkGo
-    compile 'com.lzy.net:okgo:3.0.3'
+    compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.lzy.net:okrx:1.0.2'
+    compile 'com.lzy.net:okserver:2.0.5'
+    compile 'com.readystatesoftware.chuck:library:1.0.4'
     compile 'com.lzy.widget:view-core:0.2.3'
     //对PopupWindow常用API的简单封装，几行代码就搞定PopupWindow弹窗，使用Builder模式，链式调用，像使用AlertDialog 一样
     compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'

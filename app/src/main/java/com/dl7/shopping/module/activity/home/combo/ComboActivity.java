@@ -20,9 +20,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,32 +87,10 @@ public class ComboActivity extends BaseActivity<ComboPresenter> implements IComb
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
                         Log.i("onSuccess: ", json);
-
-                        try {
-                            Gson gson=new Gson();
-                            ComboBean comboBean = gson.fromJson(json, ComboBean.class);
-                            List<ComboBean.DataBean> dataBeen=new ArrayList<ComboBean.DataBean>();
-
-                            JSONObject j1=new JSONObject(json);
-                            JSONArray data = j1.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject dataObj = data.getJSONObject(i);
-                                comboBean.getData().get(i).setGoods_name(dataObj.getString("goods_name"));
-                                comboBean.getData().get(i).setGoods_id(dataObj.getString("goods_id"));
-                                comboBean.getData().get(i).setCompany(dataObj.getString("company"));
-                                comboBean.getData().get(i).setImage_url(dataObj.getString("image_url"));
-                                comboBean.getData().get(i).setId(dataObj.getString("id"));
-                                comboBean.getData().get(i).setSpecification(dataObj.getString("specification"));
-                                comboBean.getData().get(i).setStoreID(storeID);
-                                comboBean.getData().get(i).setAddressID(addressID);
-                                dataBeen.add(comboBean.getData().get(i));
-                            }
-                            mList.addAll(dataBeen);
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Gson gson = new Gson();
+                        ComboBean comboBean = gson.fromJson(json, ComboBean.class);
+                        mList.addAll(comboBean.getData());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

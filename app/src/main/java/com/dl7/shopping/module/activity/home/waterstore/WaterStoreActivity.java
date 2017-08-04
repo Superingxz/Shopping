@@ -24,7 +24,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -160,26 +159,8 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
                         Log.i( "onSuccess: ",json);
                         Gson gson=new Gson();
                         WaterStoreBean waterStoreBean = gson.fromJson(json, WaterStoreBean.class);
-                        List<WaterStoreBean.DataBean.ListBean> listBeen=new ArrayList<WaterStoreBean.DataBean.ListBean>();
-
-                        try {
-                            JSONObject j1=new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            JSONArray list = data.getJSONArray("list");
-                            for (int i = 0; i < list.length(); i++) {
-                                JSONObject listObj = list.getJSONObject(i);
-                                waterStoreBean.getData().getList().get(i).setAddress(listObj.getString("address"));
-                                waterStoreBean.getData().getList().get(i).setName(listObj.getString("name"));
-                                waterStoreBean.getData().getList().get(i).setId(listObj.getString("id"));
-                                waterStoreBean.getData().getList().get(i).setDistance(listObj.getDouble("distance"));
-                                listBeen.add(waterStoreBean.getData().getList().get(i));
-                            }
-                            mList.addAll(listBeen);
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        mList.addAll(waterStoreBean.getData().getList());
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }

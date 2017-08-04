@@ -277,64 +277,32 @@ public class CitySelectActivity extends BaseActivity<CitySelectPresenter>
                         Log.i("onSuccess: ", json);
                         Gson gson = new Gson();
                         provinceBean = gson.fromJson(json, ProvinceBean.class);
-                        List<ProvinceBean.DataBean> dataBean = new ArrayList<ProvinceBean.DataBean>();
+                        proList.addAll(provinceBean.getData());
+                        provinceAdapter.setSelectItem(0);
+                        tvProvince.setText(proList.get(0).getName());
+                        provinceAdapter.notifyDataSetChanged();
 
-                        try {
-                            JSONObject j1 = new JSONObject(json);
-                            JSONArray data = j1.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject dataObject = data.getJSONObject(i);
-                                provinceBean.getData().get(i).setName(dataObject.getString("name"));
-                                provinceBean.getData().get(i).setId(dataObject.getString("id"));
+                        //获取城市数据
+                        OkGo.<String>post(URL.PROCITYCOUNTRY_URL)
+                                .params("province_id", proList.get(0).getId())
+                                .execute(new StringCallback() {
+                                    @Override
+                                    public void onSuccess(Response<String> response) {
+                                        String json = response.body().toString();
+                                        Log.i("onSuccess: ", json);
 
-                                dataBean.add(provinceBean.getData().get(i));
-                            }
-                            proList.addAll(dataBean);
-                            provinceAdapter.setSelectItem(0);
-                            tvProvince.setText(proList.get(0).getName());
-                            provinceAdapter.notifyDataSetChanged();
+                                        Gson gson = new Gson();
+                                        CityBean cityBean = gson.fromJson(json, CityBean.class);
+                                        List<CityBean.DataBean> citylist = cityBean.getData();
+                                        cityList.clear();
+                                        cityList.addAll(citylist);
+                                        cityAdapter.setSelectItem(0);
+                                        cityAdapter.notifyDataSetChanged();
+                                        tvCity.setVisibility(View.VISIBLE);
+                                        tvCity.setText("/" + cityList.get(0).getName());
 
-
-                            //获取城市数据
-                            OkGo.<String>post(URL.PROCITYCOUNTRY_URL)
-                                    .params("province_id", proList.get(0).getId())
-                                    .execute(new StringCallback() {
-                                        @Override
-                                        public void onSuccess(Response<String> response) {
-                                            String json = response.body().toString();
-                                            Log.i("onSuccess: ", json);
-
-                                            Gson gson = new Gson();
-                                            CityBean cityBean = gson.fromJson(json, CityBean.class);
-                                            List<CityBean.DataBean> citylist = new ArrayList<CityBean.DataBean>();
-
-                                            try {
-                                                JSONObject j1 = new JSONObject(json);
-                                                JSONArray data = j1.getJSONArray("data");
-                                                for (int j = 0; j < data.length(); j++) {
-                                                    JSONObject dataObject = data.getJSONObject(j);
-                                                    cityBean.getData().get(j).setName(dataObject.getString("name"));
-                                                    cityBean.getData().get(j).setId(dataObject.getString("id"));
-                                                    cityBean.getData().get(j).setProvince_name(dataObject.getString("province_name"));
-
-                                                    citylist.add(cityBean.getData().get(j));
-                                                }
-                                                cityList.clear();
-                                                cityList.addAll(citylist);
-                                                cityAdapter.setSelectItem(0);
-                                                cityAdapter.notifyDataSetChanged();
-                                                tvCity.setVisibility(View.VISIBLE);
-                                                tvCity.setText("/" + cityList.get(0).getName());
-
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    });
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                                    }
+                                });
                     }
                 });
     }

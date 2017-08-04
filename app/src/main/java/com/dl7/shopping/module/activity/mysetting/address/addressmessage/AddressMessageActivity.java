@@ -35,7 +35,6 @@ import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -217,33 +216,11 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
                     @Override
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
-                        Log.i("onSuccess: ", json);
-
                         Gson gson = new Gson();
                         AddressMessageBean addressMessageBean = gson.fromJson(json, AddressMessageBean.class);
-                        List<AddressMessageBean.DataBean.ListBean> listBean = new ArrayList<AddressMessageBean.DataBean.ListBean>();
-                        try {
-                            JSONObject j1 = new JSONObject(json);
-                            JSONObject data = j1.getJSONObject("data");
-                            JSONArray list = data.getJSONArray("list");
-                            for (int i = 0; i < list.length(); i++) {
-                                JSONObject listObject = list.getJSONObject(i);
-                                addressMessageBean.getData().getList().get(i).setContact(listObject.getString("contact"));
-                                addressMessageBean.getData().getList().get(i).setMobile(listObject.getString("mobile"));
-                                addressMessageBean.getData().getList().get(i).setAddress(listObject.getString("address"));
-                                addressMessageBean.getData().getList().get(i).setIs_default(listObject.getInt("is_default"));
-                                addressMessageBean.getData().getList().get(i).setId(listObject.getString("id"));
-
-                                listBean.add(addressMessageBean.getData().getList().get(i));
-                            }
-                            mList.addAll(listBean);
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
+                        List<AddressMessageBean.DataBean.ListBean> listBean = addressMessageBean.getData().getList();
+                        mList.addAll(listBean);
+                        adapter.notifyDataSetChanged();
                     }
                 });
     }
