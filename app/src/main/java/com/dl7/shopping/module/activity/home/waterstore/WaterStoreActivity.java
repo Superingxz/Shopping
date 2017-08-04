@@ -102,6 +102,7 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 adapter.setSelectItem(position);
                 adapter.notifyDataSetChanged();
                 storeId = mList.get(position-1).getId();
@@ -111,11 +112,14 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initComfire();
+
+                if (storeId.isEmpty()){
+                    Toast.makeText(WaterStoreActivity.this, "请选择水店", Toast.LENGTH_SHORT).show();
+                }else {
+                    initComfire();
+                }
             }
         });
-
-
     }
 
     //确定

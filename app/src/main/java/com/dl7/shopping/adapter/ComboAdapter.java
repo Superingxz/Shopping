@@ -86,6 +86,12 @@ public class ComboAdapter extends BaseAdapter {
                 intent.putExtra("top", "ListView");
                 intent.putExtra("goods_id",mList.get(position).getId());
                 intent.putExtra("bottom", "WebView");
+                intent.putExtra("business_type","BUY_WATER");
+                intent.putExtra("goodsId",mList.get(position).getGoods_id());
+                intent.putExtra("addressId",mList.get(position).getAddressID());
+                intent.putExtra("money","");
+                intent.putExtra("playmethod","third");
+                intent.putExtra("bucket","");
                 SharedPreferences sp1 = context.getSharedPreferences("flag", context.MODE_PRIVATE);
                 SharedPreferences.Editor editor1 = sp1.edit();
                 editor1.putString("goods_id", mList.get(position).getId());

@@ -12,12 +12,14 @@ import com.dl7.shopping.adapter.ComboAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.ComboBean;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.rxbus.event.TwentyEvent;
 import com.dl7.shopping.utils.FontManager;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,6 +74,8 @@ public class ComboActivity extends BaseActivity<ComboPresenter> implements IComb
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().post(
+                        new TwentyEvent(storeID));
                 finish();
             }
         });

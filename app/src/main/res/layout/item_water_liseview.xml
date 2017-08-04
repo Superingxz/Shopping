@@ -7,8 +7,19 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/textView2" />
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/lan_juxing"
+        android:gravity="center"
+        android:id="@+id/img_item_water_category_name"
+        android:layout_width="50dp"
+        android:layout_height="20dp" >
+
+    </ImageView>
     <TextView
-        android:background="@drawable/water_label_background"
+
         android:gravity="center"
         android:text="水桶"
         android:id="@+id/tv_item_water_category_name"
@@ -28,7 +39,7 @@
             android:id="@+id/ll_item_water_scroview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></LinearLayout>
-    <!--<LinearLayout-->
+        <!--<LinearLayout-->
         <!--android:orientation="horizontal"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
@@ -36,170 +47,170 @@
         <!--android:layout_alignParentLeft="true"-->
         <!--android:layout_alignParentStart="true">-->
         <!--<LinearLayout-->
-            <!--android:id="@+id/ll_item_water_scrollview"-->
-            <!--android:orientation="vertical"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<ImageView-->
-                <!--android:id="@+id/img_water_product1"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:src="@mipmap/ic_launcher"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="70dp" />-->
+        <!--android:id="@+id/ll_item_water_scrollview"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+        <!--android:id="@+id/img_water_product1"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:src="@mipmap/ic_launcher"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp" />-->
 
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginLeft="25dp"-->
-                <!--android:layout_marginRight="25dp"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent">-->
-                <!--<TextView-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:textColor="#1a1a1a"-->
-                    <!--android:text="广大"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-                <!--<TextView-->
-                    <!--android:text="水桶2L/个"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-            <!--</LinearLayout>-->
-            <!--<RelativeLayout-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<TextView-->
-                    <!--android:textColor="#35bb8a"-->
-                    <!--android:text="¥ 25"-->
-                    <!--android:layout_marginLeft="14dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-                <!--<TextView-->
-                    <!--android:id="@+id/shopping_img1"-->
-                    <!--android:layout_alignParentRight="true"-->
-                    <!--android:text="@string/shoppingcart"-->
-                    <!--android:layout_marginRight="14dp"-->
-                    <!--android:textColor="#35bb8a"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
-            <!--</RelativeLayout>-->
-            <!--</LinearLayout>-->
-            <!--<TextView-->
-                <!--android:layout_gravity="center"-->
-                <!--android:background="#E6E6E6"-->
-                <!--android:layout_width="1dp"-->
-                <!--android:layout_height="100dp" />-->
-            <!--<LinearLayout-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:id="@+id/img_water_product2"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@mipmap/ic_launcher"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="70dp" />-->
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="25dp"-->
+        <!--android:layout_marginRight="25dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<TextView-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="#1a1a1a"-->
+        <!--android:text="广大"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:text="水桶2L/个"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--<RelativeLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:text="¥ 25"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/shopping_img1"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="@string/shoppingcart"-->
+        <!--android:layout_marginRight="14dp"-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+        <!--<TextView-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="#E6E6E6"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="100dp" />-->
+        <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+        <!--android:id="@+id/img_water_product2"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:src="@mipmap/ic_launcher"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp" />-->
 
-                <!--<LinearLayout-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_marginLeft="25dp"-->
-                    <!--android:layout_marginRight="25dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent">-->
-                    <!--<TextView-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:textColor="#1a1a1a"-->
-                        <!--android:text="广大"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<TextView-->
-                        <!--android:text="水桶2L/个"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                <!--</LinearLayout>-->
-                <!--<RelativeLayout-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content">-->
-                    <!--<TextView-->
-                        <!--android:textColor="#35bb8a"-->
-                        <!--android:text="¥ 25"-->
-                        <!--android:layout_marginLeft="14dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/shopping_img2"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:text="@string/shoppingcart"-->
-                        <!--android:layout_marginRight="14dp"-->
-                        <!--android:textColor="#35bb8a"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                <!--</RelativeLayout>-->
-            <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="25dp"-->
+        <!--android:layout_marginRight="25dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<TextView-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="#1a1a1a"-->
+        <!--android:text="广大"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:text="水桶2L/个"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--<RelativeLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:text="¥ 25"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/shopping_img2"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="@string/shoppingcart"-->
+        <!--android:layout_marginRight="14dp"-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
 
-            <!--<TextView-->
-                <!--android:layout_gravity="center"-->
-                <!--android:background="#E6E6E6"-->
-                <!--android:layout_width="1dp"-->
-                <!--android:layout_height="100dp" />-->
+        <!--<TextView-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="#E6E6E6"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="100dp" />-->
 
-            <!--<LinearLayout-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_height="wrap_content">-->
-                <!--<ImageView-->
-                    <!--android:id="@+id/img_water_product3"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@mipmap/ic_launcher"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="70dp" />-->
+        <!--<LinearLayout-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+        <!--android:id="@+id/img_water_product3"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:src="@mipmap/ic_launcher"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="70dp" />-->
 
-                <!--<LinearLayout-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_marginLeft="25dp"-->
-                    <!--android:layout_marginRight="25dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent">-->
-                    <!--<TextView-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:textColor="#1a1a1a"-->
-                        <!--android:text="广大"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<TextView-->
-                        <!--android:text="水桶2L/个"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                <!--</LinearLayout>-->
-                <!--<RelativeLayout-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content">-->
-                    <!--<TextView-->
-                        <!--android:textColor="#35bb8a"-->
-                        <!--android:text="¥ 25"-->
-                        <!--android:layout_marginLeft="14dp"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                    <!--<TextView-->
-                        <!--android:id="@+id/shopping_img3"-->
-                        <!--android:layout_alignParentRight="true"-->
-                        <!--android:text="@string/shoppingcart"-->
-                        <!--android:layout_marginRight="14dp"-->
-                        <!--android:textColor="#35bb8a"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content" />-->
-                <!--</RelativeLayout>-->
-            <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="25dp"-->
+        <!--android:layout_marginRight="25dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<TextView-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="#1a1a1a"-->
+        <!--android:text="广大"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:text="水桶2L/个"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</LinearLayout>-->
+        <!--<RelativeLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:text="¥ 25"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/shopping_img3"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="@string/shoppingcart"-->
+        <!--android:layout_marginRight="14dp"-->
+        <!--android:textColor="#35bb8a"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
         <!--</LinearLayout>-->
     </HorizontalScrollView>
 </RelativeLayout>

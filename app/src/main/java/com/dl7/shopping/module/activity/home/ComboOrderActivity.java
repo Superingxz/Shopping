@@ -52,7 +52,11 @@ public class ComboOrderActivity extends AppCompatActivity {
     private String total_price;
     private String store_name;
     private String goods_name;
-    private String quantity;
+    private int quantity;
+    private TextView tvName;
+    private TextView tvEnable;
+    private TextView tvStroe;
+    private int available_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,6 @@ public class ComboOrderActivity extends AppCompatActivity {
         addressID = intent.getStringExtra("addressID");
         uid = CommonMethod.getUid(this);
         initView();
-
 
         initData();
 
@@ -87,14 +90,16 @@ public class ComboOrderActivity extends AppCompatActivity {
     private void initView() {
         back = (TextView) findViewById(R.id.tv_combo_order_back);
         back.setTypeface(iconFont);
-        title = (TextView) findViewById(R.id.tv_combo_order_name);
+        title = (TextView) findViewById(R.id.tv_combo_order_title);
         num = (TextView) findViewById(R.id.tv_combo_order_num);
         tvAddress = (TextView) findViewById(R.id.tv_combo_order_address);
         money = (TextView) findViewById(R.id.tv_combo_order_money);
         tvSpecification = (TextView) findViewById(R.id.tv_combo_order_specification);
         phone = (TextView) findViewById(R.id.tv_combo_order_phone);
         commit = (TextView) findViewById(R.id.tv_commit_order_combo);
-
+        tvName = (TextView) findViewById(R.id.tv_combo_order_name);
+        tvEnable = (TextView) findViewById(R.id.tv_combo_order_enable);
+        tvStroe = (TextView) findViewById(R.id.tv_combo_order_store);
     }
 
     //获取订单数据
@@ -114,15 +119,20 @@ public class ComboOrderActivity extends AppCompatActivity {
                             JSONObject data = j1.getJSONObject("data");
                             goods_name = data.getString("goods_name");
                             String address = data.getString("address");
-                            quantity = data.getString("quantity");
+                            quantity = data.getInt("total_num");
                             total_price = data.getString("total_price");
                             String group_id = data.getString("group_id");
                             String contact = data.getString("contact");
                             String mobile = data.getString("mobile");
                             store_name = data.getString("store_name");
+                            available_num = data.getInt("available_num");
+                            String store_name = data.getString("store_name");
                             String specification = data.getString("specification");
                             String company = data.getString("company");
 
+                            tvEnable.setText("可用水量:"+available_num+company);
+                            tvStroe.setText("水店:"+store_name);
+                            tvName.setText("收件人:"+contact);
                             title.setText("套餐名称:"+ goods_name);
                             tvAddress.setText("地址:"+address);
                             money.setText("总价:¥ "+ total_price);

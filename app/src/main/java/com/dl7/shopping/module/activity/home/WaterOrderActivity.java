@@ -31,7 +31,10 @@ import com.pingplusplus.android.Pingpp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 /**
+ * 订单确认页面
  * Created by MC.Zeng on 2017-07-26.
  */
 
@@ -68,6 +71,9 @@ public class WaterOrderActivity extends AppCompatActivity {
     private TextView tvBucket;
     private String buy_type="";
     private String bucket;
+    private String totalmoney;
+    private String store_id;
+    private String business_type1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,33 +84,39 @@ public class WaterOrderActivity extends AppCompatActivity {
         uid = CommonMethod.getUid(this);
         Intent intent=getIntent();
         business_type = intent.getStringExtra("business_type");
+
         goodsId = intent.getStringExtra("goodsId");
+        Log.i("onCreate111: ",goodsId );
         addressId = intent.getStringExtra("addressId");
         allNum = intent.getStringExtra("allNum");
         time = intent.getStringExtra("time");
         money = intent.getStringExtra("money");
         playmethod = intent.getStringExtra("playmethod");
+        store_id = intent.getStringExtra("store_id");
+        business_type1 = intent.getStringExtra("business_type1");
 
+        initView();
         if (!intent.getStringExtra("bucket").equals("")){
             buy_type = intent.getStringExtra("bucket");
+            tvBucket.setVisibility(View.VISIBLE);
         }
         if (!intent.getStringExtra("reserve_sort").equals("")){
             reserve_sort = Integer.parseInt(intent.getStringExtra("reserve_sort"));
         }
         channel="water";//默认余水支付
 
-        initView();
+        Log.i("onCreate: ",time );
+        Log.i("onCreate: ",reserve_sort+"" );
 
 
-        //判断是否为桶的购买
-        if (business_type.equals("BUY_BARREL")){
-            tvBucket.setVisibility(View.VISIBLE);
-        }else{
-            tvBucket.setVisibility(View.GONE);
-        }
+//        //判断是否为桶的购买
+//        if (business_type1.equals("BUY_BARREL")){
+//
+//        }else{
+//            tvBucket.setVisibility(View.GONE);
+//        }
 
         initData();
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,18 +127,25 @@ public class WaterOrderActivity extends AppCompatActivity {
 
     //获取数据
     private void initData() {
+        Log.i("initData: ", business_type);
+        Log.i("initData: ", goodsId);
+        Log.i("initData: ", store_id);
+        Log.i("initData: ", reserve_sort+"");
+        Log.i("initData: ", time+"");
         OkGo.<String>post(URL.WATERORDER_URL)
+                .params("business_type",business_type)
                 .params("goods_id",goodsId)
                 .params("address_id",addressId)
                 .params("quantity",allNum)
                 .params("member_id",uid)
                 .params("reserve_sort",reserve_sort)
                 .params("reserve_time",time)
+                .params("store_id",store_id)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
-                        Log.i( "onSuccess: ",json);
+                        Log.i( "onSuccess111: ",json);
                         try {
                             JSONObject j1=new JSONObject(json);
                             JSONObject data = j1.getJSONObject("data");
@@ -134,12 +153,15 @@ public class WaterOrderActivity extends AppCompatActivity {
                             String address = data.getString("address");
                             String mobile = data.getString("mobile");
                             String total_price = data.getString("total_price");
+                            totalmoney=total_price;
+                            Double totalPrice = Double.valueOf(Integer.parseInt(total_price));
                             String contact = data.getString("contact");
                             String quantity = data.getString("quantity");
                             String image_url = data.getString("image_url");
                             company_id = data.getString("company_id");
                             address_id = data.getString("address_id");
                             goods_id = data.getString("goods_id");
+                            Log.i("onSuccess111: ",goods_id );
                             store_name = data.getString("store_name");
                             String reserve_time = data.getString("reserve_time");
                             tvaddress.setText("收货地址:  "+address);
@@ -147,8 +169,9 @@ public class WaterOrderActivity extends AppCompatActivity {
                             phone.setText(mobile);
                             num.setText("X"+quantity);
 
+                            DecimalFormat df   =new   java.text.DecimalFormat("#.00");
                             tvMoney.setVisibility(View.VISIBLE);
-                            tvMoney.setText("¥ "+total_price);
+                            tvMoney.setText("¥ "+df.format(totalPrice/100));
                             title.setText(goods_name);
                             if (reserve_time.equals("")){
                                 tvTime.setVisibility(View.GONE);
@@ -182,7 +205,7 @@ public class WaterOrderActivity extends AppCompatActivity {
     //提交(余水支付)
     private void initCommit() {
         OkGo.<String>post(URL.WATERPLAY_URL)
-                .params("business_type",business_type)
+                .params("business_type",business_type1)
                 .params("company_id",company_id)
                 .params("address_id",address_id)
                 .params("goods_id",goods_id)
@@ -198,7 +221,7 @@ public class WaterOrderActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
-
+                        Log.i("onSuccess: ",json );
                         try {
                             JSONObject j1=new JSONObject(json);
                             String message = j1.getString("message");
@@ -218,14 +241,12 @@ public class WaterOrderActivity extends AppCompatActivity {
 
     //提交(第三方支付)
     private void initThirdCommit() {
-        Log.i("initThirdCommit: ", business_type);
-        Log.i("initThirdCommit: ", buy_type);
         OkGo.<String>post(URL.THIRDPLAY_URL)
-                .params("business_type",business_type)
+                .params("business_type",business_type1)
                 .params("company_id",company_id)
                 .params("address_id",address_id)
                 .params("goods_id",goods_id)
-                .params("amount",money)
+                .params("amount",totalmoney)
                 .params("quantity",allNum)
                 .params("resever",time)
                 .params("sort",reserve_sort)

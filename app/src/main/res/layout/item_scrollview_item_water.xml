@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_marginTop="5dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_gravity="center"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -48,14 +48,22 @@
                 android:layout_marginLeft="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
+
+            <ImageView
                 android:id="@+id/shopping_img"
+                android:src="@mipmap/gou_wu_che1"
                 android:layout_alignParentRight="true"
-                android:text="@string/shoppingcart"
                 android:layout_marginRight="25dp"
-                android:textColor="#35bb8a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <!--<TextView-->
+            <!--android:id="@+id/shopping_img"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="@string/shoppingcart"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:textColor="#35bb8a"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
         </RelativeLayout>
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.dl7.shopping.module.activity.home.getwater;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.WaterDetailBean;
 import com.dl7.shopping.module.activity.home.payment.PaymentActivity;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.rxbus.event.TwentyEvent;
 import com.dl7.shopping.utils.CommonMethod;
 import com.dl7.shopping.utils.FontManager;
 import com.google.gson.Gson;
@@ -23,6 +25,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,6 +67,7 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
     private WaterDetailBean waterDetailListBean;
     private List<WaterDetailBean.DataBean.ListBean> mlist=new ArrayList<>();
     private WaterDetailAdapter adapter;
+    private String store_id;
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_getwater;
@@ -81,7 +85,8 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
         back.setTypeface(iconFont);
 
         uid = CommonMethod.getUid(this);
-
+        SharedPreferences sp = getSharedPreferences("flag", MODE_PRIVATE);
+        store_id = sp.getString("store_id", "");
         initData();
         initListData();
         adapter = new WaterDetailAdapter(mlist,this);
@@ -93,21 +98,25 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
             public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum=1;
                 mlist.clear();
-                initData();
+                initListData();
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
                 pageNum++;
-                initData();
+                initListData();
                 adapter.notifyDataSetChanged();
+
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().post(
+                        new TwentyEvent(store_id));
                 finish();
             }
         });
@@ -174,8 +183,16 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
                             }
 //                            mlist.addAll(listBeen);
                             mlist.addAll(waterDetailListBean.getData().getList());
+
                             adapter.notifyDataSetChanged();
 
+                            //完成刷新
+                            listView.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listView.onRefreshComplete();
+                                }
+                            }, 1000);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

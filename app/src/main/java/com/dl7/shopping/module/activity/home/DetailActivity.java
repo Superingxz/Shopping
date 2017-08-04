@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.bean.GoodsDetailBean;
@@ -33,21 +34,50 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private String goods_name="";
     private String specification="";
     private int present_price=0;
+    private TextView tvAddShoppingcart;
+    private String id1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        tvAddShoppingcart = (TextView) findViewById(R.id.rgn_details_addshoppingcart);
         verticalSlide = (VerticalSlide) findViewById(R.id.dragLayout);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         goods_id = intent.getStringExtra("goods_id");
+        id1 = intent.getStringExtra("ID");
         String top = intent.getStringExtra("top");
         String bottom = intent.getStringExtra("bottom");
-
+        final String business_type = intent.getStringExtra("business_type");
+        final String id = intent.getStringExtra("goodsId");
+        final String addressId = intent.getStringExtra("addressId");
+        final String money = intent.getStringExtra("money");
+        String playmethod = intent.getStringExtra("playmethod");
+        final String bucket = intent.getStringExtra("bucket");
 //        initData();
+
+        tvAddShoppingcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1=new Intent(DetailActivity.this,WaterOrderActivity.class);
+                intent1.putExtra("business_type","ORDER_PAY_CONFIRM");
+                intent1.putExtra("business_type1",business_type);
+                intent1.putExtra("goodsId",id1);
+                intent1.putExtra("addressId",addressId);
+                intent1.putExtra("allNum","1");
+                intent1.putExtra("store_id","");
+                intent1.putExtra("time","");
+                intent1.putExtra("reserve_sort","");
+                intent1.putExtra("money",money);
+                intent1.putExtra("playmethod","third");
+                intent1.putExtra("bucket",bucket);
+                startActivity(intent1);
+                finish();
+            }
+        });
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();

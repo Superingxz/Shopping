@@ -100,6 +100,7 @@ public class ComboItemActivity extends AppCompatActivity {
                                 comboItemBean.getData().get(i).setNotes(dataObj.getString("notes"));
                                 comboItemBean.getData().get(i).setSort(dataObj.getInt("sort"));
                                 comboItemBean.getData().get(i).setNumber(dataObj.getInt("number"));
+                                comboItemBean.getData().get(i).setScore(dataObj.getString("score"));
                                 comboItemBean.getData().get(i).setMoney(dataObj.getInt("money"));
                                 comboItemBean.getData().get(i).setName(dataObj.getString("name"));
                                 comboItemBean.getData().get(i).setStore_name(dataObj.getString("store_name"));

@@ -48,6 +48,8 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
     private TextView title;
     private TextView introduce;
     private TextView money;
+    private View tvLove;
+    private ImageView imgAdd;
     private ArrayList<GoodsDetailBean.DataBean.ImagesBean> imgBean;
     @Override
     protected int attachLayoutRes() {
@@ -70,6 +72,8 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
         money = (TextView) headerView.findViewById(R.id.tv_details_money);
         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
         goods_id = sp.getString("goods_id", "");
+        tvLove = (TextView)headerView.findViewById(R.id.tv_details_love);
+        imgAdd = (ImageView) headerView.findViewById(R.id.img_details_add);
         initData();
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +110,7 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
                             JSONObject data = j1.getJSONObject("data");
                             imgBean = new ArrayList<GoodsDetailBean.DataBean.ImagesBean>();
                             title.setText(data.getString("goods_name")+data.getString("specification"));
-                            money.setText("¥    "+data.getInt("present_price"));
+                            money.setText("¥    "+data.getInt("present_price")/100);
                             goodsDetailBean.getData().setGoods_name(data.getString("goods_name"));
                             goodsDetailBean.getData().setSpecification(data.getString("specification"));
                             goodsDetailBean.getData().setPresent_price(data.getInt("present_price"));

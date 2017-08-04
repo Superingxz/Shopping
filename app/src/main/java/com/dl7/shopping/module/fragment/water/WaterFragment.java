@@ -6,9 +6,7 @@ package com.dl7.shopping.module.fragment.water;
  */
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,6 +24,7 @@ import com.dl7.shopping.module.activity.home.help.HelpActivity;
 import com.dl7.shopping.module.base.BaseFragment;
 import com.dl7.shopping.rxbus.event.ThreeEvent;
 import com.dl7.shopping.rxbus.event.TwelveEvent;
+import com.dl7.shopping.rxbus.event.TwentyEvent;
 import com.dl7.shopping.utils.FontManager;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -86,12 +85,7 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
         iconFont = FontManager.getTypeface(getContext(), FontManager.FONTAWESOME);
         EventBus.getDefault().register(this);
 
-        Resources res = this.getResources();
-        Drawable myImage = res.getDrawable(R.mipmap.ic_launcher);
-        myImage.setBounds(1, 1, 48, 45);
-        rbnWater.setCompoundDrawables(null, myImage, null, null);
-        rbnCombo.setCompoundDrawables(null, myImage, null, null);
-        rbnHelp.setCompoundDrawables(null, myImage, null, null);
+
 
         rbnCombo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +94,7 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
                 intent.putExtra("addressID",addressID);
                 intent.putExtra("storeID",storeID);
                 startActivity(intent);
+                initData();
             }
         });
 
@@ -267,6 +262,17 @@ public class WaterFragment extends BaseFragment<WaterPresenter> implements Water
         msg = event.getMsg();
         Log.i("onEventMainThread: ", msg);
         addressID =msg;
+    }
+
+    @Subscribe
+    public void onEventMainThread(TwentyEvent event) {
+
+        msg = event.getMsg();
+        Log.i("onEventMainThread: ", msg);
+        addressID =msg;
+        mList.clear();
+        initData();
+        adapter.notifyDataSetChanged();
     }
 
         @Override

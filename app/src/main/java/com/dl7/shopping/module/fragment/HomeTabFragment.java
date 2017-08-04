@@ -3,6 +3,7 @@ package com.dl7.shopping.module.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.MyFragmentStatePagerAdapter;
@@ -128,7 +130,6 @@ public class HomeTabFragment extends Fragment{
             //滑动事件
             @Override
             public void onPageSelected(int position) {
-
                 if(position==1){
                     final String uid = CommonMethod.getUid(getActivity());
                     if (isDefult){
@@ -142,97 +143,106 @@ public class HomeTabFragment extends Fragment{
                                         try {
                                             JSONObject j1=new JSONObject(json);
 
-                                            if (uid.equals("0")){
-//                                            Toast.makeText(getActivity(), "您还没登录", Toast.LENGTH_SHORT).show();
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                builder.setCancelable(false);
-                                                builder.setTitle("提示");
-                                                builder.setMessage("您还没登录");
-                                                builder.setNegativeButton("现在去登录", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        Intent intent=new Intent(getContext(), LoginOrRegisterActivity.class);
-                                                        startActivity(intent);
-                                                        mViewPager1.setCurrentItem(0);//如果没登陆，就弹出登录或注册页面，然后viewpager返回第一个item
-                                                    }
-                                                });
-                                                builder.setPositiveButton("暂不登录", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        dialog.dismiss();
-                                                    }
-                                                });
-                                                builder.show();
-
+                                            if (j1.getJSONObject("data").equals("")){
+                                                Toast.makeText(getContext(), "请检查网络", Toast.LENGTH_SHORT).show();
                                             }else{
-                                                if (j1.getString("message").equals("您还没有地址哦")){//判断帐号有没有默认地址
+                                                if (uid.equals("0")){
+//                                            Toast.makeText(getActivity(), "您还没登录", Toast.LENGTH_SHORT).show();
                                                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                                                     builder.setCancelable(false);
                                                     builder.setTitle("提示");
-                                                    builder.setMessage("您还没选择默认地址");
-                                                    builder.setNegativeButton("现在去选择默认地址", new DialogInterface.OnClickListener() {
+                                                    builder.setMessage("您还没登录");
+                                                    builder.setNegativeButton("现在去登录", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent=new Intent(getContext(), AddressMessageActivity.class);
-                                                            intent.putExtra("isSelect","selectdefult");
+                                                            Intent intent=new Intent(getContext(), LoginOrRegisterActivity.class);
                                                             startActivity(intent);
-
+                                                            mViewPager1.setCurrentItem(0);//如果没登陆，就弹出登录或注册页面，然后viewpager返回第一个item
                                                         }
                                                     });
-                                                    builder.setPositiveButton("暂不选择默认地址", new DialogInterface.OnClickListener() {
+                                                    builder.setPositiveButton("暂不登录", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             dialog.dismiss();
                                                         }
                                                     });
                                                     builder.show();
-//                                                Toast.makeText(getActivity(), "您还没选择默认地址", Toast.LENGTH_SHORT).show();
+
                                                 }else{
-                                                    address = j1.getJSONObject("data").getString("address");
-                                                    if (j1.getJSONObject("data").isNull("store_id")){//判断该地址有没有绑定水店
+                                                    if (j1.getString("message").equals("您还没有地址哦")){//判断帐号有没有默认地址
                                                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                                                         builder.setCancelable(false);
                                                         builder.setTitle("提示");
-                                                        builder.setMessage("您还没选择水店");
-                                                        builder.setNegativeButton("现在去选择水店", new DialogInterface.OnClickListener() {
+                                                        builder.setMessage("您还没选择默认地址");
+                                                        builder.setNegativeButton("现在去选择默认地址", new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
-                                                                Intent intent=new Intent(getContext(), WaterStoreActivity.class);
-                                                                intent.putExtra("address",address);
+                                                                Intent intent=new Intent(getContext(), AddressMessageActivity.class);
+                                                                intent.putExtra("isSelect","selectdefult");
                                                                 startActivity(intent);
 
                                                             }
                                                         });
-                                                        builder.setPositiveButton("暂不选择水店", new DialogInterface.OnClickListener() {
+                                                        builder.setPositiveButton("暂不选择默认地址", new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
                                                                 dialog.dismiss();
                                                             }
                                                         });
                                                         builder.show();
+//                                                Toast.makeText(getActivity(), "您还没选择默认地址", Toast.LENGTH_SHORT).show();
+                                                    }else{
+                                                        address = j1.getJSONObject("data").getString("address");
+                                                        if (j1.getJSONObject("data").isNull("store_id")){//判断该地址有没有绑定水店
+                                                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                                            builder.setCancelable(false);
+                                                            builder.setTitle("提示");
+                                                            builder.setMessage("您还没选择水店");
+                                                            builder.setNegativeButton("现在去选择水店", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    Intent intent=new Intent(getContext(), WaterStoreActivity.class);
+                                                                    intent.putExtra("address",address);
+                                                                    startActivity(intent);
+
+                                                                }
+                                                            });
+                                                            builder.setPositiveButton("暂不选择水店", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
+                                                            builder.show();
 //                                                    Toast.makeText(getActivity(), "您还没选择水店", Toast.LENGTH_SHORT).show();
 //                                                    Intent intent=new Intent(getContext(), WaterStoreActivity.class);
 //                                                    startActivity(intent);
-                                                    }else{
-                                                        EventBus.getDefault().post(
-                                                                new ThreeEvent(j1.getJSONObject("data").getString("store_id")));
+                                                        }else{
+                                                            EventBus.getDefault().post(
+                                                                    new ThreeEvent(j1.getJSONObject("data").getString("store_id")));
+                                                            SharedPreferences sp1 = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
+                                                            SharedPreferences.Editor editor1 = sp1.edit();
+                                                            editor1.putString("store_id",j1.getJSONObject("data").getString("store_id"));
+                                                            editor1.commit();
+                                                            EventBus.getDefault().post(
+                                                                    new TwelveEvent(j1.getJSONObject("data").getString("id")));
 
-                                                        EventBus.getDefault().post(
-                                                                new TwelveEvent(j1.getJSONObject("data").getString("id")));
-
-                                                        search.setVisibility(View.GONE);
-                                                        citytv.setText(j1.getJSONObject("data").getString("address"));
-                                                        citytv.setOnClickListener(new View.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(View v) {
-                                                                Intent intent=new Intent(getContext(),AddressMessageActivity.class);
-                                                                intent.putExtra("isSelect","selectaddress");
-                                                                startActivity(intent);
-                                                            }
-                                                        });
+                                                            search.setVisibility(View.GONE);
+                                                            citytv.setText(j1.getJSONObject("data").getString("address"));
+                                                            citytv.setOnClickListener(new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    Intent intent=new Intent(getContext(),AddressMessageActivity.class);
+                                                                    intent.putExtra("isSelect","selectaddress");
+                                                                    startActivity(intent);
+                                                                }
+                                                            });
+                                                        }
                                                     }
                                                 }
                                             }
+
+
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -256,6 +266,12 @@ public class HomeTabFragment extends Fragment{
                 }else{
                     search.setVisibility(View.VISIBLE);
                     citytv.setText(bundle.getString("city"));
+                    citytv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                 }
 
 
@@ -329,3 +345,4 @@ public class HomeTabFragment extends Fragment{
         EventBus.getDefault().unregister(this);
     }
 }
+

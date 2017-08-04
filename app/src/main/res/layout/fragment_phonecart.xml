@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:myns="http://schemas.android.com/apk/res-auto"
-    tools:context="com.dl7.shopping.module.fragment.phonecart.PhoneCartFragment">
+    tools:context="com.example.administrator.shopping.fragment.PhoneCartFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <!--<TextView-->
@@ -64,6 +64,7 @@
                 android:gravity="center"
                 android:paddingTop="6dp"
                 android:text="联通"
+                android:drawableTop="@mipmap/lian_tong"
                 android:textColor="@drawable/home_rg_text_color"
                 android:textSize="10dp" />
 
@@ -76,6 +77,7 @@
                 android:gravity="center"
                 android:paddingTop="6dp"
                 android:text="移动"
+                android:drawableTop="@mipmap/yi_dong"
                 android:textColor="@drawable/home_rg_text_color"
                 android:textSize="10dp" />
 
@@ -88,6 +90,7 @@
                 android:gravity="center"
                 android:paddingTop="6dp"
                 android:text="电信"
+                android:drawableTop="@mipmap/dian_xin"
                 android:textColor="@drawable/home_rg_text_color"
                 android:textSize="10dp" />
 
@@ -100,6 +103,7 @@
                 android:gravity="center"
                 android:paddingTop="6dp"
                 android:text="续费"
+                android:drawableTop="@mipmap/xu_fei"
                 android:textColor="@drawable/home_rg_text_color"
                 android:textSize="10dp" />
         </RadioGroup>

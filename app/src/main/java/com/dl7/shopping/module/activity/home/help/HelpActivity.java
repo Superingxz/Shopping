@@ -1,5 +1,6 @@
 package com.dl7.shopping.module.activity.home.help;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,10 @@ import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.HelpAdapter;
 import com.dl7.shopping.bean.HelpBean;
 import com.dl7.shopping.module.base.BaseActivity;
+import com.dl7.shopping.rxbus.event.TwentyEvent;
 import com.dl7.shopping.utils.FontManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,7 @@ public class HelpActivity extends BaseActivity<HelpPresenter> implements IHelpVi
     private List<HelpBean> list;
     private HelpBean helpBean;
     private HelpAdapter adapter;
+    private String store_id;
 
     @Override
     protected int attachLayoutRes() {
@@ -69,6 +74,8 @@ public class HelpActivity extends BaseActivity<HelpPresenter> implements IHelpVi
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
         list = new ArrayList<>();
         helpBean = new HelpBean();
+        SharedPreferences sp = getSharedPreferences("flag", MODE_PRIVATE);
+        store_id = sp.getString("store_id", "");
         back.setTypeface(iconFont);
         //问题的点击事件
         question1.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +172,9 @@ public class HelpActivity extends BaseActivity<HelpPresenter> implements IHelpVi
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EventBus.getDefault().post(
+                        new TwentyEvent(store_id));
+
                 finish();
             }
         });

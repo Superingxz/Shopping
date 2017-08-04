@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -59,9 +58,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     @BindView(R.id.tv_payment_back)
     TextView back;
     @BindView(R.id.lv_payment)
-    ExpandableListView expandableListView;
-    @BindView(R.id.tv_payment_time)
-    TextView tvTime;
+    ListView listView;
     @BindView(R.id.rl_payment_time)
     RelativeLayout rlPaymentTime;
     @BindView(R.id.tv_payment_all_circle)
@@ -74,6 +71,8 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     TextView tvAddress;
     @BindView(R.id.tv_payment_total_num)
     TextView allNum;
+    @BindView(R.id.tv_payment_time)
+    TextView tvTime;
 
     private Typeface iconFont;
     private List<String> groupArray = new ArrayList<String>();
@@ -84,7 +83,6 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     private List<PaymentBean.DataBean.WaterGroupBean> list = new ArrayList<>();
     private List<PaymentBean.DataBean> mList = new ArrayList<>();
     private List<String> arrayList = new ArrayList<>();
-    private ListView listView;
     private PaymentListAdapter adapter;
     private View convertView;
     private String msg;
@@ -100,6 +98,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
     private ArrayList<String> daytime = new ArrayList<>();
     private List<SchoolTimeBean.DataBean.TimeDataBean> timeDataList=new ArrayList<>();
     private String url;
+    private String reserve_sort;
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_payment;
@@ -157,17 +156,20 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
                             for (int j = 0; j < mList.get(i).getWater_group().size(); j++) {
                                 if (mList.get(i).getWater_group().get(j).isIs_check()) {
                                     String goods_id = mList.get(i).getWater_group().get(j).getGoods_id();
+
                                     int allnum = Integer.parseInt(allNum.getText().toString());//数量
                                     Intent intent = new Intent(PaymentActivity.this, WaterOrderActivity.class);
-                                    intent.putExtra("business_type","BUY_WATER");
+                                    intent.putExtra("business_type1","BUY_WATER");
+                                    intent.putExtra("business_type","WATER_PAY_CONFIRM");
                                     intent.putExtra("goodsId", goods_id);
                                     intent.putExtra("allNum", allnum + "");
                                     intent.putExtra("addressId", addressId);
-                                    intent.putExtra("time","");
-                                    intent.putExtra("reserve_sort","");
+                                    intent.putExtra("time",tvTime.getText().toString());
+                                    intent.putExtra("reserve_sort",reserve_sort);
                                     intent.putExtra("money","0");
                                     intent.putExtra("playmethod","water");
                                     intent.putExtra("bucket","");
+                                    intent.putExtra("store_id",mList.get(i).getWater_group().get(j).getStore_id());
                                     startActivity(intent);
                                 }
                             }
@@ -297,6 +299,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
                                     paymentBean.getData().get(i).getWater_group().get(j).setTotal_num(water_groupObj.getInt("total_num"));
                                     paymentBean.getData().get(i).getWater_group().get(j).setNumber(water_groupObj.getInt("number"));
                                     paymentBean.getData().get(i).getWater_group().get(j).setNum(1);
+                                    paymentBean.getData().get(i).getWater_group().get(j).setStore_id(water_groupObj.getString("store_id"));
                                     Log.i("onSuccess: ", paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
                                     waterGroupBeanList.add(paymentBean.getData().get(i).getWater_group().get(j));
 //                                    arrayList.add(paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
@@ -322,9 +325,10 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                String str = dayArray.get(options1)+
+                String str = dayArray.get(options1)+" "+
                         timeArray.get(options1).get(options2);
-//                reserve_sort = sort.get(options1).get(options2);
+                tvTime.setText(str);
+                reserve_sort = sort.get(options1).get(options2);
             }
         })
 
@@ -344,7 +348,7 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
         pvOptions.setPicker(dayArray, timeArray);//二级选择器
         pvOptions.show();
     }
-//private void initOptionPicker() {// 不联动的多级选项
+    //private void initOptionPicker() {// 不联动的多级选项
 //    pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
 //        @Override
 //        public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -382,7 +386,6 @@ public class PaymentActivity extends BaseActivity<PaymentPresentter> implements 
 //    pvNoLinkOptions.setNPicker(day, daytime, null);//没有第三级，所以为null
 //    pvNoLinkOptions.show();
 //}
-
     //获取学校的配送时间
     private void initSchoolData() {
 

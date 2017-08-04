@@ -58,17 +58,25 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_pop_tip"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="150dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
+                <ImageView
+                    android:src="@mipmap/gantan"
                     android:id="@+id/tv_pop_tip_icon"
-                    android:textColor="#DA2E2E"
-                    android:text="@string/tip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <!--<TextView-->
+                <!--android:id="@+id/tv_pop_tip_icon"-->
+                <!--android:textColor="#DA2E2E"-->
+                <!--android:text="@string/tip"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
                 <TextView
+
                     android:id="@+id/tv_pop_tip"
                     android:visibility="visible"
                     android:layout_marginLeft="2dp"
@@ -190,7 +198,7 @@
         <ImageView
 
             android:id="@+id/img_pop_add"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/add"
             android:layout_marginRight="14dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
@@ -207,7 +215,7 @@
         <ImageView
             android:layout_toLeftOf="@+id/tv_pop_num"
             android:id="@+id/img_pop_subtract"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/subtract"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />

@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
 
         back.setTypeface(iconFont);
-        llRemenberPassword.setTag("unremember");
+        /*llRemenberPassword.setTag("unremember");
         llRemenberPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +96,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                     llRemenberPassword.setTag("unremember");
                 }
             }
-        });
+        });*/
 
         final Drawable[] drawables = etPassword.getCompoundDrawables();
         final int eyeWidth = drawables[2].getBounds().width();// 眼睛图标的宽度

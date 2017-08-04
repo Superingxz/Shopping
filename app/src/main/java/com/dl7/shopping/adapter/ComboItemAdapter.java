@@ -14,6 +14,7 @@ import com.dl7.shopping.bean.ComboItemBean;
 import com.dl7.shopping.module.activity.home.ComboOrderActivity;
 import com.dl7.shopping.utils.FontManager;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -66,14 +67,14 @@ public class ComboItemAdapter extends BaseAdapter {
         }
         int money = mList.get(position).getMoney();
         int discount = mList.get(position).getDiscount();
-        int love = (money / 100 * discount) / 100;
 
         holder.title.setText(mList.get(position).getName());
         holder.icon.setTypeface(iconFont);
         holder.enable.setText("每月可用水量:"+mList.get(position).getAvailable_num()+"");
         holder.total.setText("该套餐总水量"+mList.get(position).getNumber()+"");
-        holder.money.setText("¥  "+mList.get(position).getMoney());
-        holder.love.setText("+"+love);
+        DecimalFormat df1   =new   java.text.DecimalFormat("#.00");
+        holder.money.setText("¥  "+df1.format(mList.get(position).getMoney()/100));
+        holder.love.setText("+"+mList.get(position).getScore());
 
         holder.buy.setOnClickListener(new View.OnClickListener() {
             @Override

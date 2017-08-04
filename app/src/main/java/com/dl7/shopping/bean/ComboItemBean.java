@@ -94,6 +94,7 @@ public class ComboItemBean {
         private int available_num;
         private String store_name;
         private String id;
+        private String score;
         private String addressID;
 
         public String getStore_id() {
@@ -246,6 +247,14 @@ public class ComboItemBean {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public void setScore(String score) {
+            this.score = score;
+        }
+
+        public String getScore() {
+            return score;
         }
 
         public String getAddressID() {

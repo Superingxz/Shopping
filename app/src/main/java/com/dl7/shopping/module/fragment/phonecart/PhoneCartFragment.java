@@ -64,7 +64,14 @@ public class PhoneCartFragment extends BaseFragment<PhoneCartPresenter>
         CMCCrbn.setCompoundDrawables(null, myImage, null, null);
         CTrbn.setCompoundDrawables(null, myImage, null, null);
         renewbn.setCompoundDrawables(null, myImage, null, null);
-
+//
+//        Resources res = this.getResources();
+//        Drawable myImage = res.getDrawable(R.mipmap.ic_launcher);
+//        myImage.setBounds(1, 1, 48, 45);
+//        CUrbn.setCompoundDrawables(null, myImage, null, null);
+//        CMCCrbn.setCompoundDrawables(null, myImage, null, null);
+//        CTrbn.setCompoundDrawables(null, myImage, null, null);
+//        renewbn.setCompoundDrawables(null, myImage, null, null);
         fragments = new ArrayList<>();
         fragments.add(new PhoneCUFragment());//联通
         fragments.add(new PhoneCMCCFragment());//移动

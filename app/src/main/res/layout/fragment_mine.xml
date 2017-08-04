@@ -49,7 +49,7 @@
                     android:layout_width="73dp"
                     android:layout_height="73dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/user_head"
+                    android:src="@mipmap/tou_xiang"
                     app:riv_border_color="#333333"
                     app:riv_border_width="2dp"
                     app:riv_oval="true" />
@@ -188,7 +188,7 @@
                 android:layout_width="21.5dp"
                 android:layout_height="23.5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ding_dan" />
 
             <TextView
                 android:layout_marginTop="3dp"
@@ -210,7 +210,7 @@
                 android:layout_width="21.5dp"
                 android:layout_height="23.5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/fu_kuan"/>
             <TextView
                 android:layout_marginTop="3dp"
                 android:textSize="13dp"
@@ -233,7 +233,7 @@
                 android:layout_width="21.5dp"
                 android:layout_height="23.5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/fa_huo" />
 
             <TextView
                 android:layout_marginTop="3dp"
@@ -255,7 +255,7 @@
                 android:layout_width="21.5dp"
                 android:layout_height="23.5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/shou_huo"/>
             <TextView
                 android:layout_marginTop="3dp"
                 android:text="待收货"
@@ -276,7 +276,7 @@
                 android:layout_width="21.5dp"
                 android:layout_height="23.5dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/pin_jia"/>
             <TextView
                 android:layout_marginTop="3dp"
                 android:text="待评价"
@@ -311,7 +311,7 @@
                 android:layout_height="33dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/yu_e" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -344,7 +344,7 @@
                 android:layout_height="33dp"
 
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ai_xin1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -375,7 +375,7 @@
                 android:layout_height="33dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/shou_cang1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -419,7 +419,7 @@
                 android:layout_height="33dp"
 
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/you_hui_juan" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -449,7 +449,7 @@
                 android:layout_width="33dp"
                 android:layout_height="33dp"
                 android:layout_gravity="center"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/bang_zu1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -480,7 +480,7 @@
                 android:layout_height="33dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/tui_chu" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -259,6 +259,7 @@ public class WaterStoreBean {
             private double distance;
             private String name;
             private String id;
+            private boolean isCheak;
 
             public String getAddress() {
                 return address;
@@ -290,6 +291,14 @@ public class WaterStoreBean {
 
             public void setId(String id) {
                 this.id = id;
+            }
+
+            public boolean isCheak() {
+                return isCheak;
+            }
+
+            public void setCheak(boolean isCheak) {
+                this.isCheak = isCheak;
             }
         }
     }

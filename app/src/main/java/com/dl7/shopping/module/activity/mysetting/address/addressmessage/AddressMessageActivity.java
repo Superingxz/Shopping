@@ -60,9 +60,6 @@ public class AddressMessageActivity extends BaseActivity<AddressMessagePresenter
     @BindView(R.id.btn_add_address)
     Button btnAdd;
     private Typeface iconFont;
-    private String[] name = {"aas", "adsdasd", "sadd", "ad", "d", "d", "dddd"};
-    private String[] phone = {"123456", "125874", "1587551", "sadasd", "asda", "Asdas", "asdasd"};
-    private String[] address={"天河区","天河区","天河区","asda","asdas","Asda","Asdasd"};
     private String uid;
     private List<AddressMessageBean.DataBean.ListBean> mList=new ArrayList<>();
     private AddressMessageAdapter adapter;

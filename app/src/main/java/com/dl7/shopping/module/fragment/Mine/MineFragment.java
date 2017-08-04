@@ -53,13 +53,13 @@ public class MineFragment extends BaseFragment<MinePresenter>
     @BindView(R.id.mine_login_ll)
     LinearLayout login;
     @BindView(R.id.tv_allocation_love_num)
-    TextView tvAllocationLoveNum;
+    TextView allocationLove;
     @BindView(R.id.textView)
     TextView textView;
     @BindView(R.id.tv_add_love_num)
-    TextView tvAddLoveNum;
+    TextView addLove;
     @BindView(R.id.tv_all_love_num)
-    TextView tvAllLoveNum;
+    TextView allLove;
     @BindView(R.id.mine_background_linearlayout)
     LinearLayout mineBackgroundLinearlayout;
     @BindView(R.id.imageView2)
@@ -231,7 +231,7 @@ public class MineFragment extends BaseFragment<MinePresenter>
                     loginORname.setText(sp.getString("name", ""));//从本地拿到昵称
                     String image = sp.getString("image", "");//从本地拿到头像
                     if (TextUtils.isEmpty(sp.getString("image",""))){//判断本地是否有头像
-                        img.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
+                        img.setImageResource(R.mipmap.tou_xiang);//如果本地没有头像就使用默认头像
                     }else{
                         Glide.with(this).load(sp.getString("image","")).into(img);//加载头像
                     }
@@ -277,29 +277,33 @@ public class MineFragment extends BaseFragment<MinePresenter>
     //获取数据
     private void initData() {
         OkGo.<String>post(URL.MINE_URL)
-                .params("member_id", sp.getString("data", "0"))
+                .params("member_id",sp.getString("data","0"))
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
-                        Log.i("onSuccess: ", json);
+                        Log.i("onSuccess777: ", json);
                         SharedPreferences sp = getActivity().getSharedPreferences("flag", getActivity().MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
-                        editor.putString("islogin", "true");
+                        editor.putString("islogin","true");
                         try {
-                            JSONObject j1 = new JSONObject(json);
+                            JSONObject j1=new JSONObject(json);
 
-//                            JSONObject data = j1.getJSONObject(j1.getString("data"));
-//                            String score = data.getString("score");//可分配
-//                            String score_new = data.getString("score_new");//新增
-//                            String score_index = data.getString("score_index");
+                            JSONObject data = j1.getJSONObject("data");
+                            int score = data.getInt("score");//可分配
+                            Double score_new = data.getDouble("score_new");//新增
+                            Double score_index = data.getDouble("score_index");
+
+                            allocationLove.setText(score+"");
+                            addLove.setText(score_new+"");
+                            allLove.setText(score_index+"");
 
 //                            Toast.makeText(getContext(), j1.getString("message"), Toast.LENGTH_SHORT).show();
-                            if (sp.getString("data", "0").equals(sp.getString("userid", "0"))) {
+                            if (sp.getString("data","0").equals(sp.getString("userid", "0"))) {
 
                                 //如果当前的用户id是存储的用户ID
                                 String islogin = sp.getString("islogin", "");
-                                if (islogin.equals("true")) {
+                                if (islogin.equals("true")){
                                     loginORname.setText(sp.getString("name", ""));//从本地拿到昵称
                                     login.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -307,24 +311,24 @@ public class MineFragment extends BaseFragment<MinePresenter>
                                         }
                                     });
                                     String image = sp.getString("image", "");//从本地拿到头像
-                                    if (TextUtils.isEmpty(sp.getString("image", ""))) {//判断本地是否有头像
-                                        img.setImageResource(R.mipmap.user_head);//如果本地没有头像就使用默认头像
-                                    } else {
-                                        Glide.with(getContext()).load(sp.getString("image", "")).into(img);//加载头像
+                                    if (TextUtils.isEmpty(sp.getString("image",""))){//判断本地是否有头像
+                                        img.setImageResource(R.mipmap.tou_xiang);//如果本地没有头像就使用默认头像
+                                    }else{
+                                        Glide.with(getContext()).load(sp.getString("image","")).into(img);//加载头像
                                     }
 
-                                } else if (islogin.equals("false")) {
+                                }else if (islogin.equals("false")){
                                     loginORname.setText("登录/注册");
                                     //跳转到登录/注册页面
                                     login.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Intent intent = new Intent(getContext(), LoginOrRegisterActivity.class);
+                                            Intent intent=new Intent(getContext(), LoginOrRegisterActivity.class);
                                             startActivity(intent);
                                         }
                                     });
                                 }
-                            } else {
+                            }else{
                                 loginORname.setText("登录/注册");
                                 //跳转到登录/注册页面
                                 login.setOnClickListener(new View.OnClickListener() {

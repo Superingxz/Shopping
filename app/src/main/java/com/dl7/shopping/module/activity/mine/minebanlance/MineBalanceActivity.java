@@ -40,7 +40,7 @@ public class MineBalanceActivity extends BaseActivity<MineBalancePresenter>
     @BindView(R.id.mine_balance_listview)
     ListView listView;
     private String[] name = {"提现", "充值", "账户明细", "大额转账"};
-    private int[] img = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
+    private int[] img={R.mipmap.ti_xian,R.mipmap.chong_zhi,R.mipmap.ming_xi,R.mipmap.zhuan_zhang};
     private Typeface iconFont;
     private String uid;
 

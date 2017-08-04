@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/water_layout"
-    tools:context="com.dl7.shopping.module.fragment.water.WaterFragment">
+    tools:context="com.example.administrator.shopping.fragment.WaterFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:textSize="30dp"-->
-        <!--android:text="第二页面"/>-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:textSize="30dp"-->
+    <!--android:text="第二页面"/>-->
 
 
     <LinearLayout
@@ -26,7 +26,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="65dp">
             <RadioButton
                 android:id="@+id/rbn_water"
                 android:text="取水"
@@ -35,6 +35,7 @@
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
+                android:drawableTop="@mipmap/qu_shui"
                 android:textColor="@drawable/home_rg_text_color"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -47,6 +48,7 @@
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
+                android:drawableTop="@mipmap/you_hui"
                 android:textColor="@drawable/home_rg_text_color"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -59,6 +61,7 @@
                 android:button="@null"
                 android:paddingTop="6dp"
                 android:checked="true"
+                android:drawableTop="@mipmap/bang_zu"
                 android:textColor="@drawable/home_rg_text_color"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

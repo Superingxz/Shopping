@@ -69,7 +69,6 @@ public class WaterStoreAdapter extends BaseAdapter {
         }
 
 
-
         holder.icon.setTypeface(iconFont);
         holder.chack.setTypeface(iconFont);
         holder.address.setText(mList.get(position).getAddress());
