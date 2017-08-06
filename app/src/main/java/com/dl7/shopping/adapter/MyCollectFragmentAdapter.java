@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.dl7.shopping.module.fragment.myCollect.merchant.MyCollectMerchantFragment;
-import com.dl7.shopping.module.fragment.myCollect.products.MyCollectProductsFragment;
+import com.dl7.shopping.module.fragment.myCollect.MyCollectMerchantFragment;
+import com.dl7.shopping.module.fragment.myCollect.MyCollectProductsFragment;
 
 
 /**

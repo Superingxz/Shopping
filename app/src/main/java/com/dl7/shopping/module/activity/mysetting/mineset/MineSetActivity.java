@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.PhotoAdapter;
 import com.dl7.shopping.api.URL;
-import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
+import com.dl7.shopping.module.activity.mysetting.address.AddressMessageActivity;
 import com.dl7.shopping.module.activity.mysetting.changename.ChangeNameActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.FirstEvent;

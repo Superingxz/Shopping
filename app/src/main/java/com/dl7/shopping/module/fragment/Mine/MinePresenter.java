@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class MinePresenter implements IBasePresenter {
+    private final IMineView mView;
+
+    public MinePresenter(IMineView mView) {
+        this.mView = mView;
+    }
 }

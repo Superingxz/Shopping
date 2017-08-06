@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.bean.ComboItemBean;
-import com.dl7.shopping.module.activity.home.ComboOrderActivity;
+import com.dl7.shopping.module.activity.home.combo.ComboOrderActivity;
 import com.dl7.shopping.utils.FontManager;
 
 import java.text.DecimalFormat;

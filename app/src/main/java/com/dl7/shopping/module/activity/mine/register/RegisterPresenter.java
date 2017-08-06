@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class RegisterPresenter implements IBasePresenter {
+    private final IRegisterView mView;
+
+    public RegisterPresenter(IRegisterView mView) {
+        this.mView = mView;
+    }
 }

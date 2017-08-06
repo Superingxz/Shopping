@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.api.URL;
-import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
+import com.dl7.shopping.module.activity.mysetting.address.AddressMessageActivity;
 import com.dl7.shopping.module.activity.play.DefeatedActivity;
 import com.dl7.shopping.module.activity.play.SuccessActivity;
 import com.dl7.shopping.rxbus.event.SeventeenEvent;

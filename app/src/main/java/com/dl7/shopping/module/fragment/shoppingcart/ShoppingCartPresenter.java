@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class ShoppingCartPresenter implements IBasePresenter {
+    private final IShoppingCartView mView;
+
+    public ShoppingCartPresenter(IShoppingCartView mView) {
+        this.mView = mView;
+    }
 }

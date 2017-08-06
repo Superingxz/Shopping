@@ -6,10 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.dl7.shopping.module.fragment.phonecart.PhoneCMCCFragment;
-import com.dl7.shopping.module.fragment.phonecart.PhoneCTFragment;
-import com.dl7.shopping.module.fragment.phonecart.PhoneCUFragment;
-import com.dl7.shopping.module.fragment.phonecart.PhoneCartRenewFragment;
+import com.dl7.shopping.module.fragment.home.phonecart.PhoneCMCCFragment;
+import com.dl7.shopping.module.fragment.home.phonecart.PhoneCTFragment;
+import com.dl7.shopping.module.fragment.home.phonecart.PhoneCUFragment;
+import com.dl7.shopping.module.fragment.home.phonecart.PhoneCartRenewFragment;
 
 import java.util.List;
 

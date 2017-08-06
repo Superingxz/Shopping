@@ -87,7 +87,7 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.mysetting.address.editaddress.EditAddressActivity"
+            android:name=".module.activity.mysetting.address.EditAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.mine.love.LoveActivity"
@@ -143,20 +143,20 @@
 
 
         <activity
-            android:name=".module.activity.home.ComboItemActivity"
+            android:name=".module.activity.home.combo.ComboItemActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.home.ComboOrderActivity"
+            android:name=".module.activity.home.combo.ComboOrderActivity"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".module.activity.mine.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.mysetting.address.addressmessage.AddressMessageActivity"
+            android:name=".module.activity.mysetting.address.AddressMessageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.mysetting.address.AddAddress.AddAddressActivity"
+            android:name=".module.activity.mysetting.address.AddAddressActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.home.payment.PaymentActivity"

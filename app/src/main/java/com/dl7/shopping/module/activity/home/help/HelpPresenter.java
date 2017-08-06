@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class HelpPresenter implements IBasePresenter {
+    private final IHelpView mView;
+
+    public HelpPresenter(IHelpView mView) {
+        this.mView = mView;
+    }
 }

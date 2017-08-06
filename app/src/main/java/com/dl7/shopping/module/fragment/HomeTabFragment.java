@@ -24,7 +24,7 @@ import com.dl7.shopping.adapter.MyFragmentStatePagerAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.module.activity.home.waterstore.WaterStoreActivity;
 import com.dl7.shopping.module.activity.mine.login.LoginOrRegisterActivity;
-import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
+import com.dl7.shopping.module.activity.mysetting.address.AddressMessageActivity;
 import com.dl7.shopping.rxbus.event.EighthEvent;
 import com.dl7.shopping.rxbus.event.FifthEvent;
 import com.dl7.shopping.rxbus.event.FourEvent;

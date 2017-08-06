@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class DetailsPresenter implements IBasePresenter {
+    private final IDetailsView mView;
+
+    public DetailsPresenter(IDetailsView mView) {
+        this.mView = mView;
+    }
 }

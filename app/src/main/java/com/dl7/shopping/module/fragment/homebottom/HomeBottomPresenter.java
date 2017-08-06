@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class HomeBottomPresenter implements IBasePresenter {
+    private final IHomeBottomView mView;
+
+    public HomeBottomPresenter(IHomeBottomView mView) {
+        this.mView = mView;
+    }
 }

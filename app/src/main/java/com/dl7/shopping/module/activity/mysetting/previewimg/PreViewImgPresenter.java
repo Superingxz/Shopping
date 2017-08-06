@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class PreViewImgPresenter implements IBasePresenter {
+    private final IPreViewImgView mView;
+
+    public PreViewImgPresenter(IPreViewImgView mView) {
+        this.mView = mView;
+    }
 }

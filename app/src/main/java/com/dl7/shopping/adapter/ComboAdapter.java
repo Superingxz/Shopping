@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.dl7.shopping.R;
 import com.dl7.shopping.bean.ComboBean;
-import com.dl7.shopping.module.activity.home.ComboItemActivity;
+import com.dl7.shopping.module.activity.home.combo.ComboItemActivity;
 import com.dl7.shopping.module.activity.home.DetailActivity;
 
 import java.util.List;

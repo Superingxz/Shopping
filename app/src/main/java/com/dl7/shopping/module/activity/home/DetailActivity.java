@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.dl7.shopping.R;
 import com.dl7.shopping.bean.GoodsDetailBean;
 import com.dl7.shopping.module.base.BaseFragment;
-import com.dl7.shopping.module.fragment.DetailBottomWebViewFragment;
-import com.dl7.shopping.module.fragment.DetailTopListViewFragment;
+import com.dl7.shopping.module.fragment.detailbottomwebview.DetailBottomWebViewFragment;
+import com.dl7.shopping.module.fragment.detailtoplietview.DetailTopListViewFragment;
 import com.lzy.widget.VerticalSlide;
 
 import java.util.ArrayList;

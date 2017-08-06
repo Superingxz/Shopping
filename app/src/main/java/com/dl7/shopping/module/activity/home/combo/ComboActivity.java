@@ -11,6 +11,9 @@ import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.ComboAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.ComboBean;
+import com.dl7.shopping.injector.components.DaggerComboComponent;
+import com.dl7.shopping.module.activity.home.combo.baseview.IComboView;
+import com.dl7.shopping.module.activity.home.combo.presenter.ComboPresenter;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.TwentyEvent;
 import com.dl7.shopping.utils.FontManager;
@@ -50,7 +53,7 @@ public class ComboActivity extends BaseActivity<ComboPresenter> implements IComb
 
     @Override
     protected void initInjector() {
-
+        DaggerComboComponent.builder().build().inject(this);
     }
 
     @Override

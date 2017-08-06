@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class GetWaterPresenter implements IBasePresenter {
+    private final IGetWaterView mView;
+
+    public GetWaterPresenter(IGetWaterView view) {
+        this.mView = view;
+    }
 }

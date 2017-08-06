@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class FindPassWordPresenter implements IBasePresenter {
+    private final IFindPassWordView mView;
+
+    public FindPassWordPresenter(IFindPassWordView mView) {
+        this.mView = mView;
+    }
 }

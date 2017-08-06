@@ -11,11 +11,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.dl7.shopping.api.URL;
-import com.dl7.shopping.module.fragment.bottomshopping.BottomShoppingFragment;
-import com.dl7.shopping.module.fragment.hometop.HomeTopFragment;
-import com.dl7.shopping.module.fragment.phonecart.PhoneCartFragment;
-import com.dl7.shopping.module.fragment.topshopping.TopShoppingFragment;
-import com.dl7.shopping.module.fragment.water.WaterFragment;
+import com.dl7.shopping.module.fragment.home.BottomShoppingFragment;
+import com.dl7.shopping.module.fragment.home.HomeTopFragment;
+import com.dl7.shopping.module.fragment.home.phonecart.PhoneCartFragment;
+import com.dl7.shopping.module.fragment.home.TopShoppingFragment;
+import com.dl7.shopping.module.fragment.home.WaterFragment;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;

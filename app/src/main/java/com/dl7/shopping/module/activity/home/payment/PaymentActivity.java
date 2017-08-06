@@ -24,7 +24,7 @@ import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.PaymentBean;
 import com.dl7.shopping.bean.SchoolTimeBean;
 import com.dl7.shopping.module.activity.home.WaterOrderActivity;
-import com.dl7.shopping.module.activity.mysetting.address.addressmessage.AddressMessageActivity;
+import com.dl7.shopping.module.activity.mysetting.address.AddressMessageActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.EighteenEvent;
 import com.dl7.shopping.rxbus.event.SeventhEvent;
@@ -54,7 +54,7 @@ import butterknife.BindView;
  * Created by MC.Zeng on 2017-07-08.
  */
 
-public class PaymentActivity extends BaseActivity<PaymentPresentter> implements IPaymentView {
+public class PaymentActivity extends BaseActivity<PaymentPresenter> implements IPaymentView {
     @BindView(R.id.tv_payment_back)
     TextView back;
     @BindView(R.id.lv_payment)

@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.api.URL;
+import com.dl7.shopping.module.activity.mine.login.presenter.LoginPresenter;
+import com.dl7.shopping.module.activity.mine.login.view.ILoginView;
 import com.dl7.shopping.module.activity.mysetting.findpassword.FindPasswordActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.FirstEvent;

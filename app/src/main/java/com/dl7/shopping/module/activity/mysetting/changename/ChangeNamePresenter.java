@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class ChangeNamePresenter implements IBasePresenter {
+    private final IChangeNameView mView;
+
+    public ChangeNamePresenter(IChangeNameView mView) {
+        this.mView = mView;
+    }
 }

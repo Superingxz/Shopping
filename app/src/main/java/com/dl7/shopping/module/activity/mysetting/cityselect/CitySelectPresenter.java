@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class CitySelectPresenter implements IBasePresenter {
+    private final ICitySelectView mView;
+
+    public CitySelectPresenter(ICitySelectView mView) {
+        this.mView = mView;
+    }
 }

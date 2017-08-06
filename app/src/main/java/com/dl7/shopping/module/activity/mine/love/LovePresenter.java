@@ -7,4 +7,9 @@ import com.dl7.shopping.module.base.IBasePresenter;
  */
 
 public class LovePresenter implements IBasePresenter {
+    private final ILoveView mView;
+
+    public LovePresenter(ILoveView mView) {
+        this.mView = mView;
+    }
 }
