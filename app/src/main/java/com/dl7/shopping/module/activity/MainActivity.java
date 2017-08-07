@@ -1,11 +1,15 @@
 package com.dl7.shopping.module.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.RadioButton;
@@ -76,7 +80,29 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        boolOpenCarmer();
 
+
+//        //同时请求多个权限
+//        RxPermissions.getInstance(MainActivity.this)
+//                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                        Manifest.permission.READ_EXTERNAL_STORAGE,
+//                        Manifest.permission.ACCESS_FINE_LOCATION ,
+//                        Manifest.permission.ACCESS_COARSE_LOCATION
+//                )//多个权限用","隔开
+//                .subscribe(new Action1<Boolean>() {
+//                    @Override
+//                    public void call(Boolean aBoolean) {
+//                        if (aBoolean) {
+//                            //当所有权限都允许之后，返回true
+//                            Log.i("permissions", "btn_more_sametime：" + aBoolean);
+//                        } else {
+//                            //只要有一个权限禁止，返回false，
+//                            //下一次申请只申请没通过申请的权限
+//                            Log.i("permissions", "btn_more_sametime：" + aBoolean);
+//                        }
+//                    }
+//                });
 //        //注册EventBus
 //        EventBus.getDefault().register(this);
         //初始化定位
@@ -145,6 +171,21 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
 
 
+    }
+
+    private void boolOpenCarmer(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ||
+//                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)   //可读
+//                        != PackageManager.PERMISSION_GRANTED ||
+//                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)  //可写
+//                        != PackageManager.PERMISSION_GRANTED||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            //申请WRITE_EXTERNAL_STORAGE权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION},
+                    1);}
     }
 
     private void initViews() {

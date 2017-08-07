@@ -38,7 +38,7 @@
     <RelativeLayout
         android:id="@+id/rl_mine_set_head"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="52.5dp"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -48,16 +48,26 @@
             android:gravity="center"
             android:text="头像"
             android:textColor="#000"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+
+        <ImageView
+            android:src="@mipmap/jian_tou"
+            android:gravity="center"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text=">"
-            android:textSize="18dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text=">"-->
+        <!--android:textSize="18dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignStart="@+id/imageView4" />-->
 
         <LinearLayout
             android:layout_width="40dp"
@@ -67,8 +77,8 @@
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/iv_mine_set_head"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36.5dp"
+                android:layout_height="36.5dp"
                 android:layout_gravity="center"
                 android:src="@mipmap/ic_launcher"
                 app:riv_border_color="#333333"
@@ -84,9 +94,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_accounts"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="帐号"
             android:gravity="center"
@@ -99,7 +109,7 @@
             android:layout_alignParentRight="true"
             android:text="xxxxxxxxxxx"
             android:layout_marginRight="10dp"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -111,9 +121,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_name"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="昵称"
             android:gravity="center"
@@ -121,21 +131,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
+        <ImageView
+            android:src="@mipmap/jian_tou"
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
         <TextView
             android:id="@+id/mine_set_name_tv"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:textColor="#000"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:text="joey"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -147,9 +157,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_gender"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="性别"
             android:gravity="center"
@@ -157,19 +167,19 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
+        <ImageView
+            android:src="@mipmap/jian_tou"
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
         <TextView
             android:id="@+id/mine_set_gender_tv"
             android:layout_marginRight="45dp"
             android:layout_alignParentRight="true"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:gravity="center"
             android:textColor="#000"
             android:text="女生"
@@ -194,7 +204,7 @@
     <RelativeLayout
         android:id="@+id/mine_set_phone"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -203,16 +213,16 @@
             android:gravity="center"
             android:text="绑定手机号"
             android:textColor="#000"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <ImageView
+            android:src="@mipmap/jian_tou"
+            android:gravity="center"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text=">"
-            android:textSize="18dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            />
 
         <TextView
             android:id="@+id/mine_set_phone_tv"
@@ -223,7 +233,7 @@
             android:gravity="center"
             android:text="xxxxxxxxxxx"
             android:textColor="#000"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
     </RelativeLayout>
 
     <TextView
@@ -233,9 +243,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_changepassword"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="修改密码"
             android:gravity="center"
@@ -243,14 +253,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
+        <ImageView
+            android:src="@mipmap/jian_tou"
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
 
     </RelativeLayout>
     <TextView
@@ -260,9 +270,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_address"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="收货地址管理"
             android:gravity="center"
@@ -270,14 +280,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
+        <ImageView
+            android:src="@mipmap/jian_tou"
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
     </RelativeLayout>
     <TextView
         android:background="#E6E6E6"
@@ -287,9 +297,9 @@
     <RelativeLayout
         android:id="@+id/mine_set_identity"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="52.5dp">
         <TextView
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:layout_marginLeft="14dp"
             android:text="身份认证"
             android:gravity="center"
@@ -297,69 +307,71 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
+        <ImageView
+            android:src="@mipmap/jian_tou"
             android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
     </RelativeLayout>
 
-    <TextView
-        android:background="#E6E6E6"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-
-    <RelativeLayout
-        android:id="@+id/mine_set_waterstore"
-        android:layout_width="match_parent"
-        android:layout_height="45dp">
-        <TextView
-            android:textSize="18dp"
-            android:layout_marginLeft="14dp"
-            android:text="选择水店"
-            android:gravity="center"
-            android:textColor="#000"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:layout_alignParentRight="true"
-            android:text=">"
-            android:layout_marginRight="10dp"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
     <TextView
         android:background="#E6E6E6"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
     <!--<RelativeLayout-->
-        <!--android:id="@+id/mine_set_exit"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="45dp">-->
-        <!--<TextView-->
-            <!--android:textSize="18dp"-->
-            <!--android:layout_marginLeft="14dp"-->
-            <!--android:text="退出登录"-->
-            <!--android:gravity="center"-->
-            <!--android:textColor="#000"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent" />-->
+    <!--android:id="@+id/mine_set_waterstore"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="45dp">-->
 
-        <!--<TextView-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:text=">"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:textSize="18dp"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginLeft="14dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text="选择水店"-->
+    <!--android:textColor="#000"-->
+    <!--android:textSize="18dp" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:gravity="center"-->
+    <!--android:text=">"-->
+    <!--android:textSize="18dp" />-->
+    <!--</RelativeLayout>-->
+
+    <!--<TextView-->
+    <!--android:background="#E6E6E6"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp" />-->
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/mine_set_exit"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="45dp">-->
+    <!--<TextView-->
+    <!--android:textSize="18dp"-->
+    <!--android:layout_marginLeft="14dp"-->
+    <!--android:text="退出登录"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="#000"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent" />-->
+
+    <!--<TextView-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:text=">"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:textSize="18dp"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="match_parent" />-->
     <!--</RelativeLayout>-->
     <TextView
         android:background="#E6E6E6"

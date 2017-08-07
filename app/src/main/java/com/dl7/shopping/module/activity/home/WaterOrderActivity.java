@@ -97,7 +97,7 @@ public class WaterOrderActivity extends AppCompatActivity {
 
         initView();
         if (!intent.getStringExtra("bucket").equals("")){
-            buy_type = intent.getStringExtra("bucket");
+            buy_type = intent.getStringExtra("MORTGAGE");
             tvBucket.setVisibility(View.VISIBLE);
         }
         if (!intent.getStringExtra("reserve_sort").equals("")){
@@ -141,6 +141,7 @@ public class WaterOrderActivity extends AppCompatActivity {
                 .params("reserve_sort",reserve_sort)
                 .params("reserve_time",time)
                 .params("store_id",store_id)
+                .params("buy_type",buy_type)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -179,7 +180,11 @@ public class WaterOrderActivity extends AppCompatActivity {
                                 tvTime.setVisibility(View.VISIBLE);
                                 tvTime.setText("配送时间:  "+reserve_time);
                             }
-
+                            if (data.isNull("buy_type")){
+                                buy_type="";
+                            }else{
+                                buy_type=data.getString("buy_type");
+                            }
                             Glide.with(WaterOrderActivity.this).load("http://shop-img.agymall.com/water/small/" + image_url).into(head);
 
                             commit.setOnClickListener(new View.OnClickListener() {

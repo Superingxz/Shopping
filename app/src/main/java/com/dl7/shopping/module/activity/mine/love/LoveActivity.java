@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ import java.util.List;
 public class LoveActivity extends AppCompatActivity {
 
     private Typeface iconFont;
-    private TextView back;
+    private ImageView back;
     private String uid;
     private TextView tvScore;
     private TextView tvTotalScore;
@@ -130,8 +131,7 @@ public class LoveActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        back = (TextView) findViewById(R.id.tv_love_back);
-        back.setTypeface(iconFont);
+        back = (ImageView) findViewById(R.id.tv_love_back);
         tvScore = (TextView) findViewById(R.id.tv_love_score);
         tvTotalScore = (TextView) findViewById(R.id.tv_love_total_score);
         tvTotalProfit = (TextView) findViewById(R.id.tv_love_total_profit);

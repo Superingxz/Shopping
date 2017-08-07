@@ -76,13 +76,13 @@
                 android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="#fff"
-                android:layout_marginRight="14dp"
-                android:layout_alignParentRight="true"
-                android:text=">"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <!--<TextView-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_marginRight="14dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text=">"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
         </RelativeLayout>
 
         <TextView
@@ -126,8 +126,8 @@
         <TextView
             android:id="@+id/tv_Water_order_bucket"
             android:layout_below="@+id/tv_water_order_title"
-            android:layout_marginTop="3dp"
-            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:visibility="visible"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/img_water_order_head"
             android:text="压桶"
@@ -138,7 +138,7 @@
             android:id="@+id/tv_water_order_money"
             android:textColor="#35bb8a"
             android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/img_water_order_head"
             android:text="¥ 25"
@@ -148,6 +148,7 @@
             android:id="@+id/tv_water_order_num"
             android:layout_marginRight="14dp"
             android:text="X1"
+            android:layout_marginBottom="10dp"
             android:gravity="bottom"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -14,7 +14,6 @@ import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.WaterDetailAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.WaterDetailBean;
-import com.dl7.shopping.injector.components.DaggerGetWaterComponent;
 import com.dl7.shopping.module.activity.home.payment.PaymentActivity;
 import com.dl7.shopping.module.base.BaseActivity;
 import com.dl7.shopping.rxbus.event.TwentyEvent;
@@ -76,7 +75,7 @@ public class GetWaterActivity extends BaseActivity<GetWaterPresenter>
 
     @Override
     protected void initInjector() {
-        DaggerGetWaterComponent.builder().build().inject(this);
+
     }
 
     @Override

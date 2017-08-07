@@ -27,7 +27,7 @@
             android:id="@+id/tv_change_name_save"
             android:layout_marginRight="14dp"
             android:layout_alignParentRight="true"
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:text="保存"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +48,7 @@
             android:layout_marginLeft="14dp"
             android:hint="随便输入"
             android:maxLength="10"
+            android:textSize="17dp"
             android:id="@+id/et_change_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,8 +56,8 @@
         <ImageView
             android:id="@+id/img_change_name_delete"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:layout_height="match_parent"
+            android:src="@mipmap/shan_chu"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/et_change_name"
             android:layout_alignEnd="@+id/et_change_name" />
@@ -68,6 +69,8 @@
         android:layout_height="match_parent">
         <TextView
             android:layout_marginTop="5dp"
+            android:textSize="13dp"
+            android:textColor="#727272"
             android:layout_marginLeft="14dp"
             android:text="3-10个字符，可由中英文、数字组成"
             android:layout_width="match_parent"

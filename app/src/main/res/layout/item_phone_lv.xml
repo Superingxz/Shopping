@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="115dp"
     android:background="#fff">
 
 
     <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="14dp"
         android:src="@mipmap/ic_launcher"
         android:id="@+id/img_phone_item"
         android:layout_width="100dp"
@@ -18,6 +20,7 @@
         <TextView
             android:id="@+id/tv_phone_item_name"
             android:text="4G套餐"
+            android:layout_marginTop="14dp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -32,6 +35,7 @@
             android:id="@+id/tv_phone_item_icon"
             android:layout_alignParentBottom="true"
             android:text="¥ "
+            android:layout_marginBottom="10dp"
             android:textColor="#35bb8a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -41,6 +45,7 @@
             android:id="@+id/tv_phone_item_money"
             android:layout_alignParentBottom="true"
             android:text="29.99"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

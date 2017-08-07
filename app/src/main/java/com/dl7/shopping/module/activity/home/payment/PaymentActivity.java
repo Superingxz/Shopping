@@ -56,13 +56,11 @@ import butterknife.BindView;
 
 public class PaymentActivity extends BaseActivity<PaymentPresenter> implements IPaymentView {
     @BindView(R.id.tv_payment_back)
-    TextView back;
+    ImageView back;
     @BindView(R.id.lv_payment)
     ListView listView;
     @BindView(R.id.rl_payment_time)
     RelativeLayout rlPaymentTime;
-    @BindView(R.id.tv_payment_all_circle)
-    TextView allSelecticon;
     @BindView(R.id.tv_payment_order)
     TextView order;
     @BindView(R.id.rl_payment_address)
@@ -99,6 +97,8 @@ public class PaymentActivity extends BaseActivity<PaymentPresenter> implements I
     private List<SchoolTimeBean.DataBean.TimeDataBean> timeDataList=new ArrayList<>();
     private String url;
     private String reserve_sort;
+    private String storeID;
+    private String addressID;
     @Override
     protected int attachLayoutRes() {
         return R.layout.activity_payment;
@@ -114,13 +114,13 @@ public class PaymentActivity extends BaseActivity<PaymentPresenter> implements I
         uid = CommonMethod.getUid(this);
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
-        back.setTypeface(iconFont);
-        allSelecticon.setTypeface(iconFont);
 
         EventBus.getDefault().register(this);
 
         adapter = new PaymentListAdapter(mList, this, this);
         timeList=new ArrayList<>();
+        storeID = "";
+        addressID ="";
         //收货地址
         rl_paymentAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,6 +275,8 @@ public class PaymentActivity extends BaseActivity<PaymentPresenter> implements I
     private void initData() {
         OkGo.<String>post(URL.BRANDWATER_URL)
                 .params("member_id", uid)
+                .params("store_id",storeID)
+                .params("address_id",addressID)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

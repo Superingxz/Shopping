@@ -81,11 +81,11 @@ public class PaymentListAdapter extends BaseAdapter {
                 //先移除之前在scroview里面LinearLayout的布局
                 dataBean.get(position).getWater_group().get(i).setIs_check(false);//默认不选中
                 View infoView  = (LinearLayout) mflater.inflate(R.layout.item_item_payment_product, null);
-                final TextView itemCheckBox = (TextView) infoView.findViewById(R.id.tv_check_box_item_item);
+                final ImageView itemCheckBox = (ImageView) infoView.findViewById(R.id.tv_check_box_item_item);
                 itemPayment = (LinearLayout) infoView.findViewById(R.id.ll_item_payment);
                 ImageView img = (ImageView) infoView.findViewById(R.id.img_payment_head);
                 final TextView itemTitle = (TextView) infoView.findViewById(R.id.tv_payment_name_item);
-                itemCheckBox.setTypeface(iconFont);
+//                itemCheckBox.setTypeface(iconFont);
                 TextView useAble = (TextView) infoView.findViewById(R.id.tv_payment_useable);
                 TextView totalNum = (TextView) infoView.findViewById(R.id.tv_payment_residue);
                 ImageView head = (ImageView) infoView.findViewById(R.id.img_payment_head);
@@ -151,16 +151,16 @@ public class PaymentListAdapter extends BaseAdapter {
 
                         dataBean.get(position).getWater_group().get(finalI).setIs_check(!dataBean.get(position).getWater_group().get(finalI).isIs_check());
                         if (dataBean.get(position).getWater_group().get(finalI).isIs_check()){
-                            itemCheckBox.setText(R.string.address);
+                            itemCheckBox.setImageResource(R.mipmap.gou_xuan);
                         }else{
-                            itemCheckBox.setText(R.string.circle);
+                            itemCheckBox.setImageResource(R.mipmap.yuan_kuang);
                         }
                     }
                 });
                 if (dataBean.get(position).getWater_group().get(finalI).isIs_check()){
-                    itemCheckBox.setText(R.string.address);
+                    itemCheckBox.setImageResource(R.mipmap.gou_xuan);
                 }else{
-                    itemCheckBox.setText(R.string.circle);
+                    itemCheckBox.setImageResource(R.mipmap.yuan_kuang);
                 }
 //
 //                subtract.setTag(position+","+finalI);
@@ -180,7 +180,9 @@ public class PaymentListAdapter extends BaseAdapter {
                                 number--;
                                 num.setText(number+"");
                                 TextView allNum = (TextView) activity.findViewById(R.id.tv_payment_total_num);
-                                allNum.setText(itemTitle.getText().toString()+number+"");
+                                TextView orderName = (TextView) activity.findViewById(R.id.tv_payment_order_name);
+                                allNum.setText(number+"");
+                                orderName.setText(itemTitle.getText().toString());
                                 notifyDataSetChanged();
                             }else {
                                 Toast.makeText(context, "至少一桶才能下单", Toast.LENGTH_SHORT).show();
@@ -196,13 +198,18 @@ public class PaymentListAdapter extends BaseAdapter {
                     public void onClick(View v) {
                         if (dataBean.get(position).getWater_group().get(finalI).isIs_check()) {
                             int number = Integer.parseInt(num.getText().toString());
-                            number++;
-                            num.setText(number + "");
-                            TextView allNum = (TextView) activity.findViewById(R.id.tv_payment_total_num);
-                            TextView orderName = (TextView) activity.findViewById(R.id.tv_payment_order_name);
-                            allNum.setText(number + "");
-                            orderName.setText(itemTitle.getText().toString());
-                            notifyDataSetChanged();
+                            if (number<dataBean.get(position).getWater_group().get(finalI).getNumber()){
+                                number++;
+                                num.setText(number + "");
+                                TextView allNum = (TextView) activity.findViewById(R.id.tv_payment_total_num);
+                                TextView orderName = (TextView) activity.findViewById(R.id.tv_payment_order_name);
+                                allNum.setText(number + "");
+                                orderName.setText(itemTitle.getText().toString());
+                                notifyDataSetChanged();
+                            }else {
+                                Toast.makeText(context, "不能超过可用水量", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }
                 });

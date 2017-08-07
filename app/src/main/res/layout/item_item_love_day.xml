@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="73.5dp">
 
     <RelativeLayout
         android:layout_marginLeft="14dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:layout_marginTop="8dp"
             android:id="@+id/tv_love_item_info"
             android:textColor="#1a1a1a"
             android:text="线下店铺让利获爱心-123456789"
-            android:layout_width="250dp"
+            android:maxEms="15"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <TextView
+            android:textSize="16dp"
+            android:textColor="#a6a6a6"
             android:layout_alignParentBottom="true"
             android:text="06-20 10:11:30"
             android:id="@+id/tv_love_item_time"
@@ -22,17 +27,16 @@
 
     </RelativeLayout>
 
-
-
-        <TextView
-            android:layout_marginRight="14dp"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:id="@+id/tv_love_item_love_num"
-            android:textColor="#35bb8a"
-            android:text="+10000"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+    <TextView
+        android:layout_marginRight="14dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tv_love_item_love_num"
+        android:textColor="#35bb8a"
+        android:text="+10000"
+        android:textSize="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 
 

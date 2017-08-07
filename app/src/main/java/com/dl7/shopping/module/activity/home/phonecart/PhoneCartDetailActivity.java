@@ -47,7 +47,9 @@ public class PhoneCartDetailActivity extends AppCompatActivity implements View.O
         fab.setOnClickListener(this);
         RadioButton shoppingCart = (RadioButton) findViewById(R.id.rbn_details_shoppingcart);
         TextView addShoppingCart = (TextView) findViewById(R.id.rgn_details_addshoppingcart);
+        RadioButton share = (RadioButton) findViewById(R.id.rbn_details_share);
 
+        share.setVisibility(View.GONE);
         addShoppingCart.setText("立即购买");
         shoppingCart.setVisibility(View.GONE);
         Intent intent = getIntent();

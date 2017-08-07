@@ -5,20 +5,20 @@
     android:layout_height="match_parent">
 
     <!--<TextView-->
-        <!--android:id="@+id/top"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:background="#8456"-->
-        <!--android:gravity="center"-->
-        <!--android:text="可以自定义头布局"-->
-        <!--android:textColor="#FFF"/>-->
+    <!--android:id="@+id/top"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="#8456"-->
+    <!--android:gravity="center"-->
+    <!--android:text="可以自定义头布局"-->
+    <!--android:textColor="#FFF"/>-->
 
     <LinearLayout
         android:id="@+id/ll_drag_layout"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="49dp">
         <RadioButton
             android:id="@+id/rbn_details_collect"
             android:text="收藏"
@@ -60,7 +60,7 @@
             android:gravity="center"
             android:textColor="#fff"
             android:background="#35bb8a"
-            android:textSize="10dp"
+            android:textSize="18dp"
             android:paddingTop="6dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"

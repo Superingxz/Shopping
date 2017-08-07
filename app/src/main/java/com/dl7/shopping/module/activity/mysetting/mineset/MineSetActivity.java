@@ -70,8 +70,6 @@ public class MineSetActivity extends BaseActivity<MineSetPresenter>
     RelativeLayout gender;
     @BindView(R.id.mine_set_address)
     RelativeLayout address;
-    @BindView(R.id.mine_set_waterstore)
-    RelativeLayout waterStore;
     private Typeface iconFont;
     private PhotoAdapter photoAdapter;
     private ArrayList<String> selectedPhotos = new ArrayList<>();

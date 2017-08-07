@@ -6,7 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dl7.shopping.R;
@@ -24,6 +25,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,11 +43,13 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
         implements IWaterStoreView {
 
     @BindView(R.id.tv_water_store_back)
-    TextView back;
+    ImageView back;
     @BindView(R.id.lv_water_store)
     PullToRefreshListView listView;
     @BindView(R.id.btn_water_store_confirm)
     Button confirm;
+    @BindView(R.id.ll_water_store_baoqian)
+    LinearLayout baoqian;
     private Typeface iconFont;
     private String uid;
     private WaterStoreAdapter adapter;
@@ -74,8 +78,6 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
 
         uid = CommonMethod.getUid(this);
-
-        back.setTypeface(iconFont);
 
         Intent intent=getIntent();
         address = intent.getStringExtra("address");
@@ -159,8 +161,34 @@ public class WaterStoreActivity extends BaseActivity<WaterStorePresenter>
                         Log.i( "onSuccess: ",json);
                         Gson gson=new Gson();
                         WaterStoreBean waterStoreBean = gson.fromJson(json, WaterStoreBean.class);
-                        mList.addAll(waterStoreBean.getData().getList());
-                        adapter.notifyDataSetChanged();
+                        List<WaterStoreBean.DataBean.ListBean> listBeen=new ArrayList<WaterStoreBean.DataBean.ListBean>();
+
+                        try {
+                            JSONObject j1=new JSONObject(json);
+                            JSONObject data = j1.getJSONObject("data");
+                            if (j1.isNull("data")){
+                                baoqian.setVisibility(View.VISIBLE);
+                                listView.setVisibility(View.GONE);
+                            }else{
+                                baoqian.setVisibility(View.GONE);
+                                listView.setVisibility(View.VISIBLE);
+                                JSONArray list = data.getJSONArray("list");
+                                for (int i = 0; i < list.length(); i++) {
+                                    JSONObject listObj = list.getJSONObject(i);
+                                    waterStoreBean.getData().getList().get(i).setAddress(listObj.getString("address"));
+                                    waterStoreBean.getData().getList().get(i).setName(listObj.getString("name"));
+                                    waterStoreBean.getData().getList().get(i).setId(listObj.getString("id"));
+                                    waterStoreBean.getData().getList().get(i).setDistance(listObj.getDouble("distance"));
+                                    listBeen.add(waterStoreBean.getData().getList().get(i));
+                                }
+                                mList.addAll(listBeen);
+                                adapter.notifyDataSetChanged();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }

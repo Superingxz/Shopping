@@ -159,6 +159,8 @@ public class URL {
     /**
      * 分类查询用户的余水
      * @param   member_id
+     * @param   store_id    水店id
+     * @param   address_id  地址id
      * @return
      */
     public static String BRANDWATER_URL = prefix+"/member/api/1.0/member/water/kind/brand";

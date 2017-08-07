@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dl7.shopping.R;
@@ -55,7 +56,7 @@ public class WaterStoreAdapter extends BaseAdapter {
         if (convertView==null){
             holder=new viewHolder();
             convertView= LayoutInflater.from(context).inflate(R.layout.item_water_store,parent,false);
-            holder.chack= (TextView) convertView.findViewById(R.id.tv_water_store_check_icon);
+            holder.chack= (ImageView) convertView.findViewById(R.id.tv_water_store_check_icon);
             holder.title= (TextView) convertView.findViewById(R.id.tv_water_store_title);
             holder.address= (TextView) convertView.findViewById(R.id.tv_water_store_address);
             holder.distance= (TextView) convertView.findViewById(R.id.tv_water_store_distance);
@@ -70,7 +71,6 @@ public class WaterStoreAdapter extends BaseAdapter {
 
 
         holder.icon.setTypeface(iconFont);
-        holder.chack.setTypeface(iconFont);
         holder.address.setText(mList.get(position).getAddress());
         holder.title.setText(mList.get(position).getName());
         DecimalFormat df = new DecimalFormat("0.0");
@@ -80,9 +80,9 @@ public class WaterStoreAdapter extends BaseAdapter {
 
         if (position+1==selectItem){
             Log.i("getView: ", position+"");
-            holder.chack.setText(R.string.address);
+            holder.chack.setImageResource(R.mipmap.gou_xuan);
         }else {
-            holder.chack.setText(R.string.circle);
+            holder.chack.setImageResource(R.mipmap.yuan_kuang);
         }
 
         return convertView;
@@ -99,6 +99,7 @@ public class WaterStoreAdapter extends BaseAdapter {
 
 
     class viewHolder{
-        TextView address,phone,distance,icon,chack,title;
+        TextView address,phone,distance,icon,title;
+        ImageView chack;
     }
 }

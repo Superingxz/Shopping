@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,7 +40,7 @@ import butterknife.BindView;
 public class ComboOrderActivity extends BaseActivity<ComboOrderPresenter> implements ComboOrderView {
 
     @BindView(R.id.tv_combo_order_back)
-    TextView back;
+    ImageView back;
     @BindView(R.id.rl_layout_combo_order)
     RelativeLayout rlLayoutComboOrder;
     @BindView(R.id.tv_combo_order_title)
@@ -94,7 +95,6 @@ public class ComboOrderActivity extends BaseActivity<ComboOrderPresenter> implem
         group_id = intent.getStringExtra("group_id");
         addressID = intent.getStringExtra("addressID");
         uid = CommonMethod.getUid(this);
-        back.setTypeface(iconFont);
 
         initData();
 

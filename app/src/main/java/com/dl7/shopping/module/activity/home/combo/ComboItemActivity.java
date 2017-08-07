@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class ComboItemActivity extends BaseActivity<ComboItemPresenter>
         implements ComboItemView {
 
     @BindView(R.id.tv_combo_back)
-    TextView back;
+    ImageView back;
     @BindView(R.id.rl_combo)
     RelativeLayout rlCombo;
     @BindView(R.id.line_combo)
@@ -69,8 +70,6 @@ public class ComboItemActivity extends BaseActivity<ComboItemPresenter>
         storeID = intent.getStringExtra("storeID");
         goodsID = intent.getStringExtra("goodsID");
         addressID = intent.getStringExtra("addressID");
-
-        back.setTypeface(iconFont);
 
         adapter = new ComboItemAdapter(mList, this);
         listView.setAdapter(adapter);

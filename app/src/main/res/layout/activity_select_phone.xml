@@ -7,14 +7,21 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+
+        <ImageView
             android:id="@+id/tv_select_phone_back"
-            android:textSize="18dp"
             android:layout_marginLeft="14dp"
-            android:text="@string/back"
-            android:textColor="#7F7F7F"
+            android:src="@mipmap/fan_hui1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <!--<TextView-->
+        <!--android:id="@+id/tv_select_phone_back"-->
+        <!--android:textSize="18dp"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:text="@string/back"-->
+        <!--android:textColor="#7F7F7F"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
         <TextView
             android:textColor="#1a1a1a"
@@ -29,33 +36,39 @@
         android:id="@+id/et_select_phone_search"
         android:layout_marginRight="14dp"
         android:layout_marginLeft="14dp"
-        android:background="#E6E6E6"
+        android:background="#E5E5E5"
         android:hint="搜索"
+        android:textSize="14dp"
+        android:textColorHint="#a7a7a7"
+        android:gravity="center"
         android:imeOptions="actionSearch"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="32.5dp" />
 
     <TextView
         android:id="@+id/tv_select_phone_address"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="14dp"
-        android:text="定位"
+        android:textSize="16dp"
+        android:textColor="#4c4c4c"
+        android:text=""
+        android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
 
     <com.handmark.pulltorefresh.library.PullToRefreshGridView
-        android:numColumns="2"
         android:id="@+id/gv_select_phone"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
 
     <!--<ListView-->
-        <!--android:id="@+id/lv_select_phone"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"></ListView>-->
+    <!--android:id="@+id/lv_select_phone"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"></ListView>-->
 
 </LinearLayout>

@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.dl7.shopping.R;
 import com.dl7.shopping.adapter.ComboAdapter;
 import com.dl7.shopping.api.URL;
 import com.dl7.shopping.bean.ComboBean;
-import com.dl7.shopping.injector.components.DaggerComboComponent;
 import com.dl7.shopping.module.activity.home.combo.baseview.IComboView;
 import com.dl7.shopping.module.activity.home.combo.presenter.ComboPresenter;
 import com.dl7.shopping.module.base.BaseActivity;
@@ -37,7 +36,7 @@ import butterknife.BindView;
 
 public class ComboActivity extends BaseActivity<ComboPresenter> implements IComboView {
     @BindView(R.id.tv_combo_back)
-    TextView back;
+    ImageView back;
     @BindView(R.id.lv_combo)
     ListView listView;
     private Typeface iconFont;
@@ -53,14 +52,13 @@ public class ComboActivity extends BaseActivity<ComboPresenter> implements IComb
 
     @Override
     protected void initInjector() {
-        DaggerComboComponent.builder().build().inject(this);
+
     }
 
     @Override
     protected void initViews() {
         //使用Font Awesome
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
-        back.setTypeface(iconFont);
 
         Intent intent=getIntent();
         addressID = intent.getStringExtra("addressID");

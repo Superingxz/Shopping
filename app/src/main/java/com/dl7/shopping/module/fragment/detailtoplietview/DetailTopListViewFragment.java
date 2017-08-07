@@ -236,6 +236,7 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
     }
 
     private void initData() {
+
         OkGo.<String>post(URL.GOODSDETAIL_URL)
                 .params("goods_id", goods_id)
                 .params("member_id",uid)
@@ -248,20 +249,49 @@ public class DetailTopListViewFragment extends BaseFragment implements XBanner.X
                         try {
                             JSONObject j1=new JSONObject(json);
                             Gson gson=new Gson();
-                            final GoodsDetailBean goodsDetailBean = gson.fromJson(json, GoodsDetailBean.class);
-                            initNetBanner(goodsDetailBean.getData().getImages());
+                            GoodsDetailBean goodsDetailBean = gson.fromJson(json, GoodsDetailBean.class);
+                            final JSONObject data = j1.getJSONObject("data");
+                            imgBean = new ArrayList<GoodsDetailBean.DataBean.ImagesBean>();
+                            title.setText(data.getString("goods_name")+data.getString("specification"));
+                            present_price = data.getInt("present_price");
+                            money.setText("¥    "+data.getInt("present_price")/100);
+                            goodsDetailBean.getData().setGoods_name(data.getString("goods_name"));
+                            goodsDetailBean.getData().setSpecification(data.getString("specification"));
+                            goodsDetailBean.getData().setPresent_price(data.getInt("present_price"));
+                            goodsDetailBean.getData().setAddress(data.getString("address"));
+                            tvAddress.setText(data.getString("address"));
+//                            title.setText(data.getString("goods_name")+data.getString("specification"));
+//                            money.setText("¥   "+data.getString("present_price"));
+
+                            goodsDetailBean.getData().setStore_type(data.getString("store_type"));
+                            goodsDetailBean.getData().setScore(data.getString("score"));
+                            tvLove.setText("+"+data.getString("score"));
+
+                            JSONArray images = data.getJSONArray("images");
+                            for (int i = 0; i < images.length(); i++) {
+                                JSONObject imgObject = images.getJSONObject(i);
+                                goodsDetailBean.getData().getImages().get(i).setImage_url(imgObject.getString("image_url"));
+
+                                imgBean.add(goodsDetailBean.getData().getImages().get(i));
+                            }
+                            Log.i("onSuccess: ", imgBean.size()+"" );
+                            initNetBanner(imgBean);
 
                             //时间
                             time.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     url = "";
-                                    if (goodsDetailBean.getData().getStore_type().equals("SCHOOL")){
-                                        url =URL.SCHOOLTIME_URL;
-                                    }else{
-                                        url =URL.COMMONTIME_URL;
+                                    try {
+                                        if (data.getString("store_type").equals("SCHOOL")){
+                                            url =URL.SCHOOLTIME_URL;
+                                        }else{
+                                            url =URL.COMMONTIME_URL;
+                                        }
+                                        initSchoolData();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                    initSchoolData();
                                 }
                             });
                         } catch (JSONException e) {

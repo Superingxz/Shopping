@@ -419,7 +419,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
         tvName = (TextView) popview.findViewById(R.id.tv_pop_name);
         ImageView tipIcon = (ImageView) popview.findViewById(R.id.tv_pop_tip_icon);
         LinearLayout rlBucket = (LinearLayout) popview.findViewById(R.id.ll_pop_buy_or_rent);
-        TextView tvDismiss = (TextView) popview.findViewById(R.id.tv_pop_dismiss);
+        ImageView tvDismiss = (ImageView) popview.findViewById(R.id.tv_pop_dismiss);
         tvMoney = (TextView) popview.findViewById(R.id.tv_pop_money);
         final TextView buyBucket = (TextView) popview.findViewById(R.id.tv_pop_buy);
         final TextView rentBuckt = (TextView) popview.findViewById(R.id.tv_pop_rent);
@@ -628,7 +628,7 @@ public class WaterListViewAdapter extends BaseAdapter implements View.OnClickLis
                     intent.putExtra("reserve_sort","");
                     intent.putExtra("money",money);
                     intent.putExtra("playmethod","third");
-                    intent.putExtra("bucket","RENT");
+                    intent.putExtra("bucket","MORTGAGE");
                     context.startActivity(intent);
                     popWindow.dissmiss();
                 }else{
