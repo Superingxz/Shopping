@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-import com.dl7.shopping.api.RetrofitService;
 import com.dl7.shopping.injector.components.ApplicationComponent;
 import com.dl7.shopping.injector.components.DaggerApplicationComponent;
 import com.dl7.shopping.injector.modules.ApplicationModule;
@@ -140,7 +139,7 @@ public class AndroidApplication extends Application {
             Logger.init("LogTAG");
         }
        // CrashHandler.getInstance().init(getApplication());
-        RetrofitService.init();
+        //RetrofitService.init();
         ToastUtils.init(getApplication());
     }
 
