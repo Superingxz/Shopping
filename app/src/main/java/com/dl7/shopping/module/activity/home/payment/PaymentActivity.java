@@ -282,10 +282,41 @@ public class PaymentActivity extends BaseActivity<PaymentPresenter> implements I
                     public void onSuccess(Response<String> response) {
                         String json = response.body().toString();
                         Log.i("onSuccess: ", json);
+
                         Gson gson = new Gson();
                         PaymentBean paymentBean = gson.fromJson(json, PaymentBean.class);
-                        mList.addAll(paymentBean.getData());
-                        adapter.notifyDataSetChanged();
+                        List<PaymentBean.DataBean.WaterGroupBean> waterGroupBeanList = new ArrayList<PaymentBean.DataBean.WaterGroupBean>();
+                        List<PaymentBean.DataBean> dataBean = new ArrayList<PaymentBean.DataBean>();
+                        try {
+                            JSONObject j1 = new JSONObject(json);
+
+                            JSONArray data = j1.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject dataObj = data.getJSONObject(i);
+                                paymentBean.getData().get(i).setBrand_name(dataObj.getString("brand_name"));
+                                JSONArray water_group = dataObj.getJSONArray("water_group");
+                                for (int j = 0; j < water_group.length(); j++) {
+                                    JSONObject water_groupObj = water_group.getJSONObject(j);
+                                    paymentBean.getData().get(i).getWater_group().get(j).setGoods_name(water_groupObj.getString("goods_name"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setTotal_num(water_groupObj.getInt("total_num"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setNumber(water_groupObj.getInt("number"));
+                                    paymentBean.getData().get(i).getWater_group().get(j).setNum(1);
+                                    paymentBean.getData().get(i).getWater_group().get(j).setStore_id(water_groupObj.getString("store_id"));
+                                    Log.i("onSuccess: ", paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
+                                    waterGroupBeanList.add(paymentBean.getData().get(i).getWater_group().get(j));
+//                                    arrayList.add(paymentBean.getData().get(i).getWater_group().get(j).getGoods_name());
+                                }
+                                list.addAll(waterGroupBeanList);
+//                                groupArray.add(paymentBean.getData().get(i).getBrand_name());
+//                                childArray.add(arrayList);
+                                dataBean.add(paymentBean.getData().get(i));
+                            }
+
+                            mList.addAll(paymentBean.getData());
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
     }
