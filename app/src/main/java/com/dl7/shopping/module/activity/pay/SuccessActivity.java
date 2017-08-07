@@ -1,4 +1,4 @@
-package com.dl7.shopping.module.activity.play;
+package com.dl7.shopping.module.activity.pay;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,20 +11,21 @@ import com.dl7.shopping.utils.FontManager;
 
 
 /**
- * 支付失败页面
+ * 支付成功页面
  * Created by MC.Zeng on 2017-07-26.
  */
 
-public class DefeatedActivity extends AppCompatActivity{
+public class SuccessActivity extends AppCompatActivity{
+
     private Typeface iconFont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_defeated);
+        setContentView(R.layout.activity_play_success);
         iconFont = FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME);
 
-        TextView back= (TextView) findViewById(R.id.tv_defeated_back);
+        TextView back= (TextView) findViewById(R.id.tv_success_back);
         back.setTypeface(iconFont);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

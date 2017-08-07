@@ -112,10 +112,10 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.play.SuccessActivity"
+            android:name=".module.activity.pay.SuccessActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.activity.play.DefeatedActivity"
+            android:name=".module.activity.pay.DefeatedActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.activity.mysetting.cityselect.CitySelectActivity"
